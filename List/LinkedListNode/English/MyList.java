@@ -2,7 +2,7 @@ package List.LinkedListNode.English;
 
 import List.ListInterface;
 
-public class MyList implements ListInterface<Node>{
+public class MyList implements ListInterface<DataElement>{
     
     private Node root;
 
@@ -15,7 +15,8 @@ public class MyList implements ListInterface<Node>{
     }
 
     @Override
-    public void append(Node node){
+    public void append(DataElement data){
+        Node node = new Node(data);
         if(root == null) {
             root = node;
         } else {
@@ -33,12 +34,12 @@ public class MyList implements ListInterface<Node>{
     }
 
     @Override
-    public Node remove(){
+    public DataElement remove(){
         if(root.equals(null)){
             System.out.println("No list, nothing to remove");
             return null;
         } else {
-            Node toReturn = root;
+            DataElement toReturn = root.getData();
             root = root.getNext();
             return toReturn;
         }
@@ -46,27 +47,27 @@ public class MyList implements ListInterface<Node>{
 
 
     @Override
-    public Node getItemAtPosition(int position) {
+    public DataElement getItemAtPosition(int position) {
         int counter = 1;
         Node found = root.getItemAtPosition(position, counter);
-        return found;
+        return found.getData();
     }
 
     @Override
-    public int searchItemPosition(Node node) {
+    public int searchItemPosition(DataElement data) {
         int counter = 0;
-        int searched = root.searchItemPosition(node,counter);
+        int searched = root.searchItemPosition(new Node(data),counter);
         return searched;
     }
 
     @Override
-    public boolean contains(Node node) {
-        return root.contains(node);
+    public boolean contains(DataElement data) {
+        return root.contains(new Node(data));
     }
 
     @Override
     public int length() {
-        return root.length(0);
+        return root.length();
     }
 
 

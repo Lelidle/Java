@@ -8,17 +8,17 @@ public class MyListTest {
     private MyList testList;
 
     public MyListTest(){
-        testList.append(new Node(new Human("Helmut Schmidt" , 25)));
-        testList.append(new Node(new Human("Max Mustermann", 27)));
-        testList.append(new Node(new Human("Gesine Schwan", 35)));
-        testList.append(new Node(new Human("Helmut Kohl", 64)));
-        testList.append(new Node(new Human("Bill Gates", 57)));
+        testList.append(new Human("Helmut Schmidt" , 25));
+        testList.append(new Human("Max Mustermann", 27));
+        testList.append(new Human("Gesine Schwan", 35));
+        testList.append(new Human("Helmut Kohl", 64));
+        testList.append(new Human("Bill Gates", 57));
     }
 
     @Test
     void testAppend() {
         MyList appendTest = new MyList();
-        testList.append(new Node(new Human("Bob",25)));
+        testList.append(new Human("Bob",25));
         Assertions.assertNotEquals(null, appendTest.getRoot());
     }
 
@@ -39,7 +39,7 @@ public class MyListTest {
     @Test
     void testContains() {
         Human h = new Human("Helmut Kohl", 64);
-        Assertions.assertEquals(true, testList.contains(new Node(h)));
+        Assertions.assertEquals(true, testList.contains(h));
     }
 
     @Test

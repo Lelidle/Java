@@ -112,11 +112,11 @@ public class Human {
         }
     }
 
-    public int length(int counter){
+    public int length(){
         if(next != null){
-            return next.length(counter + 1);
+            return next.length() + 1;
         } else {
-            return counter +1;
+            return 1;
         }
     }
 

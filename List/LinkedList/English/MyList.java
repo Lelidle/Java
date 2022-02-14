@@ -80,7 +80,7 @@ public class MyList implements ListInterface<Human> {
 
     @Override
     public int length() {
-        return root.length(0);
+        return root.length();
     }
 
     public Human getRoot(){

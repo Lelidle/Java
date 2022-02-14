@@ -1,6 +1,6 @@
-package List.LinkedListNode.English;
+package List.Compositum.English;
 
-public class Human extends DataElement{
+public class Human extends DataElement {
     
     private String name;
     private int age; 
@@ -28,7 +28,7 @@ public class Human extends DataElement{
         System.out.println("I am " + name + " and I am " + age + " years old");
     }
 
-        /**
+    /**
      * Overrides the comparison method to check whether the human
      * has the same age and name as this object
      * @param o the compared object
@@ -49,5 +49,4 @@ public class Human extends DataElement{
             return false;
         }
     }
-
 }

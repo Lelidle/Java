@@ -3,15 +3,15 @@ package List.LinkedListNode.English;
 public class Node {
     
     private Node next;
-    private Human value;
+    private DataElement data;
     
     /**
-     * constructor
-     * Initializes the next node as null;
+     * constructor that initializes the next node as null and sets data
+     * @param data the DataElement that is stored in this node
      */
-    public Node(Human human){
+    public Node(DataElement data){
         next = null;
-        value = human;
+        this.data = data;
     }
 
     /**
@@ -40,12 +40,12 @@ public class Node {
         }
     }
 
-    public Object getInfo() {
-        return value;
+    public DataElement getData() {
+        return data;
     }
 
     public void printList(){
-        value.presentation();
+        data.presentation();
         if (next != null) next.printList();
     }
 
@@ -85,11 +85,11 @@ public class Node {
         }
     }
 
-    public int length(int counter){
+    public int length(){
         if(next != null){
-            return next.length(counter + 1);
+            return next.length() + 1;
         } else {
-            return counter +1;
+            return 1;
         }
     }
 }
