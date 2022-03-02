@@ -58,5 +58,14 @@ public class Human {
         } else {
             return false;
         }
+
+        
+    }
+
+    public boolean isGreater(Human human) {
+        if(this.getAge() > human.getAge()) {
+            return true;
+        }
+        return false; 
     }
 }

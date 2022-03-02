@@ -20,7 +20,6 @@ public class EndNode extends Node {
 
     @Override
     public void appendSorted(DataElement data) {
-        // TODO Auto-generated method stub
         
     }
 
@@ -51,11 +50,20 @@ public class EndNode extends Node {
     }
 
     @Override
-    public int length(int counter) {
+    public int length() {
         return 0;
     }
 
     @Override
     public void remove(DataElement data) {}
     
+    @Override
+    public DataElement removeAt(int position, int counter){
+        return null;
+    }
+
+    @Override
+    public Node findEnd(Node node){
+        return node; 
+    }
 }

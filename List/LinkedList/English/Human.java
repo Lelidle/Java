@@ -25,7 +25,6 @@ public class Human {
         return name;
     }
 
-
     /**
      * getter method for the private attribute age
      * @return returns the age of the human
@@ -39,6 +38,10 @@ public class Human {
      */
     public Human getNext(){
         return next;
+    }
+
+    public void setNext(Human human){
+        next = human;
     }
 
     /**
@@ -120,12 +123,32 @@ public class Human {
         }
     }
 
+    public Human removeAt(int position, int counter){
+        if(counter == position - 1) {
+            next = next.getNext();
+            return next;
+        } else {
+            return next.removeAt(position, counter + 1);
+        }
+    }
 
     /**
      * Helper method for testing, let's a human present the information
      */
     public void presentation(){
         System.out.println("I am " + name + " and I am " + age + " years old");
+    }
+
+    /**
+     * A recursive helper method to find the end of the list
+     * @return returns itself if there is no next Item
+     */
+    public Human findEnd(){
+        if(next == null) {
+            return this;
+        } else {
+            return next.findEnd();
+        }
     }
 
     /**

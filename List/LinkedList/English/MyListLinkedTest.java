@@ -3,12 +3,12 @@ package List.LinkedList.English;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class MyListTest {
+public class MyListLinkedTest {
 
-    private MyList testList;
+    private MyListLinked testList;
 
-    public MyListTest(){
-        testList = new MyList();
+    public MyListLinkedTest(){
+        testList = new MyListLinked();
         testList.append(new Human("Dave",19));
         testList.append(new Human("Martha", 51));
         testList.append(new Human("Tim", 45));
@@ -17,7 +17,7 @@ public class MyListTest {
 
     @Test
     void testAppend() {
-        MyList appendTest = new MyList();
+        MyListLinked appendTest = new MyListLinked();
         appendTest.append(new Human("Manuel", 18));
         Assertions.assertEquals("Manuel", appendTest.getRoot().getName());
     }
@@ -47,9 +47,9 @@ public class MyListTest {
     }
 
     @Test
-    void testRemove() {
+    void testPop() {
         Human h = new Human("Dave", 19);
-        Assertions.assertEquals(h, testList.remove());
+        Assertions.assertEquals(h, testList.pop());
     }
 
     @Test
@@ -58,4 +58,13 @@ public class MyListTest {
         Assertions.assertEquals(3, testList.searchItemPosition(h));
     }
     
+    @Test
+    void testConcatenate(){
+        MyListLinked toConcat = new MyListLinked();
+        toConcat.append(new Human("Morris", 15));
+        toConcat.append(new Human("Jonathan", 25));
+        testList = (MyListLinked) testList.concatenate(toConcat);
+        Assertions.assertEquals(6, testList.length());
+        Assertions.assertEquals("Jonathan", testList.findEnd().getName());
+    }
 }

@@ -10,6 +10,8 @@ public abstract class Node {
     public abstract int searchItemPosition(DataElement data, int counter);
     public abstract DataElement getItemAtPosition(int position, int counter);
     public abstract boolean contains(DataElement data);
-    public abstract int length(int counter);
+    public abstract int length();
     public abstract void remove(DataElement data);
+    public abstract DataElement removeAt(int position, int counter);
+    public abstract Node findEnd(Node node);
 }

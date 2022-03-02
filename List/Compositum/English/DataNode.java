@@ -75,8 +75,8 @@ public class DataNode extends Node {
     }
 
     @Override
-    public int length(int counter) {
-        return next.length(counter + 1);
+    public int length() {
+        return next.length() + 1;
     }
 
     @Override
@@ -84,6 +84,22 @@ public class DataNode extends Node {
         if(next.getData().equals(data)){
             next = next.getNext();
         }
+    }
+
+    @Override
+    public DataElement removeAt(int position, int counter){
+        if(counter == position -1){
+            DataElement toReturn = next.getData();
+            next = next.getNext();
+            return toReturn; 
+        } else {
+            return next.removeAt(position, counter + 1);
+        }
+    }
+
+    @Override
+    public Node findEnd(Node node) {
+        return next.findEnd(this);
     }
     
 }

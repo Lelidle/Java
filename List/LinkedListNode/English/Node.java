@@ -49,12 +49,12 @@ public class Node {
         if (next != null) next.printList();
     }
 
-    public int searchItemPosition(Node node, int counter){
-        if(node.equals(this)){
+    public int searchItemPosition(DataElement data, int counter){
+        if(this.getData().equals(data)){
             return counter;
         } 
         if(next != null) {
-            return next.searchItemPosition(node, counter+1);
+            return next.searchItemPosition(data, counter+1);
         } else {
             return -1;
         }
@@ -72,12 +72,12 @@ public class Node {
         }
     }
 
-    public boolean contains(Node node) {
-        if(node.equals(this)) {
+    public boolean contains(DataElement data) {
+        if(this.getData().equals(data)) {
             return true;
         } else {
             if(next != null){
-                return next.contains(node);
+                return next.contains(data);
             } else {
                 return false;
             }
@@ -92,4 +92,22 @@ public class Node {
             return 1;
         }
     }
+
+    public Node findEnd(){
+        if(next == null) {
+            return this;
+        } else {
+            return next.findEnd();
+        }
+    }
+
+    public DataElement removeAt(int position, int counter){
+        if(counter == position - 1){
+            next = next.getNext();
+            return next.getData();
+        } else {
+            return next.removeAt(position, counter + 1);
+        }
+    }
+
 }

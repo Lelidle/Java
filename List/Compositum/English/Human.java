@@ -23,6 +23,7 @@ public class Human extends DataElement {
         return age;
     }
 
+
     @Override
     public void presentation(){
         System.out.println("I am " + name + " and I am " + age + " years old");
@@ -49,4 +50,19 @@ public class Human extends DataElement {
             return false;
         }
     }
+
+    @Override
+    public boolean isGreater(DataElement data) {
+        Human human = null;
+        try {
+            human = (Human) data;
+        } catch (Exception e) {
+            System.out.println("The element for the comparison is not a human!");
+        }
+        if(this.getAge() > human.getAge()) {
+            return true;
+        }
+        return false; 
+    }
+
 }

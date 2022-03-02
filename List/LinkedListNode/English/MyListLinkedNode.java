@@ -2,11 +2,11 @@ package List.LinkedListNode.English;
 
 import List.ListInterface;
 
-public class MyList implements ListInterface<DataElement>{
+public class MyListLinkedNode implements ListInterface<DataElement>{
     
     private Node root;
 
-    public MyList(){
+    public MyListLinkedNode(){
         root = null;
     }
 
@@ -34,8 +34,8 @@ public class MyList implements ListInterface<DataElement>{
     }
 
     @Override
-    public DataElement remove(){
-        if(root.equals(null)){
+    public DataElement pop(){
+        if(root == null){
             System.out.println("No list, nothing to remove");
             return null;
         } else {
@@ -56,13 +56,13 @@ public class MyList implements ListInterface<DataElement>{
     @Override
     public int searchItemPosition(DataElement data) {
         int counter = 0;
-        int searched = root.searchItemPosition(new Node(data),counter);
+        int searched = root.searchItemPosition(data,counter);
         return searched;
     }
 
     @Override
     public boolean contains(DataElement data) {
-        return root.contains(new Node(data));
+        return root.contains(data);
     }
 
     @Override
@@ -70,5 +70,28 @@ public class MyList implements ListInterface<DataElement>{
         return root.length();
     }
 
+    @Override
+    public DataElement removeAt(int position) {
+        int counter = 1;
+        return root.removeAt(position, counter);
+    }
 
+    public Node findEnd(){
+        if(root != null) {
+            return root.findEnd();
+        } else {
+            return null;
+        }
+    }
+
+    @Override
+    public Object concatenate(Object o) {
+        if(!(o instanceof MyListLinkedNode)){
+            return this;
+        } 
+        MyListLinkedNode toConcat = (MyListLinkedNode) o;
+        Node end = this.findEnd();
+        end.setNext(toConcat.getRoot());
+        return this;
+    }
 }

@@ -3,22 +3,23 @@ package List.LinkedListNode.English;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class MyListTest {
+public class MyListLinkedNodeTest {
 
-    private MyList testList;
-
-    public MyListTest(){
+    private MyListLinkedNode testList;
+    
+    public MyListLinkedNodeTest(){
+        testList = new MyListLinkedNode();
         testList.append(new Human("Helmut Schmidt" , 25));
         testList.append(new Human("Max Mustermann", 27));
         testList.append(new Human("Gesine Schwan", 35));
         testList.append(new Human("Helmut Kohl", 64));
         testList.append(new Human("Bill Gates", 57));
     }
-
+    
     @Test
     void testAppend() {
-        MyList appendTest = new MyList();
-        testList.append(new Human("Bob",25));
+        MyListLinkedNode appendTest = new MyListLinkedNode();
+        appendTest.append(new Human("Bob",25));
         Assertions.assertNotEquals(null, appendTest.getRoot());
     }
 
