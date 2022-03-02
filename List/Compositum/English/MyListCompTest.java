@@ -32,16 +32,21 @@ public class MyListCompTest {
         MyListComp appendTest = new MyListComp();
         appendTest.appendBack(new Human("Alex", 15));
         appendTest.appendBack(new Human("Boris", 18));
-        System.out.println(appendTest.getRoot().getNext().getData());
-        Human firstHuman = (Human) appendTest.getRoot().getData();
-        Human secondHuman = (Human) appendTest.getRoot().getNext().getData();
-        Assertions.assertEquals("Alex", firstHuman.getName());
-        Assertions.assertEquals("Boris", secondHuman.getName());
+        Assertions.assertEquals("Alex", ((Human) appendTest.getRoot().getData()).getName());
+        Assertions.assertEquals("Boris", ((Human) appendTest.getRoot().getNext().getData()).getName());
     }
 
     @Test
     void testAppendSorted() {
-        // TODO Test has to be implemented
+       MyListComp appendTest = new MyListComp();
+       appendTest.appendSorted(new Human("Albi", 27));
+       appendTest.appendSorted(new Human("Alex", 15));
+       appendTest.appendSorted(new Human("Alex", 25));
+       appendTest.appendSorted(new Human("Boris", 18));
+       Assertions.assertEquals("Alex", ((Human) appendTest.pop()).getName());
+       appendTest.pop();
+       appendTest.pop();
+       Assertions.assertEquals("Albi", ((Human) appendTest.pop()).getName());
     }
 
     @Test

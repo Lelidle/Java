@@ -31,9 +31,12 @@ public class DataNode extends Node {
     }
 
     @Override
-    public void appendSorted(DataElement Data) {
-        // TODO Auto-generated method stub
-        
+    public Node appendSorted(DataElement data) {
+        if(this.getData().isGreater(data)) {
+            return new DataNode(this, data);
+        }
+        next = next.appendSorted(data);
+        return this;
     }
 
     @Override

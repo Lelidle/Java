@@ -19,8 +19,8 @@ public class EndNode extends Node {
     }
 
     @Override
-    public void appendSorted(DataElement data) {
-        
+    public Node appendSorted(DataElement data) {
+        return new DataNode(this, data);
     }
 
     @Override

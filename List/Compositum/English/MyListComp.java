@@ -23,7 +23,7 @@ public class MyListComp implements ListInterface<DataElement>{
 
     public void appendBack(DataElement data) {
         if(root instanceof EndNode){
-            root = new DataNode(new EndNode(), data);
+            root = new DataNode(root, data);
         } else {
             root.appendBack(data);
         }
@@ -31,7 +31,7 @@ public class MyListComp implements ListInterface<DataElement>{
     }
 
     public void appendSorted(DataElement data){
-        root.appendSorted(data);
+        root = root.appendSorted(data);
     }
 
     @Override

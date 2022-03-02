@@ -2,7 +2,6 @@ package List;
 
 import List.Array.English.Human;
 import List.Array.English.MyListArray;
-import List.Compositum.English.MyListComp;
 
 /**
  * All Methods are public for testing purposes, should be private, 
@@ -16,65 +15,31 @@ public class Sorter {
      * @param toSort
      * @param method
      */
-    public void sort(ListInterface toSort, SortingMethod method) {
+    public void sort(MyListArray toSort, SortingMethod method) {
         if(toSort instanceof MyListArray) {
-            MyListArray switching = (MyListArray) toSort;
             switch(method){
                 case BUBBLE:
-                bubbleSortArr(switching);
+                bubbleSort(toSort);
                 break;
                 case INSERTION:
-                insertionSortArr(switching);
+                insertionSort(toSort);
                 break;
                 case SELECTION:
-                // TODO implement SELECTIOn Sort
+                selectionSort(toSort);
                 break;
                 case MERGE:
-                // TODO Implement Merge Sort
+                mergeSort(toSort, 0, toSort.length() - 1);
                 break;
                 case QUICK:
-                // TODO implement Quick Sort
-                break;
-                case RADIX:
-                // TODO implement Radix Sort
+                quickSort(toSort,0, toSort.length() - 1);
                 break;
                 case HEAP:
                 break;
                 case BUCKET:
                 break;
                 default:
-                System.out.println("A wrong method has been given, bubbleSort was used");
-                bubbleSortArr((MyListArray) toSort);
-                break;
-            }
-        } else if(toSort instanceof MyListComp){
-            MyListComp switching = (MyListComp) toSort;
-            switch(method){
-                case BUBBLE:
-                bubbleSortComp(switching);
-                break;
-                case INSERTION:
-                insertionSortComp(switching);
-                break;
-                case SELECTION:
-                // TODO implement SELECTIOn Sort
-                break;
-                case MERGE:
-                // TODO Implement Merge Sort
-                break;
-                case QUICK:
-                // TODO implement Quick Sort
-                break;
-                case RADIX:
-                // TODO implement Radix Sort
-                break;
-                case HEAP:
-                break;
-                case BUCKET:
-                break;
-                default:
-                System.out.println("A wrong method has been given, bubbleSort was used");
-                bubbleSortArr((MyListArray) toSort);
+                System.out.println("An unknown method has been given, bubbleSort was used");
+                bubbleSort((MyListArray) toSort);
                 break;
             }
         } else {
@@ -82,7 +47,7 @@ public class Sorter {
         }
     }
 
-    public void bubbleSortArr(MyListArray toSort) {
+    public void bubbleSort(MyListArray toSort) {
         int n = toSort.length();
         Human[] queue = toSort.getQueue();
         boolean swapped = false; //optional, if no swap is made the loop can stop
@@ -100,15 +65,7 @@ public class Sorter {
         toSort.setQueue(queue);
     }
 
-    public void bubbleSortComp(MyListComp toSort){
-        int n = toSort.length();
-        boolean swapped = false;
-        for(int i = 0; i < n; i++) {
-           
-        }
-    }
-
-    public void insertionSortArr(MyListArray toSort) {
+    public void insertionSort(MyListArray toSort) {
         int n = toSort.length();
         Human[] queue = toSort.getQueue();
         for(int i = 1; i < n; i++){
@@ -123,7 +80,95 @@ public class Sorter {
         toSort.setQueue(queue);
     }
 
-    public void insertionSortComp(MyListComp toSort) {
+    public void selectionSort(MyListArray toSort) {
+        int n = toSort.length();
+        Human[] queue = toSort.getQueue();
+        for(int i = 0; i < n -1; i++){
+            int index = i;
+            for(int j = i + 1; j < n; j++) {
+                if(queue[index].isGreater(queue[j])) {
+                    index = j;
+                }
+            }
+            Human tmp = queue[index];
+            queue[index] = queue[i];
+            queue[i] = tmp;
+        }
+        toSort.setQueue(queue);
+    }
 
+    public void mergeSort(MyListArray toSort, int left, int right){
+        if(left < right) {
+            int middle = left + (right-left)/2;
+            mergeSort(toSort, left, middle);
+            mergeSort(toSort, middle + 1, right);
+            merge(toSort, left, middle, right);
+        }
+    }
+
+    public void merge(MyListArray toSort, int left, int middle, int right){
+        int sizeLeft = middle - left + 1;
+        int sizeRight = right - middle;
+        Human[] queue = toSort.getQueue();
+        Human[] Left = new Human[sizeLeft];
+        Human[] Right = new Human[sizeRight];
+        //Copying of the data into the temporary arrays:
+        for(int i = 0; i < sizeLeft; i++) {
+            Left[i] = queue[left + i];
+        }
+        for(int j = 0; j < sizeRight; j++) {
+            Right[j] = queue[middle + 1 + j];
+        }
+        //starting indices of the partial arrays and the new merged array
+        int i=0,j=0, k=left;
+        while(i < sizeLeft && j < sizeRight) {
+            if(Right[j].isGreater(Left[i])) {
+                queue[k] = Left[i];
+                i++;
+            } else {
+                queue[k] = Right[j];
+                j++;
+            }
+            k++;
+        }
+        while(i < sizeLeft) {
+            queue[k] = Left[i];
+            i++;
+            k++;
+        } 
+        while(j < sizeRight){
+            queue[k] = Right[j];
+            j++;
+            k++;
+        }
+        toSort.setQueue(queue);
+    }
+
+    public void quickSort(MyListArray toSort, int low, int high) {
+        if(low < high) {
+            int pivot = partition(toSort, low, high);
+            quickSort(toSort, low, pivot - 1);
+            quickSort(toSort, pivot + 1, high);
+        }
+    }
+
+    public int partition(MyListArray toSort, int low, int high) {
+        Human[] queue = toSort.getQueue();
+        Human piv = queue[high];
+        piv.presentation();
+        int i = low - 1;
+        for(int j = low; j < high; j++) {
+            if(piv.isGreater(queue[j])) {
+                i++;
+                Human tmp = queue[i];
+                queue[i] = queue[j];
+                queue[j] = tmp;
+            }
+        }
+        Human temp = queue[high];
+        queue[i + 1] = queue[high];
+        queue[high] = temp;
+        toSort.setQueue(queue); 
+        return i + 1;
     }
 }
