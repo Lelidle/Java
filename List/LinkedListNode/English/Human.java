@@ -15,20 +15,32 @@ public class Human extends DataElement{
         this.age = age;
     }
 
+    /**
+     * Helper method to get the Name of the human
+     * @return returns the name of the human
+     */
     public String getName(){
         return name;
     }
 
+    /**
+     * Helper method to get the age of the humn
+     * @return returns the age of the human
+     * @return
+     */
     public int getAge(){
         return age;
     }
 
+    /**
+     * Helper method for testing, let's a human present the information
+     */
     @Override
     public void presentation(){
         System.out.println("I am " + name + " and I am " + age + " years old");
     }
 
-        /**
+    /**
      * Overrides the comparison method to check whether the human
      * has the same age and name as this object
      * @param o the compared object

@@ -25,10 +25,18 @@ public class MyListArray implements ListInterface<Human> {
         return queue;
     }
 
+    /**
+     * Setter for testing to alter the underlaying Human[] array
+     * @param queue a queue with Objects of type Human
+     */
     public void setQueue(Human[] queue){
         this.queue = queue;
     }
 
+    /**
+     * Defines with which algorithm the array shall be sorted
+     * @param method The enum SortingMethod defines which methods can be used
+     */
     public void setSortingMethod(SortingMethod method){
         sortingMethod = method;
     }
@@ -190,6 +198,7 @@ public class MyListArray implements ListInterface<Human> {
     /**
      * appends the Human in an ascending order (compared by age).
      * Sorting Method can be chosen by using setSortingMethod(method).
+     * Available Methods are defined in the Enum SortingMethod.
      * @param human the human to append
      */
     public void appendSorted(Human human) {

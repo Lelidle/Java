@@ -15,15 +15,38 @@ public class Human extends DataElement {
         this.age = age;
     }
 
+    /**
+     * Helper method to get the Name of the human
+     * @return returns the name of the human
+     */
     public String getName(){
         return name;
     }
 
+    /**
+     * Helper method to get the age of the human
+     * @return returns the age of the human
+     * @return
+     */
     public int getAge(){
         return age;
     }
 
+    /**
+     * Helper method to set the age of the human
+     * @param age the new age of the Human
+     */
+    public void setAge(int age){
+        if(age >= 0 && age <=200){
+            this.age = age;
+        } else {
+            System.out.println("Das kann kein menschliches Alter sein!");
+        }
+    }
 
+    /**
+     * Helper method for testing, let's a human present the information
+     */
     @Override
     public void presentation(){
         System.out.println("I am " + name + " and I am " + age + " years old");
@@ -51,6 +74,11 @@ public class Human extends DataElement {
         }
     }
 
+    /**
+     * Method for comparing two humans. Uses only the age to compare
+     * @param human the human that shall be compared to this
+     * @return returns true if this human is older
+     */
     @Override
     public boolean isGreater(DataElement data) {
         Human human = null;

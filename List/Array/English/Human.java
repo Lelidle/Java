@@ -62,6 +62,11 @@ public class Human {
         
     }
 
+    /**
+     * Method for comparing two humans. Uses only the age to compare
+     * @param human the human that shall be compared to this
+     * @return returns true if this human is older
+     */
     public boolean isGreater(Human human) {
         if(this.getAge() > human.getAge()) {
             return true;

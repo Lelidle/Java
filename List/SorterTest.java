@@ -68,6 +68,17 @@ public class SorterTest {
     }
 
     @Test
+    void testHeapSort(){
+        sorter.heapSort(testListArr);
+        testListArr.printList();
+        Assertions.assertEquals("Cherry", (testListArr.pop()).getName());
+        testListArr.pop();
+        testListArr.pop();
+        Assertions.assertEquals("Bailey", testListArr.pop().getName());
+    }
+
+
+    @Test
     void testSort(){
         sorter.sort(testListArr, SortingMethod.BUBBLE);
         testListArr.printList();

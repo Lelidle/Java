@@ -34,8 +34,7 @@ public class Sorter {
                 quickSort(toSort,0, toSort.length() - 1);
                 break;
                 case HEAP:
-                break;
-                case BUCKET:
+                heapSort(toSort);
                 break;
                 default:
                 System.out.println("An unknown method has been given, bubbleSort was used");
@@ -155,7 +154,6 @@ public class Sorter {
     public int partition(MyListArray toSort, int low, int high) {
         Human[] queue = toSort.getQueue();
         Human piv = queue[high];
-        piv.presentation();
         int i = low - 1;
         for(int j = low; j < high; j++) {
             if(piv.isGreater(queue[j])) {
@@ -165,10 +163,49 @@ public class Sorter {
                 queue[j] = tmp;
             }
         }
-        Human temp = queue[high];
+        Human temp = queue[i + 1];
         queue[i + 1] = queue[high];
         queue[high] = temp;
         toSort.setQueue(queue); 
         return i + 1;
+    }
+
+    public void heapSort(MyListArray toSort) {
+        int n = toSort.length();
+        Human[] queue = toSort.getQueue();
+        for(int i = n/2 -1; i >=0;i--){
+            heapify(queue, n,i);
+        }
+
+        for(int i = n - 1; i >= 0; i--){
+            Human tmp = queue[0];
+            queue[0] = queue[i];
+            queue[i] = tmp; 
+            heapify(queue, i, 0);
+        }
+        toSort.setQueue(queue);
+    }
+
+    public void heapify(Human[] queue, int n, int i){
+        int root = i, left = 2*i+1, right = 2*i + 2;
+        System.out.println("Left: " + left + " Right: " + right);
+        queue[root].presentation();
+        queue[left].presentation();
+        queue[right].presentation();
+        if(left < n && queue[left].isGreater(queue[root])) {
+            root = left;
+            System.out.println("Here!");
+        }
+        if(right < n && queue[right].isGreater(queue[root])){
+            root = right;
+            System.out.println("No here!");
+        }
+
+        if(root != i){
+            Human tmp = queue[i];
+            queue[i] = queue[root];
+            queue[root] = tmp;
+        }
+        heapify(queue, n, root);
     }
 }

@@ -102,6 +102,12 @@ public class Human {
         }
     }
 
+    /**
+     * Recursive method to check, if an element is in the list.
+     * @param human the human that shall is being checked
+     * @return returns true if the data is in this node, otherwise it returns
+     * the result of the next node in the list. 
+     */
     public boolean contains(Human human) {
         if(human.equals(this)) {
             return true;
@@ -115,6 +121,10 @@ public class Human {
         }
     }
 
+    /**
+     * Recursive method to check the length of the list
+     * @return returns the result of the method call on next+1
+     */
     public int length(){
         if(next != null){
             return next.length() + 1;
@@ -123,6 +133,14 @@ public class Human {
         }
     }
 
+    /**
+     * Removes an element at a specificed position and returns the reference to it.
+     * If the next node is the one to remove, it sets a new reference
+     * @param position the index in the list that shall be removed
+     * @param counter a helper counter to search the right position
+     * @return  returns this human, if the counter is equal to position - 1.
+     * Otherwise it returns the result of the method call on next with counter+1
+     */
     public Human removeAt(int position, int counter){
         if(counter == position - 1) {
             next = next.getNext();

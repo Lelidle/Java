@@ -1,5 +1,9 @@
 package List.Compositum.English;
 
+/**
+ * Abstract class that defines the behaviour of a node.
+ */
+
 public abstract class Node {
     public abstract void setNext(Node node);
     public abstract Node getNext();

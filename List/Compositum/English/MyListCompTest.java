@@ -93,8 +93,9 @@ public class MyListCompTest {
 
     @Test
     void testRemoveAt() {
-        Assertions.assertEquals("Christa", ((Human) testList.removeAt(3)).getName());
-        Assertions.assertEquals(4, testList.length());
+        Assertions.assertEquals("Ethel", ((Human) testList.removeAt(1)).getName());
+        Assertions.assertEquals("Berti", ((Human) testList.removeAt(3)).getName());
+        Assertions.assertEquals(3, testList.length());
     }
 
     @Test
