@@ -21,10 +21,19 @@ public class LambdaTest {
         System.out.println();
         map(test, ((Human h) -> {h.setAge(h.getAge() + 1); return h;}));
         test.printList();
+        System.out.println();
+        map(test, LambdaTest::giveTitle);
+        test.printList();
+
     }
 
     public static Human ageUp(Human human) {
         human.setAge(human.getAge() + 1);
+        return human;
+    }
+
+    public static Human giveTitle(Human human){
+        human.setName("Dr. " + human.getName());
         return human;
     }
 

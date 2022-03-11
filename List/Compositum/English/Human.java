@@ -16,11 +16,19 @@ public class Human extends DataElement {
     }
 
     /**
-     * Helper method to get the Name of the human
+     * Helper method to get the name of the human
      * @return returns the name of the human
      */
     public String getName(){
         return name;
+    }
+
+    /**
+     * Helper method to set the name of the human
+     * @param name sets the name of the human
+     */
+    public void setName(String name){
+        this.name = name; 
     }
 
     /**
