@@ -189,18 +189,12 @@ public class Sorter {
     public void heapify(Human[] queue, int n, int i){
         int root = i, left = 2*i+1, right = 2*i + 2;
         System.out.println("Left: " + left + " Right: " + right);
-        queue[root].presentation();
-        queue[left].presentation();
-        queue[right].presentation();
         if(left < n && queue[left].isGreater(queue[root])) {
             root = left;
-            System.out.println("Here!");
         }
         if(right < n && queue[right].isGreater(queue[root])){
             root = right;
-            System.out.println("No here!");
         }
-
         if(root != i){
             Human tmp = queue[i];
             queue[i] = queue[root];

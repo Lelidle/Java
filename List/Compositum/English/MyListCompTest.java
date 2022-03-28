@@ -103,4 +103,10 @@ public class MyListCompTest {
         Assertions.assertEquals(1, testList.searchItemPosition(new Human("Dora", 7)));
         Assertions.assertEquals(0, testList.searchItemPosition(new Human("Ethel", 15)));
     }
+
+    @Test
+    void testMap(){
+        testList.map((Human h) -> {h.setAge(h.getAge() + 1); return h;});
+        Assertions.assertEquals(16, ((Human) testList.pop()).getAge());
+    }
 }

@@ -1,6 +1,7 @@
 package List;
 
 import java.util.function.Function;
+
 import List.Compositum.English.DataNode;
 import List.Compositum.English.Human;
 import List.Compositum.English.MyListComp;
@@ -28,7 +29,7 @@ public class LambdaTest {
     }
 
     public static Human ageUp(Human human) {
-        human.setAge(human.getAge() + 1);
+        human.setAge((human.getAge() + 1));
         return human;
     }
 

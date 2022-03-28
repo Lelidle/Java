@@ -1,4 +1,6 @@
 package List.Compositum.English;
+import java.util.function.Function;
+
 import List.ListInterface;
 
 public class MyListComp implements ListInterface<DataElement>{
@@ -172,4 +174,17 @@ public class MyListComp implements ListInterface<DataElement>{
         return this;
     }
     
+    /**
+     * A function that takes a function that alters a human and applies it
+     * to all humans in the list
+     * @param func a function that alters a human
+     */
+    public  void map(Function<Human, Human> func) {
+        Node tmp = root;
+        while(tmp instanceof DataNode) {
+            func.apply((Human) tmp.getData());
+            tmp = tmp.getNext();
+        }
+    }
+
 }
