@@ -30,6 +30,7 @@ class Arr(VGroup):
     def __init__(self, length):
         super().__init__()
         self.arr = []
+        self.scaled = 1
         for i in range(0, length):
             square = Square()
             self.arr.append(square.shift(2*i*RIGHT))
@@ -37,7 +38,15 @@ class Arr(VGroup):
         for square in self.arr:
             self.add(square)
 
-
+    def add_boxes(self, count):
+        for _ in range(count):
+            square = Square().scale(self.scaled).move_to(
+                self.arr[len(self.arr)-1]).shift(self.scaled*2*RIGHT)
+            self.arr.append(square)
+            print(self.arr)
+            self.add(square)
+        return self
+        
 class Bodyparts(Enum):
     LEFT_LEG = 0
     RIGHT_LEG = 1
