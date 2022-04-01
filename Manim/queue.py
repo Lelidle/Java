@@ -1,5 +1,14 @@
 from manim import *
-from Vgroups import Arr, StickFigure
+from Vgroups import Arr, StickFigure, ArrConsCells, ConsParts, Bodyparts
+
+# Enables option to render multiple scenes or switch between
+# combinations of scenes to render at the start of the file
+class ToRender(Scene):
+    def construct(self):
+        MyListArrayBasics.construct(self)
+        #self.clear()
+        # Scene2.construct(self)
+
 
 class QueueTestScene(Scene):
     def construct(self):
@@ -26,11 +35,6 @@ class CodeFromString(Scene):
                             language="Java", font="Monospace", style=Code.styles_list[30])
         self.play(FadeIn(rendered_code))
         self.wait(5)
-
-class ToRender(Scene):
-    def construct(self):
-        MyListArrayBasics.construct(self)
-
 
 class MyListArrayBasics(Scene):
     def construct(self):
@@ -60,9 +64,10 @@ class MyListArrayBasics(Scene):
         demi_name = Text("Demi").scale(0.5)
         count0 = Text("count = 0").scale(0.5).to_corner(UR)
         count1 = Text("count = 1").scale(0.5).to_corner(UR)
-        count2 = Text("count = 2").scale(0.5).to_corner(UR)
         count3 = Text("count = 3").scale(0.5).to_corner(UR)
         count4 = Text("count = 4").scale(0.5).to_corner(UR)
+        #Texts Part 2
+        disclaimer = Text("A more technical accurate visualization would be the following:").scale(0.5).to_corner(UL)
         #MObjects
         arr = Arr(3).scale(0.75).shift(LEFT*6)
         arr.scaled = 0.75
@@ -82,7 +87,11 @@ class MyListArrayBasics(Scene):
         demi_name.next_to(demi_figure, direction=DOWN)
         demi = VGroup(demi_figure, demi_name)
 
-        #Starting the Scene
+        #Additional MObjects Part 2
+        cons_arr = ArrConsCells(4).scale(0.5).shift(0.5*LEFT)
+
+
+        #Starting the Scene - Part 1
         self.play(Write(new_list_text))
         self.wait()
         self.play(FadeIn(arr, count0))
@@ -117,13 +126,46 @@ class MyListArrayBasics(Scene):
         self.wait()
         self.play(Write(new_demi_text), FadeIn(demi))
         self.wait()
-        arr = arr.add_boxes(3)
-        #self.play(ApplyMethod(arr.add_boxes, 1))
-        #self.wait()
-        #self.play(ApplyMethod(arr.add_boxes, 2))
+        self.play(FadeOut(new_demi_text))
+        self.wait()
+        self.play(Write(push_text_demi))
+        arr.update_boxes(3)
+        self.play(ApplyMethod(arr.add_boxes, arr.arr))
         self.wait()
         self.play(ApplyMethod(demi.scale, 0.5))
         self.wait()
-        self.play(ApplyMethod(berti.move_to, arr.arr[3]))
+        self.play(ApplyMethod(demi.move_to, arr.arr[3]), ReplacementTransform(count3, count4))
         self.wait()
         
+        # Part 2 Video
+        self.clear()
+        self.wait()
+        self.play(FadeIn(cons_arr), Write(disclaimer))
+        self.wait()
+        first_cell=cons_arr.cells[0]
+        self.play(Indicate(first_cell.parts[ConsParts.ARROW_LEFT.value], scale_factor=2, run_time=3))
+        self.wait()
+        annabell.to_edge(LEFT).shift(4*UP)
+        berti.to_edge(LEFT).shift(4*UP)
+        christo.to_edge(LEFT).shift(4*UP)
+        demi.to_edge(LEFT).shift(4*UP)
+        self.play(FadeIn(annabell))
+        self.wait()
+        moving_position = cons_arr.cells[0].get_tip_position("left") + DOWN*0.75
+        self.play(ApplyMethod(annabell.move_to, moving_position))
+        self.wait()
+        moving_position = cons_arr.cells[1].get_tip_position("left") + DOWN*0.75
+        self.play(FadeIn(berti))
+        self.wait()
+        self.play(ApplyMethod(berti.move_to, moving_position))
+        self.wait()
+        moving_position = cons_arr.cells[2].get_tip_position("left") + DOWN*0.75
+        self.play(FadeIn(christo))
+        self.wait()
+        self.play(ApplyMethod(christo.move_to, moving_position))
+        self.wait()
+        moving_position = cons_arr.cells[3].get_tip_position("left") + DOWN*0.75
+        self.play(FadeIn(demi))
+        self.wait()
+        self.play(ApplyMethod(demi.move_to, moving_position))
+        self.wait()        

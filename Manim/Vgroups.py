@@ -1,31 +1,6 @@
 from manim import *
 from enum import Enum
 
-class Test(Scene):
-    def construct(self):
-        figure = StickFigure("15", False)
-        
-        self.play(FadeIn(figure))
-        self.wait()
-        figure.alter_age_visibility()
-        self.wait()
- 
-    def test_arm_movements(self, figure):
-        self.play(FadeIn(figure))
-        self.wait()
-        self.play(ApplyMethod(figure.raise_arm, "left"))
-        self.wait()
-        self.play(ApplyMethod(figure.lower_arm, "left"))
-        self.wait()
-        self.play(ApplyMethod(figure.raise_arm, "right"))
-        self.wait()
-        self.play(ApplyMethod(figure.lower_arm, "right"))
-        self.wait()
-        self.play(ApplyMethod(figure.raise_arm, "both"))
-        self.wait()
-        self.play(ApplyMethod(figure.lower_arm, "both"))
-        self.wait()
-
 class Arr(VGroup):
     def __init__(self, length):
         super().__init__()
@@ -34,19 +9,69 @@ class Arr(VGroup):
         for i in range(0, length):
             square = Square()
             self.arr.append(square.shift(2*i*RIGHT))
-
-        for square in self.arr:
             self.add(square)
 
-    def add_boxes(self, count):
+    def update_boxes(self, count):
         for _ in range(count):
             square = Square().scale(self.scaled).move_to(
-                self.arr[len(self.arr)-1]).shift(self.scaled*2*RIGHT)
+            self.arr[len(self.arr)-1]).shift(self.scaled*2*RIGHT)
             self.arr.append(square)
-            print(self.arr)
-            self.add(square)
+
+    def add_boxes(self, squares):
+        for square in squares:
+            self.add(square)       
         return self
+
+    def update_scale(self, scale):
+        self.scaled = scale
+        return self
+
+class ArrConsCells(VGroup):
+    def __init__(self, length):
+        super().__init__()
+        cell = ConsCell().shift(3*LEFT* (length - 1))
+        self.cells = [cell]
+        self.add(cell)
+        for _ in range(length-1):
+            cell = ConsCell()
+            cell.move_to(self.cells[len(self.cells)-1].get_tip_position("right")+3*RIGHT + 0.5*DOWN)
+            self.cells.append(cell)
+            self.add(cell)
+
+class ConsParts(Enum):
+    SQUARE_LEFT = 0
+    SQUARE_RIGHT = 1
+    DOT_LEFT = 2
+    DOT_RIGHT = 3
+    ARROW_LEFT = 4
+    ARROW_RIGHT = 5
+
+class ConsCell(VGroup):
+    def __init__(self):
+        super().__init__()
+        square_left = Square().shift(LEFT)
+        square_right = Square().shift(RIGHT)
+        dot_left = Dot().move_to(square_left.get_center())
+        dot_right = Dot().move_to(square_right.get_center())
+        arrow_left = Arrow(start=ORIGIN, end=2.5*RIGHT).rotate(-PI/2).move_to(
+            square_left.get_center()).shift(DOWN)
+        arrow_right = Arrow(start=ORIGIN,end=2.5*RIGHT).move_to(
+            square_right.get_center()).shift(RIGHT)
+        self.parts = [square_left, square_right, dot_left, dot_right, arrow_left, arrow_right]
+        for part in self.parts:
+            self.add(part)
         
+
+    def get_tip_position(self, direction):
+        if direction in ["left", "Left", "down", "Down"]:
+            return self.parts[ConsParts.ARROW_LEFT.value].get_center() \
+                + self.parts[ConsParts.ARROW_LEFT.value].length_over_dim(1)*0.5*DOWN 
+        elif direction in ["right", "Right"]:
+            return self.parts[ConsParts.ARROW_RIGHT.value].get_center() \
+                + self.parts[ConsParts.ARROW_RIGHT.value].length_over_dim(0)*0.5*RIGHT
+
+
+
 class Bodyparts(Enum):
     LEFT_LEG = 0
     RIGHT_LEG = 1
@@ -107,3 +132,19 @@ class StickFigure(VGroup):
             self.bodyparts[Bodyparts.LEFT_ARM.value].rotate(PI/6).shift(0.2*DOWN+0.1*RIGHT)
             self.bodyparts[Bodyparts.RIGHT_ARM.value].rotate(-PI/6).shift(0.2*DOWN+0.1*LEFT)
 
+class Example(Scene):
+    def construct(self):
+        test = Testing()
+        print(test)
+        self.play(ApplyMethod(test.test_method, 7))
+        print(test)
+        print(test.property)
+
+class Testing(VGroup):
+    def __init__(self):
+        super().__init__()
+        self.property = 5
+    def test_method(self,prop):
+        self.property = prop
+        self.add(Square())
+        return self
