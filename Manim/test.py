@@ -4,11 +4,12 @@ from Vgroups import Arr, ConsCell, ArrConsCells, StickFigure
 
 class Test(Scene):
     def construct(self):
-        figure = StickFigure("15", False)
-        
-        self.play(FadeIn(figure))
+        cons_arr = ArrConsCells(1).scale(0.5)
+        cons_arr.scaled = 0.5
+        self.play(FadeIn(cons_arr))
         self.wait()
-        figure.alter_age_visibility()
+        cons_arr.update_cells(3)
+        self.play(ApplyMethod(cons_arr.add_cells, cons_arr.cells))
         self.wait()
  
     def test_arm_movements(self, figure):

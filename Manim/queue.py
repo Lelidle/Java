@@ -79,17 +79,17 @@ class MyListArrayBasics(Scene):
         berti_name.next_to(berti_figure, direction = DOWN)
         berti = VGroup(berti_figure, berti_name)
         
-        christo_figure = StickFigure("21", True).scale(0.5).shift(LEFT*5+ UP*1)
+        christo_figure = StickFigure("21", True).scale(0.5).shift(LEFT*4+ UP*1)
         christo_name.next_to(christo_figure, direction=DOWN)
         christo = VGroup(christo_figure, christo_name)
 
-        demi_figure = StickFigure("35", True).scale(0.5).shift(LEFT*4+UP*1)
+        demi_figure = StickFigure("35", True).scale(0.5).shift(LEFT*6+UP*1)
         demi_name.next_to(demi_figure, direction=DOWN)
         demi = VGroup(demi_figure, demi_name)
 
         #Additional MObjects Part 2
-        cons_arr = ArrConsCells(4).scale(0.5).shift(0.5*LEFT)
-
+        cons_arr = ArrConsCells(1).scale(0.5).shift(5*LEFT)
+        cons_arr.scaled = 0.5
 
         #Starting the Scene - Part 1
         self.play(Write(new_list_text))
@@ -136,7 +136,7 @@ class MyListArrayBasics(Scene):
         self.wait()
         self.play(ApplyMethod(demi.move_to, arr.arr[3]), ReplacementTransform(count3, count4))
         self.wait()
-        
+
         # Part 2 Video
         self.clear()
         self.wait()
@@ -153,6 +153,9 @@ class MyListArrayBasics(Scene):
         self.wait()
         moving_position = cons_arr.cells[0].get_tip_position("left") + DOWN*0.75
         self.play(ApplyMethod(annabell.move_to, moving_position))
+        self.wait()
+        cons_arr.update_cells(3)
+        self.play(ApplyMethod(cons_arr.add_cells, cons_arr.cells, run_time = 2))
         self.wait()
         moving_position = cons_arr.cells[1].get_tip_position("left") + DOWN*0.75
         self.play(FadeIn(berti))

@@ -29,6 +29,7 @@ class Arr(VGroup):
 class ArrConsCells(VGroup):
     def __init__(self, length):
         super().__init__()
+        self.scaled = 1
         cell = ConsCell().shift(3*LEFT* (length - 1))
         self.cells = [cell]
         self.add(cell)
@@ -37,6 +38,16 @@ class ArrConsCells(VGroup):
             cell.move_to(self.cells[len(self.cells)-1].get_tip_position("right")+3*RIGHT + 0.5*DOWN)
             self.cells.append(cell)
             self.add(cell)
+
+    def update_cells(self, number):
+        for _ in range(number):
+            self.cells.append(ConsCell().scale(self.scaled).move_to(
+                self.cells[len(self.cells)-1].get_tip_position("right")+(3*RIGHT + 0.5*DOWN)*self.scaled))
+    
+    def add_cells(self, cells):
+        for cell in cells:
+            self.add(cell)
+        return self
 
 class ConsParts(Enum):
     SQUARE_LEFT = 0
