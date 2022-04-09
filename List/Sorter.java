@@ -33,9 +33,9 @@ public class Sorter {
                 case QUICK:
                 quickSort(toSort,0, toSort.length() - 1);
                 break;
-                case HEAP:
-                heapSort(toSort);
-                break;
+                //case HEAP:
+                //heapSort(toSort);
+                //break;
                 default:
                 System.out.println("An unknown method has been given, bubbleSort was used");
                 bubbleSort((MyListArray) toSort);
@@ -170,25 +170,23 @@ public class Sorter {
         return i + 1;
     }
 
-    public void heapSort(MyListArray toSort) {
+     public static void heapSort(MyListArray toSort) {
         int n = toSort.length();
         Human[] queue = toSort.getQueue();
-        for(int i = n/2 -1; i >=0;i--){
-            heapify(queue, n,i);
+        for(int i = n/2-1; i >=0; i--){
+            heapify(queue, n, i);
         }
 
-        for(int i = n - 1; i >= 0; i--){
+        for(int i = n-1; i >=0;i--){
             Human tmp = queue[0];
             queue[0] = queue[i];
-            queue[i] = tmp; 
+            queue[i] = tmp;
             heapify(queue, i, 0);
-        }
-        toSort.setQueue(queue);
+        } 
     }
 
-    public void heapify(Human[] queue, int n, int i){
+    public static void heapify(Human[] queue, int n, int i){
         int root = i, left = 2*i+1, right = 2*i + 2;
-        System.out.println("Left: " + left + " Right: " + right);
         if(left < n && queue[left].isGreater(queue[root])) {
             root = left;
         }
@@ -201,5 +199,13 @@ public class Sorter {
             queue[root] = tmp;
         }
         heapify(queue, n, root);
+    } 
+
+    public static void main(String[] args) {
+        MyListArray heapTest = new MyListArray(3);
+        heapTest.push(new Human("Theo", 15));
+        heapTest.push(new Human("Alf", 8));
+        heapTest.push(new Human("Mango", 17));
+        heapSort(heapTest);
     }
 }

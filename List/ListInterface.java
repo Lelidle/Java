@@ -2,7 +2,7 @@ package List;
 
 public interface ListInterface<T> {
     
-    public void append(T value);
+    public void push(T value);
     public T pop();
     public T removeAt(int position);
     public void printList();

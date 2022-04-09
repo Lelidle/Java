@@ -8,26 +8,26 @@ public class MyListArrayTest {
 
     public MyListArrayTest(){
         testList = new MyListArray(5);
-        testList.append(new Human("Mike", 15));
-        testList.append(new Human("Sarah", 27));
-        testList.append(new Human("Manuel", 18));
-        testList.append(new Human("Sina", 25));
+        testList.push(new Human("Mike", 15));
+        testList.push(new Human("Sarah", 27));
+        testList.push(new Human("Manuel", 18));
+        testList.push(new Human("Sina", 25));
     }
 
     @Test
-    void testAppend() {
-        MyListArray appendTest = new MyListArray(2);
-        appendTest.append(new Human("Mike", 15));
-        appendTest.append(new Human("Sarah", 27));
+    void testPush() {
+        MyListArray pushTest = new MyListArray(2);
+        pushTest.push(new Human("Mike", 15));
+        pushTest.push(new Human("Sarah", 27));
         Assertions.assertEquals("Mike", testList.getQueue()[0].getName());
         Assertions.assertEquals("Sarah", testList.getQueue()[1].getName());
         System.out.println("The queue should be full:");
-        appendTest.append(new Human("Balu", 43));
+        pushTest.push(new Human("Balu", 43));
     }
 
     @Test
     void testAppendWhenFull(){
-        testList.append(new Human("Balu", 43));
+        testList.push(new Human("Balu", 43));
         testList.appendWhenFull(new Human("Tinker", 24));
         Assertions.assertEquals(6, testList.length());
     }
@@ -80,8 +80,8 @@ public class MyListArrayTest {
     @Test 
     void testConcatenate(){
         MyListArray toConcat = new MyListArray(2);
-        toConcat.append(new Human("Alice", 18));
-        toConcat.append(new Human("Bob", 25));
+        toConcat.push(new Human("Alice", 18));
+        toConcat.push(new Human("Bob", 25));
         testList = (MyListArray) testList.concatenate(toConcat);
         Assertions.assertEquals(6, testList.length());
     }

@@ -7,7 +7,7 @@ package List.Compositum.English;
 public abstract class Node {
     public abstract void setNext(Node node);
     public abstract Node getNext();
-    public abstract Node appendBack(DataElement data);
+    public abstract Node push(DataElement data);
     public abstract Node appendSorted(DataElement data);
     public abstract DataElement getData();
     public abstract void printList();

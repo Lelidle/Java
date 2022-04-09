@@ -7,7 +7,7 @@ public class MyListArray implements ListInterface<Human> {
 
     private Human[] queue;
     private int count;
-    private SortingMethod sortingMethod = SortingMethod.BUBBLE; 
+    private SortingMethod sortingMethod = SortingMethod.MERGE; 
 
     /**
      * Constructor for the List, internally represented as an array
@@ -46,7 +46,7 @@ public class MyListArray implements ListInterface<Human> {
      * @param human only objects of class Human can be appended
      */
     @Override
-    public void append(Human human) {
+    public void push(Human human) {
         if(count < queue.length) {
             queue[count] = human;
             count++;
@@ -179,7 +179,7 @@ public class MyListArray implements ListInterface<Human> {
             return this;
         } else {
             MyListArray toConcat = (MyListArray) o;
-            MyListArray newList = new MyListArray(this.getQueue().length + toConcat.getQueue().length -1);
+            MyListArray newList = new MyListArray(this.getQueue().length + toConcat.getQueue().length);
             int counter = 0;
             for(int i = 0; i < this.length();i++) {
                 if(queue[i] != null){
@@ -206,7 +206,7 @@ public class MyListArray implements ListInterface<Human> {
             queue[0] = human;
             count++;
         } else {
-            this.append(human);
+            this.push(human);
             Sorter sorter = new Sorter();
             sorter.sort(this, sortingMethod);
         }

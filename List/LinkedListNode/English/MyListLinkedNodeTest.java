@@ -9,17 +9,17 @@ public class MyListLinkedNodeTest {
     
     public MyListLinkedNodeTest(){
         testList = new MyListLinkedNode();
-        testList.append(new Human("Helmut Schmidt" , 25));
-        testList.append(new Human("Max Mustermann", 27));
-        testList.append(new Human("Gesine Schwan", 35));
-        testList.append(new Human("Helmut Kohl", 64));
-        testList.append(new Human("Bill Gates", 57));
+        testList.push(new Human("Helmut Schmidt" , 25));
+        testList.push(new Human("Max Mustermann", 27));
+        testList.push(new Human("Gesine Schwan", 35));
+        testList.push(new Human("Helmut Kohl", 64));
+        testList.push(new Human("Bill Gates", 57));
     }
     
     @Test
-    void testAppend() {
+    void testPush() {
         MyListLinkedNode appendTest = new MyListLinkedNode();
-        appendTest.append(new Human("Bob",25));
+        appendTest.push(new Human("Bob",25));
         Assertions.assertNotEquals(null, appendTest.getRoot());
     }
 

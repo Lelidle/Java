@@ -25,20 +25,27 @@ public class MyListComp implements ListInterface<DataElement>{
      * Appends a new node in front as the new root.
      * @param data the data to fill the Node
      */
-    @Override
-    public void append(DataElement data) {
-        root = new DataNode(root, data);
+    public void setRoot(DataElement data) {
+        if(root == null) {
+            root = new DataNode(root, data);
+        } else {
+            Node newRoot = new DataNode(root, data);
+            newRoot.setNext(root);
+            root = newRoot;
+        }
+        
     }
 
     /**
      * Appends a new node at the end of the list
      * @param data the data that shall be appended
      */
-    public void appendBack(DataElement data) {
+    @Override
+    public void push(DataElement data) {
         if(root instanceof EndNode){
             root = new DataNode(root, data);
         } else {
-            root.appendBack(data);
+            root.push(data);
         }
  
     }

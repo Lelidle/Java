@@ -50,11 +50,11 @@ public class Human {
      * in the list
      * @param human the reference to the human that is appended
      */
-    public void append(Human human) {
+    public void push(Human human) {
         if(next == null) {
             next = human;
         } else {
-            next.append(human);
+            next.push(human);
         }
     }
 

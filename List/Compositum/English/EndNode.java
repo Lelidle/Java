@@ -25,7 +25,7 @@ public class EndNode extends Node {
      * @return returns a new DataNode with this as its next
      */
     @Override
-    public Node appendBack(DataElement data) {
+    public Node push(DataElement data) {
         return new DataNode(this, data);
     }
 

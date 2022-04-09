@@ -14,10 +14,10 @@ public class SorterTest {
 
     public SorterTest(){
         testListArr = new MyListArray(6);
-        testListArr.append(new Human("Argos", 25));
-        testListArr.append(new Human("Bailey", 45));
-        testListArr.append(new Human("Cherry", 7));
-        testListArr.append(new Human("Daisy", 33));
+        testListArr.push(new Human("Argos", 25));
+        testListArr.push(new Human("Bailey", 45));
+        testListArr.push(new Human("Cherry", 7));
+        testListArr.push(new Human("Daisy", 33));
     }
 
     @Test
@@ -75,7 +75,7 @@ public class SorterTest {
         testListArr.pop();
         testListArr.pop();
         Assertions.assertEquals("Bailey", testListArr.pop().getName());
-    }
+    } 
 
 
     @Test

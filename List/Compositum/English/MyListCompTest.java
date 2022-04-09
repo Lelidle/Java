@@ -9,32 +9,24 @@ public class MyListCompTest {
 
     public MyListCompTest(){
         testList = new MyListComp();
-        testList.append(new Human("Albus", 18));
-        testList.append(new Human("Berti", 62));
-        testList.append(new Human("Christa", 55));
-        testList.append(new Human("Dora", 7));
-        testList.append(new Human("Ethel", 15));
+        testList.push(new Human("Albus", 18));
+        testList.push(new Human("Berti", 62));
+        testList.push(new Human("Christa", 55));
+        testList.push(new Human("Dora", 7));
+        testList.push(new Human("Ethel", 15));
     }
 
     @Test
-    void testAppend() {
-        MyListComp appendTest = new MyListComp();
-        appendTest.append(new Human("Alex", 25));
-        appendTest.append(new Human("Albi", 27));
-        Human firstHuman = (Human) appendTest.getRoot().getData();
-        Human secondHuman = (Human) appendTest.getRoot().getNext().getData();
+    void testPush() {
+        MyListComp pushTest = new MyListComp();
+        pushTest.push(new Human("Alex", 25));
+        pushTest.push(new Human("Albi", 27));
+        Human firstHuman = (Human) pushTest.getRoot().getData();
+        Human secondHuman = (Human) pushTest.getRoot().getNext().getData();
         Assertions.assertEquals("Albi", firstHuman.getName());
         Assertions.assertEquals("Alex", secondHuman.getName());
     }
 
-    @Test
-    void testAppendBack() {
-        MyListComp appendTest = new MyListComp();
-        appendTest.appendBack(new Human("Alex", 15));
-        appendTest.appendBack(new Human("Boris", 18));
-        Assertions.assertEquals("Alex", ((Human) appendTest.getRoot().getData()).getName());
-        Assertions.assertEquals("Boris", ((Human) appendTest.getRoot().getNext().getData()).getName());
-    }
 
     @Test
     void testAppendSorted() {
@@ -57,8 +49,8 @@ public class MyListCompTest {
     @Test
     void testConcatenate() {
         MyListComp toConcat = new MyListComp();
-        toConcat.appendBack(new Human("Alex", 15));
-        toConcat.appendBack(new Human("Boris", 18));
+        toConcat.push(new Human("Alex", 15));
+        toConcat.push(new Human("Boris", 18));
         testList.concatenate(toConcat);
         Assertions.assertEquals(7, testList.length());
     }
@@ -108,5 +100,10 @@ public class MyListCompTest {
     void testMap(){
         testList.map((Human h) -> {h.setAge(h.getAge() + 1); return h;});
         Assertions.assertEquals(16, ((Human) testList.pop()).getAge());
+    }
+
+    @Test 
+    void testFindEnd(){
+        Assertions.assertEquals("Albus", ((Human) testList.findEnd().getData()).getName());
     }
 }

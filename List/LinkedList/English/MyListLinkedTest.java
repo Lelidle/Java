@@ -9,17 +9,17 @@ public class MyListLinkedTest {
 
     public MyListLinkedTest(){
         testList = new MyListLinked();
-        testList.append(new Human("Dave",19));
-        testList.append(new Human("Martha", 51));
-        testList.append(new Human("Tim", 45));
-        testList.append(new Human("Adalbert", 65));
+        testList.push(new Human("Dave",19));
+        testList.push(new Human("Martha", 51));
+        testList.push(new Human("Tim", 45));
+        testList.push(new Human("Adalbert", 65));
     }
 
     @Test
-    void testAppend() {
-        MyListLinked appendTest = new MyListLinked();
-        appendTest.append(new Human("Manuel", 18));
-        Assertions.assertEquals("Manuel", appendTest.getRoot().getName());
+    void testPush() {
+        MyListLinked pushTest = new MyListLinked();
+        pushTest.push(new Human("Manuel", 18));
+        Assertions.assertEquals("Manuel", pushTest.getRoot().getName());
     }
 
     @Test
@@ -30,7 +30,7 @@ public class MyListLinkedTest {
 
     @Test
     void testGetItemAtPosition() {
-        Assertions.assertEquals(new Human("Martha", 51), testList.getItemAtPosition(2));
+        Assertions.assertEquals("Martha", ((Human) testList.getItemAtPosition(1)).getName());
         Assertions.assertEquals(null, testList.getItemAtPosition(5));
     }
 
@@ -61,8 +61,8 @@ public class MyListLinkedTest {
     @Test
     void testConcatenate(){
         MyListLinked toConcat = new MyListLinked();
-        toConcat.append(new Human("Morris", 15));
-        toConcat.append(new Human("Jonathan", 25));
+        toConcat.push(new Human("Morris", 15));
+        toConcat.push(new Human("Jonathan", 25));
         testList = (MyListLinked) testList.concatenate(toConcat);
         Assertions.assertEquals(6, testList.length());
         Assertions.assertEquals("Jonathan", testList.findEnd().getName());

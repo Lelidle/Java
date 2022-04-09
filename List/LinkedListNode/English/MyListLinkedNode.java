@@ -25,13 +25,12 @@ public class MyListLinkedNode implements ListInterface<DataElement>{
      * Appends a new node in back of the list
      * @param data the data to fill the Node
      */
-    @Override
-    public void append(DataElement data){
+    public void push(DataElement data){
         Node node = new Node(data);
         if(root == null) {
             root = node;
         } else {
-            root.appendBack(node);
+            root.push(node);
         }
     }
 

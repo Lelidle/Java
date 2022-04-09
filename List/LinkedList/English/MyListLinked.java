@@ -18,11 +18,11 @@ public class MyListLinked implements ListInterface<Human> {
      * @param human the reference to the human that shall be appended
      */
     @Override
-    public void append(Human human) {
+    public void push(Human human) {
         if(root == null) {
             root = human;
         } else {
-            root.append(human);
+            root.push(human);
         }
         
     }

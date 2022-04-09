@@ -13,8 +13,8 @@ public class LambdaTest {
         doSum(5, (Integer e) -> e + 1);
         System.out.println();
         MyListComp test = new MyListComp();
-        test.append(new Human("Alice", 18));
-        test.append(new Human("Bob", 25));
+        test.push(new Human("Alice", 18));
+        test.push(new Human("Bob", 25));
         test.printList();
         System.out.println();
         map(test, LambdaTest::ageUp);

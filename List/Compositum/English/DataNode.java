@@ -39,8 +39,8 @@ public class DataNode extends Node {
      * @return returns itself
      */
     @Override
-    public Node appendBack(DataElement data) {
-        next = next.appendBack(data);
+    public Node push(DataElement data) {
+        next = next.push(data);
         return this; 
     }
 

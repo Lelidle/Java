@@ -34,11 +34,11 @@ public class Node {
      * @param data the dataelement for the new node
      * @return returns itself
      */
-    public void appendBack(Node node){
+    public void push(Node node){
         if(next == null){
             next = node;
         } else {
-            next.appendBack(node);
+            next.push(node);
         }
     }
 
