@@ -105,11 +105,11 @@ public class MyListComp implements ListInterface<DataElement>{
      * Only returns the first occurence, if the item is not present in the list,
      * -1 is returned
      * @param data the data that is being searched
-     * @return returns the position in the list (starting at 0)
+     * @return returns the position in the list (starting at 1)
      */
     @Override
     public int searchItemPosition(DataElement data) {
-        int counter = 0;
+        int counter = 1;
         int searched = root.searchItemPosition(data,counter);
         return searched;
     }

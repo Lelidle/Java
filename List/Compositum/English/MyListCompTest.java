@@ -23,8 +23,8 @@ public class MyListCompTest {
         pushTest.push(new Human("Albi", 27));
         Human firstHuman = (Human) pushTest.getRoot().getData();
         Human secondHuman = (Human) pushTest.getRoot().getNext().getData();
-        Assertions.assertEquals("Albi", firstHuman.getName());
-        Assertions.assertEquals("Alex", secondHuman.getName());
+        Assertions.assertEquals("Alex", firstHuman.getName());
+        Assertions.assertEquals("Albi", secondHuman.getName());
     }
 
 
@@ -71,8 +71,8 @@ public class MyListCompTest {
 
     @Test
     void testPop() {
-        Assertions.assertEquals("Ethel", ((Human)testList.pop()).getName());
-        Assertions.assertEquals("Dora", ((Human)testList.pop()).getName());
+        Assertions.assertEquals("Albus", ((Human)testList.pop()).getName());
+        Assertions.assertEquals("Berti", ((Human)testList.pop()).getName());
         Assertions.assertEquals(3, testList.length());
     }
 
@@ -85,25 +85,26 @@ public class MyListCompTest {
 
     @Test
     void testRemoveAt() {
-        Assertions.assertEquals("Ethel", ((Human) testList.removeAt(1)).getName());
-        Assertions.assertEquals("Berti", ((Human) testList.removeAt(3)).getName());
+        Assertions.assertEquals("Albus", ((Human) testList.removeAt(1)).getName());
+        Assertions.assertEquals("Christa", ((Human) testList.removeAt(2)).getName());
         Assertions.assertEquals(3, testList.length());
     }
 
     @Test
     void testSearchItemPosition() {
-        Assertions.assertEquals(1, testList.searchItemPosition(new Human("Dora", 7)));
-        Assertions.assertEquals(0, testList.searchItemPosition(new Human("Ethel", 15)));
+        Assertions.assertEquals(-1, testList.searchItemPosition(new Human("Albus", 7)));
+        Assertions.assertEquals(1, testList.searchItemPosition(new Human("Albus", 18)));
+        Assertions.assertEquals(5, testList.searchItemPosition(new Human("Ethel", 15)));
     }
 
     @Test
     void testMap(){
         testList.map((Human h) -> {h.setAge(h.getAge() + 1); return h;});
-        Assertions.assertEquals(16, ((Human) testList.pop()).getAge());
+        Assertions.assertEquals(19, ((Human) testList.pop()).getAge());
     }
 
     @Test 
     void testFindEnd(){
-        Assertions.assertEquals("Albus", ((Human) testList.findEnd().getData()).getName());
+        Assertions.assertEquals("Ethel", ((Human) testList.findEnd().getData()).getName());
     }
 }
