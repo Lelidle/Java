@@ -1,30 +1,68 @@
+from xml.etree.ElementInclude import include
 from manim import *
 from enum import Enum
 
 class Arr(VGroup):
-    def __init__(self, length):
+    def __init__(self, length, include_arrows):
         super().__init__()
+        self.include_arrows = include_arrows
         self.arr = []
         self.scaled = 1
         for i in range(0, length):
-            square = Square()
-            self.arr.append(square.shift(2*i*RIGHT))
-            self.add(square)
+            box = ArrBox(self.include_arrows, i)
+            self.arr.append(box)
+            self.add(box)
 
     def update_boxes(self, count):
         for _ in range(count):
-            square = Square().scale(self.scaled).move_to(
-            self.arr[len(self.arr)-1]).shift(self.scaled*2*RIGHT)
-            self.arr.append(square)
+            box = ArrBox(self.include_arrows, len(self.arr)-1).scale(self.scaled)
+            box.move_to(self.arr[len(self.arr)-1]).shift(self.scaled*2*RIGHT)
+            self.arr.append(box)
+        return self
 
-    def add_boxes(self, squares):
-        for square in squares:
-            self.add(square)       
+    def add_boxes(self, boxes):
+        for box in boxes:
+            self.add(box)       
         return self
 
     def update_scale(self, scale):
         self.scaled = scale
         return self
+
+    def toggle_arrows(self):
+        for box in self.arr:
+            box.toggle_arrow()
+        return self
+
+    def toggle_arrows_prop(self):
+        self.include_arrows = not self.include_arrows
+        for box in self.arr:
+            box.include_arrows = not box.include_arrows
+
+class ArrBox(VGroup):
+    def __init__(self, include_arrows, shift):
+        super().__init__()
+        self.include_arrows = include_arrows
+        square = Square().shift(2*RIGHT*shift)
+        dot = Dot().move_to(square.get_center())
+        arrow = Arrow(start=ORIGIN, end=2.5*RIGHT).rotate(-PI/2).move_to(square.get_center()).shift(DOWN)
+        self.parts = [square, dot, arrow]
+        if(include_arrows):
+            self.add(square, dot, arrow)
+        else:
+            self.add(square)
+
+    def toggle_arrow(self):
+        if(self.include_arrows):
+            self.include_arrows = False
+            self.remove(self.parts[1], self.parts[2])
+        else:
+            self.include_arrows = True
+            self.add(self.parts[1], self.parts[2])
+    
+    def get_tip_position(self):
+        return self.parts[2].get_center() \
+                + self.parts[2].length_over_dim(1)*0.5*DOWN 
 
 class ArrConsCells(VGroup):
     def __init__(self, length):

@@ -16,6 +16,13 @@ public class Human {
     }
 
     /**
+     * setter method for the private attribute name
+     */
+    public void setName(String name){
+        this.name = name;
+    }
+
+    /**
      * getter method for the private attribute name
      * @return returns the name of the human
      */
