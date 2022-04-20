@@ -1,4 +1,3 @@
-from re import S
 from manim import *
 from Vgroups import Arr, StickFigure
 
@@ -42,13 +41,16 @@ class MyListArraySearch(Scene):
 
         get_item_text = Text("Human human = myList.getItemAtPosition(4);",
          t2c={"myList":BLUE_B, "getItemAtPosition": YELLOW_B, "Human": GREEN_E, "human": BLUE_B}).scale(0.5).to_corner(UL)
-        set_name_toni = Text("human.setName(\"Toni\")", 
+        set_name_toni = Text("human.setName(\"Toni\");", 
         t2c={"human": BLUE_B, "setName": YELLOW_B}).scale(0.5).to_corner(UL)
         search_item_text = Text("int position = myList.searchItemPosition(new Human(\"Toni\", 37));", 
         t2c={"int":DARK_BROWN, "position": BLUE_B, "myList": BLUE_B, "searchItemPosition": YELLOW_B, "new": PURPLE_B,
         "Human": GREEN_E}).scale(0.5).to_corner(UL)
         search_item_text2 = Text("int position = myList.searchItemPosition(new Human(\"Demi\", 35));", 
         t2c={"int":DARK_BROWN, "position": BLUE_B, "myList": BLUE_B, "searchItemPosition": YELLOW_B, "new": PURPLE_B,
+        "Human": GREEN_E}).scale(0.5).to_corner(UL)
+        contains_item_text = Text("boolean inIt = myList.contains(new Human(\"Ernesto\", 47));", 
+        t2c={"boolean":DARK_BROWN, "inIt": BLUE_B, "myList": BLUE_B, "contains": YELLOW_B, "new": PURPLE_B,
         "Human": GREEN_E}).scale(0.5).to_corner(UL)
 
         neq = Tex(r"$\neq$").rotate(PI/2).set_color(RED)
@@ -62,6 +64,7 @@ class MyListArraySearch(Scene):
         toni_name = Text("Toni").scale(0.25).move_to(demi_name)
         not_in = Text("position = -1", t2c={"position": BLUE_B}).scale(0.5)
         in_it = Text("position = 4", t2c={"position": BLUE_B}).scale(0.5)
+        in_it_bool = Text("inIt = true", t2c={"inIt": BLUE_B, "true": DARK_BROWN}).scale(0.5)
 
         self.play(FadeIn(whole_array))
         self.wait()
@@ -92,13 +95,13 @@ class MyListArraySearch(Scene):
         neq.next_to(toni, direction=UP)
 
         self.play(FadeIn(neq))
-        self.wait()
+        self.wait(0.5)
         for i in range(1,6):
             self.play(FadeOut(neq), toni.animate.move_to(arr.arr[i].get_center() + 2.25*DOWN))
-            self.wait()
+            self.wait(0.5)
             neq.next_to(toni, direction=UP)
             self.play(FadeIn(neq))
-        self.wait()
+        self.wait(0.5)
         self.play(toni.animate.shift(RIGHT), FadeOut(neq))
         self.wait()
         not_in.move_to(toni)
@@ -121,13 +124,13 @@ class MyListArraySearch(Scene):
         neq.next_to(demi2, direction=UP)
 
         self.play(FadeIn(neq))
-        self.wait()
+        self.wait(0.5)
         for i in range(1,3):
             self.play(FadeOut(neq), demi2.animate.move_to(arr.arr[i].get_center() + 2.25*DOWN))
-            self.wait()
+            self.wait(0.5)
             neq.next_to(demi2, direction=UP)
             self.play(FadeIn(neq))
-        self.wait()
+        self.wait(0.5)
         self.play(FadeOut(neq), demi2.animate.move_to(arr.arr[3].get_center() + 2.25*DOWN))
         self.wait()
 
@@ -137,5 +140,37 @@ class MyListArraySearch(Scene):
         self.wait()
         self.play(FadeOut(eq), FadeTransform(demi2, in_it))
         self.wait()
+        self.play(FadeOut(in_it, search_item_text2))
+        self.wait()
 
+        ernesto_name2 = Text("Ernesto")
+        ernesto_figure2 = StickFigure("47", True)
+        ernesto_name2.next_to(ernesto_figure2, direction=DOWN)
+        ernesto2 = VGroup(ernesto_figure2, ernesto_name2).scale(0.25).to_edge(LEFT)
 
+        self.play(Write(contains_item_text), FadeIn(ernesto2))
+        self.wait()
+
+        self.play(ernesto2.animate.move_to(arr.arr[0].get_center() + 2.25*DOWN))
+        self.wait()
+
+        neq.next_to(ernesto2, direction=UP)
+
+        self.play(FadeIn(neq))
+        self.wait(0.5)
+        for i in range(1,4):
+            self.play(FadeOut(neq), ernesto2.animate.move_to(arr.arr[i].get_center() + 2.25*DOWN))
+            self.wait(0.5)
+            neq.next_to(ernesto2, direction=UP)
+            self.play(FadeIn(neq))
+        self.wait(0.5)
+        self.play(FadeOut(neq), ernesto2.animate.move_to(arr.arr[4].get_center() + 2.25*DOWN))
+        self.wait()
+        eq.next_to(ernesto2, direction=UP)
+        in_it_bool.move_to(ernesto2)
+        self.play(FadeIn(eq))
+        self.wait()
+        self.play(FadeOut(eq), FadeTransform(ernesto2, in_it_bool))
+        self.wait()
+        self.play(FadeOut(in_it_bool, contains_item_text))
+        self.wait()

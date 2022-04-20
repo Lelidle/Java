@@ -25,7 +25,7 @@ class MyListArrayPushPop(Scene):
         new_demi_text = Text("Human demi = new Human(\"Demi\", 35);",
         t2c={"Human":GREEN_E, "demi": BLUE_B, "new": PURPLE_E}).scale(0.5).to_corner(UL)
         push_text_anna = Text("myList.push(anna);", 
-        t2c={"myList":BLUE_B, "push": YELLOW_B, "Anna": BLUE_B}).scale(0.5).to_corner(UL)
+        t2c={"myList":BLUE_B, "push": YELLOW_B, "anna": BLUE_B}).scale(0.5).to_corner(UL)
         push_text_berti = Text("myList.push(berti);", 
         t2c={"myList":BLUE_B, "push": YELLOW_B, "berti": BLUE_B}).scale(0.5).to_corner(UL)
         push_text_christo = Text("myList.push(christo);", 
@@ -129,7 +129,10 @@ class MyListArrayPushPop(Scene):
         self.play(FadeOut(anna, pop_text))
         self.wait()
 
-        """
+        people = VGroup(anna, berti, christo, demi)
+        for p in people:
+            p.move_to(6*LEFT + 2*UP)
+
         #Part 2 - more accurate
         self.clear()
         self.wait()
@@ -143,16 +146,17 @@ class MyListArrayPushPop(Scene):
         self.play(ApplyMethod(arrPartTwo.scale, 0.75))
         arrPartTwo.scaled = 0.75
         self.wait()
-        anna.to_edge(LEFT).shift(4*UP)
-        berti.to_edge(LEFT).shift(4*UP)
-        christo.to_edge(LEFT).shift(4*UP)
-        demi.to_edge(LEFT).shift(4*UP)
-        self.play(FadeIn(anna))
-        moving_position = arrPartTwo.arr[0].get_tip_position() + DOWN * 0.75
-        self.play(ApplyMethod(anna.move_to, moving_position))
+        i = 0
+        for p in people:   
+            self.play(FadeIn(p))
+            moving_position = arrPartTwo.arr[i].get_critical_point(DOWN) + DOWN * 0.75
+            self.play(p.animate.move_to(moving_position))
+            self.wait()
+            i += 1
+        stuff = VGroup(arrPartTwo, people)
+        self.play(stuff.animate.shift(UP))
         self.wait()
-        """
-
+        
 
 class ConsScene(Scene):
     def construct(self):

@@ -140,7 +140,7 @@ class StickFigure(VGroup):
         left_arm = Line().scale(0.5).rotate(PI/6).shift(0.4*LEFT)
         right_arm = Line().scale(0.5).rotate(-PI/6).shift(0.4*RIGHT)
         age_text = Text(age).shift(1.5*UP)
-
+        self.scaled = 1
         self.display_age = display_age
         self.bodyparts = [left_leg, right_leg, left_arm, right_arm, head, body, age_text]
         self.add(head, body, left_leg, right_leg, left_arm, right_arm)
@@ -161,12 +161,12 @@ class StickFigure(VGroup):
         implemented directions: left, right, both
         """
         if side == "left":
-            self.bodyparts[Bodyparts.LEFT_ARM.value].rotate(-PI/6).shift(0.2*UP+0.1*LEFT)
+            self.bodyparts[Bodyparts.LEFT_ARM.value].rotate(-PI/6).shift(self.scaled*(0.2*UP+0.1*LEFT))
         elif side == "right":
-            self.bodyparts[Bodyparts.RIGHT_ARM.value].rotate(PI/6).shift(0.2*UP+0.1*RIGHT)
+            self.bodyparts[Bodyparts.RIGHT_ARM.value].rotate(PI/6).shift(self.scaled*(0.2*UP+0.1*RIGHT))
         elif side == "both":
-            self.bodyparts[Bodyparts.LEFT_ARM.value].rotate(-PI/6).shift(0.2*UP+0.1*LEFT)
-            self.bodyparts[Bodyparts.RIGHT_ARM.value].rotate(PI/6).shift(0.2*UP+0.1*RIGHT)
+            self.bodyparts[Bodyparts.LEFT_ARM.value].rotate(-PI/6).shift(self.scaled*(0.2*UP+0.1*LEFT))
+            self.bodyparts[Bodyparts.RIGHT_ARM.value].rotate(PI/6).shift(self.scaled*(0.2*UP+0.1*RIGHT))
 
     def lower_arm(self, side):
         """
@@ -174,12 +174,12 @@ class StickFigure(VGroup):
         implemented directions: left, right, both
         """
         if side == "left":
-            self.bodyparts[Bodyparts.LEFT_ARM.value].rotate(PI/6).shift(0.2*DOWN+0.1*RIGHT)
+            self.bodyparts[Bodyparts.LEFT_ARM.value].rotate(PI/6).shift(self.scaled*(0.2*DOWN+0.1*RIGHT))
         elif side == "right":
-            self.bodyparts[Bodyparts.RIGHT_ARM.value].rotate(-PI/6).shift(0.2*DOWN+0.1*LEFT)
+            self.bodyparts[Bodyparts.RIGHT_ARM.value].rotate(-PI/6).shift(self.scaled*(0.2*DOWN+0.1*LEFT))
         elif side == "both":
-            self.bodyparts[Bodyparts.LEFT_ARM.value].rotate(PI/6).shift(0.2*DOWN+0.1*RIGHT)
-            self.bodyparts[Bodyparts.RIGHT_ARM.value].rotate(-PI/6).shift(0.2*DOWN+0.1*LEFT)
+            self.bodyparts[Bodyparts.LEFT_ARM.value].rotate(PI/6).shift(self.scaled*(0.2*DOWN+0.1*RIGHT))
+            self.bodyparts[Bodyparts.RIGHT_ARM.value].rotate(-PI/6).shift(self.scaled*(0.2*DOWN+0.1*LEFT))
 
 class Example(Scene):
     def construct(self):
