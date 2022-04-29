@@ -1,17 +1,22 @@
 from manim import *
-from Vgroups import Arr, ConsCell, ArrConsCells, StickFigure
+from Vgroups import Arr, ConsCell, ArrConsCells, StickFigure, Bubble
 from arrPushPop import MyListArrayPushPop
 from arrSearch import MyListArraySearch
 from arrAppendSorted import MyListArrayAppendSorted
 from linkPushPop import MyListLinkedPushPop
+from objClassVisualization import ObjClassVisualization
 
 class ToRender(Scene):
     def construct(self):
-        MyListLinkedPushPop.construct(self)
+        ObjClassVisualization.construct(self)
         #test = StickFigure("15", False).scale(0.5)
         #test.scaled = 0.5
         #self.test_arm_movements(test)
         #self.wait()
+        #grid = NumberPlane()
+        #bubble = Bubble().scale(3).shift(RIGHT)
+        #dot = Dot().move_to(bubble.get_middle())
+        #self.add(bubble, dot)
 
     def test_arm_movements(self, figure):
         self.play(FadeIn(figure))

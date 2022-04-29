@@ -46,12 +46,12 @@ class MyListLinkedPushPop(Scene):
         berti_name.next_to(berti_figure, direction = DOWN)
         berti = VGroup(berti_figure, berti_name)
 
-        christo_figure = StickFigure("21", True).scale(0.3).shift(LEFT*4+ UP*1.5)
+        christo_figure = StickFigure("21", True).scale(0.3).shift(LEFT*6+ UP*1.5)
         christo_figure.scaled = 0.3
         christo_name.next_to(christo_figure, direction=DOWN)
         christo = VGroup(christo_figure, christo_name)
 
-        demi_figure = StickFigure("35", True).scale(0.3).shift(LEFT*2+UP*1.5)
+        demi_figure = StickFigure("35", True).scale(0.3).shift(LEFT*6+UP*1.5)
         demi_figure.scaled = 0.3
         demi_name.next_to(demi_figure, direction=DOWN)
         demi = VGroup(demi_figure, demi_name)
@@ -79,24 +79,32 @@ class MyListLinkedPushPop(Scene):
         self.play(Unwrite(push_text_anna))
         self.play(Write(new_berti_text), Write(new_christo_text), Write(new_demi_text))
         self.wait()
-        self.play(FadeIn(berti, christo, demi))
+        self.play(FadeIn(berti))
         self.wait()
         self.play(FadeOut(new_berti_text, new_christo_text, new_demi_text))
         self.wait()
         self.play(Write(push_text_berti), Write(push_text_christo), Write(push_text_demi))
         self.wait()
+        self.play(berti.animate.shift(1.5*RIGHT))
         self.play(
             berti.animate.next_to(anna, direction=RIGHT, buff=0.5),
             end_node_text.animate.shift(1*RIGHT)
         )
         self.play(berti_figure.animate.raise_arm("right"))
+        self.play(FadeIn(christo))
         self.wait()
+        self.play(christo.animate.shift(1.5*RIGHT))
+        self.play(christo.animate.shift(1.1*RIGHT))
         self.play(
             christo.animate.next_to(berti, direction=RIGHT, buff=0.5),
             end_node_text.animate.shift(1*RIGHT)
         )
         self.play(christo_figure.animate.raise_arm("right"))
         self.wait()
+        self.play(FadeIn(demi))
+        self.play(demi.animate.shift(1.5*RIGHT))
+        self.play(demi.animate.shift(1.1*RIGHT))
+        self.play(demi.animate.shift(1.1*RIGHT))
         self.play(
             demi.animate.next_to(christo, direction=RIGHT, buff=0.5),
             end_node_text.animate.shift(1*RIGHT)

@@ -2,6 +2,17 @@ from xml.etree.ElementInclude import include
 from manim import *
 from enum import Enum
 
+class Bubble(VGroup):
+    def __init__(self):
+        super().__init__()
+        self.e1 = Ellipse(color=WHITE, width=3, height=1.5)
+        e2 = Ellipse(color=WHITE, width=0.5, height=0.25).move_to(self.e1.get_critical_point(DL)).shift(UP*0.1+RIGHT*0.1)
+        e3 = Ellipse(color=WHITE, width=0.2, height=0.1).move_to(e2.get_critical_point(DL)).shift(DOWN*0.1)
+        self.add(self.e1,e2,e3)
+    
+    def get_middle(self):
+        return self.e1.get_critical_point((0,0,0))
+
 class Arr(VGroup):
     def __init__(self, length, include_arrows):
         super().__init__()
