@@ -1,0 +1,18 @@
+{
+    "objClassVisualization": {
+        "code": ["public class Rechteck() {\n\tprivate int linksObenX;\n\tprivate int linksObenY;\n\tprivate int laenge;\n\tprivate int breite;\n\tprivate String farbe;\n}",
+        "public class Rechteck() {\n\tprivate int linksObenX, linksObenY, laenge, breite;\n\tprivate String farbe;\n}",
+        "public class Rechteck() {\n\tprivate int linksObenX, linksObenY, laenge, breite;\n\tprivate String farbe;\n\n\t public Rechteck() {\n\t\tlinksObenX = 2;\n\t\tlinksObenY = 2;\n\t\tlanege = 4;\n\t\tbreite = 2;\n\t\tfarbe = \"weiss\";\n\t}\n}",
+        "public class Rechteck() {\n\tprivate int linksObenX, linksObenY, laenge, breite;\n\tprivate String farbe;\n\n\tpublic int linksObenXGeben() {\n\t\t return linksObenX;\n\t}\n}",
+        "public class Rechteck() {\n\tprivate int linksObenX, linksObenY, laenge, breite;\n\tprivate String farbe;\n\n\tpublic int laengeGeben() {\n\t\treturn laenge;\n\t}\n}",
+        "public class Rechteck() {\n\tprivate int linksObenX, linksObenY, laenge, breite;\n\tprivate String farbe;\n\n\tpublic String farbeGeben(){\n\t\treturn farbe;\n\t}\n}",
+        "public class Rechteck() {\n\tprivate int linksObenX, linksObenY, laenge, breite;\n\tprivate String farbe;\n\n\tpublic void farbeSetzen(String farbeNeu) {\n\t\t farbe = farbeNeu;\n\t}\n}",
+        "public class Rechteck() {\n\tprivate int linksObenX, linksObenY, laenge, breite;\n\tprivate String farbe;\n\n\tpublic void laengeSetzen(int laengeNeu) {\n\t\tlaenge = laengeNeu;\n\t}\n}"],
+        "method_calls": ["Rechteck rechteck = new Rechteck();",
+        "rechteck.linksObenXGeben();",
+        "rechteck.laengeGeben();",
+        "rechteck.farbeGeben();", 
+        "rechteck.farbeSetzen(\"grün\");",
+        "rechteck.laengeSetzen(3);"]
+    }
+}

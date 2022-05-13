@@ -1,121 +1,27 @@
 from manim import *
 from Vgroups import Bubble
+import json
 
 class ObjClassVisualization(Scene):
     def construct(self):
-        #Code-snippets to render
-        code =['''
-        public class Rechteck(){ 
-            private int linksObenX;
-            private int linksObenY;
-            private int laenge;
-            private int breite;
-            private String farbe;
-        }
-        ''', #1
-         '''
-        public class Rechteck(){
-            private int linksObenX, linksObenY, laenge, breite;
-            private String farbe;
-        }
-        ''', #2
-        '''
-        public class Rechteck(){
-            private int linksObenX, linksObenY, laenge, breite;
-            private String farbe;
-
-            public Rechteck(){
-                linksObenX = 2;
-                linksObenY = 2;
-                laenge = 4;
-                breite = 2;
-                farbe = "weiss";
-            }
-         }
-        ''', #3
-        '''
-        public class Rechteck(){
-            private int linksObenX, linksObenY, laenge, breite;
-            private String farbe;
-
-            public int linksObenXGeben() {
-                return linksObenX;}          
-        }    
-        ''', #4
-        '''
-        public class Rechteck(){
-            private int linksObenX, linksObenY, laenge, breite;
-            private String farbe;
-
-            public int laengeGeben() {
-                return laenge;}          
-         }
-        ''', #5
-        '''
-        public class Rechteck(){
-            private int linksObenX, linksObenY, laenge, breite;
-            private String farbe;
-
-            public String farbeGeben() {
-                return farbe;}          
-         }
-        ''', #6
-        '''
-        public class Rechteck(){
-            private int linksObenX, linksObenY, laenge, breite;
-            private String farbe;
-
-            public void farbeSetzen(String farbeNeu) {
-                farbe = farbeNeu;}          
-         }
-        ''', #7
-        '''
-        public class Rechteck(){
-            private int linksObenX, linksObenY, laenge, breite;
-            private String farbe;
-
-            public void laengeSetzen(int laengeNeu) {
-                laenge = laengeNeu;}          
-         }
-        '''
-        ]
-        method_calls = [
-            '''
-            Rechteck rechteck = new Rechteck();
-            ''',#1
-            '''
-            rechteck.linksObenXGeben();
-            ''',#2
-            '''
-            rechteck.laengeGeben();
-            ''', #3
-            '''
-            rechteck.farbeGeben();
-            ''', #4
-            '''
-            rechteck.farbeSetzen("grün");
-            ''', #5
-            '''
-            rechteck.laengeSetzen(3);
-            '''
-        ]
-
         #Rendering
         rendered_code = []
         rendered_method_calls = []
-        i = 0
+        with open("code.json","r") as f:
+            content = json.load(f)
         styling = "emacs"
-        for c in code:
+        for c in content["objClassVisualization"]["code"]:
             rendered_code.append(Code(code=c, tab_width=4, background="rectangle",
-                            language="Java",font="Courier New", style =styling, insert_line_no=False))
-            i +=1
-        for i in range(1, len(rendered_code)):
-            rendered_code[i].scale(0.6).to_corner(UL)
-        for m in method_calls:
+                            language="Java",font="Courier New", style =styling, insert_line_no=False).
+                            scale(0.6).to_corner(UL))
+        #for i in range(1, len(rendered_code)):
+        #    rendered_code[i].scale(0.6).to_corner(UL)
+        for m in content["objClassVisualization"]["method_calls"]:
             rendered_method_calls.append(Code(code=m, tab_width=4, background="rectangle",
-                            language="Java",font="Courier New", style =styling, insert_line_no=False))
-        for i in range(0, len(rendered_method_calls)):
-            rendered_method_calls[i].scale(0.8).to_edge(LEFT).shift(DOWN*2)
+                            language="Java",font="Courier New", style =styling, insert_line_no=False).
+                            scale(0.8).to_edge(LEFT).shift(DOWN*2))
+        #for i in range(0, len(rendered_method_calls)):
+        #    rendered_method_calls[i].scale(0.8).to_edge(LEFT).shift(DOWN*2)
 
         # Other text and MObjects
         # Here we do our method calls! :D

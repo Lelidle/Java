@@ -1,7 +1,7 @@
 package Tree;
 
 public class Word extends DataElement {
-    String word; 
+    private String word; 
 
     public Word(String word) {
         this.word = word;
@@ -33,4 +33,8 @@ public class Word extends DataElement {
         return false;
     }
     
+    @Override
+    public String toString(){
+        return word + " ";
+    }
 }
