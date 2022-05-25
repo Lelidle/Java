@@ -44,6 +44,7 @@ public class Human {
         next = human;
     }
 
+
     /**
      * Checks if next is a nullpointer, if so it appends the human
      * by referencing it, otherwise it calls append on the next human

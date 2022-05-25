@@ -1,6 +1,6 @@
 package Tree.BinarySearchTree;
 
-public abstract class DataElement {
+public interface DataElement {
     
     public abstract boolean equals(DataElement data);
     public abstract boolean isGreater(DataElement data);

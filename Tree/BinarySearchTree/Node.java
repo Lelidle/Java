@@ -1,10 +1,11 @@
 package Tree.BinarySearchTree;
 
-public abstract class Node {
+public interface Node {
     
-    public abstract Node append(DataElement data);
+    public abstract Node insert(DataElement data);
     public abstract void print(Order order);
     public abstract DataElement getData();
+    public abstract int getCount();
     public abstract boolean contains(DataElement data);
     public abstract Node search(DataElement data);
     public abstract Node delete(DataElement data);

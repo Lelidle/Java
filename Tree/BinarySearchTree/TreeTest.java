@@ -14,18 +14,18 @@ public class TreeTest {
     }
 
     @Test
-    void testAppend() {
-        tree.append(new Word("biene"));
-        tree.append(new Word("apfel"));
-        tree.append(new Word("abba"));
-        tree.append(new Word("quader"));
-        tree.append(new Word("auto"));
+    void testInsert() {
+        tree.insert(new Word("biene"));
+        tree.insert(new Word("apfel"));
+        tree.insert(new Word("abba"));
+        tree.insert(new Word("quader"));
+        tree.insert(new Word("auto"));
 
     }
 
     @Test
     void testPrint(){
-        testAppend();
+        testInsert();
         System.out.println("Pre-Order, expected: biene apfel abba auto quader");
         tree.print(Order.PRE);
         System.out.println();
@@ -38,15 +38,15 @@ public class TreeTest {
 
     @Test
     void testSearch(){
-        testAppend();
+        testInsert();
         assertEquals(true, tree.search(new Word("abba")));
         assertNotEquals(true, tree.search(new Word("bibber")));
     }
 
     @Test
     void testGetDepthFromHere(){
-        testAppend();
-        tree.append(new Word("aaaa"));
+        testInsert();
+        tree.insert(new Word("aaaa"));
         assertEquals(4, tree.getRoot().getDepthFromHere());
         assertEquals(3, tree.getRoot().getLeft().getDepthFromHere());
         assertEquals(1, tree.getRoot().getRight().getDepthFromHere());
@@ -54,7 +54,7 @@ public class TreeTest {
 
     @Test
     void searchTest(){
-        testAppend();
+        testInsert();
         Node test = tree.search(new Word("auto"));
         Word testWord = (Word) ((DataNode) test).getData();
         assertEquals("auto", testWord.getData());
@@ -62,7 +62,7 @@ public class TreeTest {
 
     @Test
     void testGetMaxRightSubtree(){
-        testAppend();
+        testInsert();
         assertEquals("quader", ((Word) ((DataNode) tree.getRoot().getMaxRightSubtree()).getData()).getData());
         assertEquals("auto", ((Word) ((DataNode) tree.getRoot().getLeft().getMaxRightSubtree()).getData()).getData());
         tree.print(Order.PRE);
@@ -70,7 +70,7 @@ public class TreeTest {
 
     @Test 
     void testDelete(){
-        testAppend();
+        testInsert();
         tree.print(Order.PRE);
         System.out.println();
         assertEquals("quader", ((Word)((DataNode) tree.getRoot().delete(new Word("quader"))).getData()).getData());
