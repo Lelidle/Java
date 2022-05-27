@@ -7,6 +7,7 @@ public class DataNode implements Node{
     Node left;
     Node right;
 
+
     public DataNode(int data){
         this.data = data;
         count  = 1;
@@ -32,6 +33,8 @@ public class DataNode implements Node{
             left.rebalance();
         }
     }
+
+
 
     public int getHeight(){
             return Math.max(left.getHeight() + 1, right.getHeight() + 1);
