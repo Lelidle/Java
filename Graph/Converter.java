@@ -30,7 +30,7 @@ public class Converter {
         test[0][3] = 1;
         test[1][4] = 1;
         test[3][4] = 1;
-        convertToDot(g.getMatrix(), "test2", Mode.NONE);
+        convertToDot(g.getMatrix(), "test2", Mode.DIRECTEDWEIGHED);
     }
     
     public static void convert(boolean[][] matrix, String filename, Mode mode) {
@@ -103,17 +103,25 @@ public class Converter {
         
         for(int i = 0; i < n; i++) {
             for(int j = 0; j < n; j++) {
-                if(matrix[i][j] != 0) {
+                double element = matrix[i][j];
+                if(element != 0) {
                     if(mode == Mode.DIRECTED || mode == Mode.DIRECTEDWEIGHED) {
                         result += "    " + i + " -> " + j;
                         if(mode == Mode.DIRECTEDWEIGHED) {
-                            result += " [label= " + matrix[i][j] + "]";
+                            if(element % 1 == 0) {
+                                result += " [label= " + (int) element + "]";
+                            } else {
+                                result += " [label= " + element + "]";
+                            }
                         }
                     } else {
                         result += "    " + i + " -- " + j;
-                        if(mode == Mode.WEIGHED) {
-                            result += " [label= " + matrix[i][j] + "]";
+                        if(element % 1 == 0) {
+                            result += " [label= " + (int) element + "]";
+                        } else {
+                            result += " [label= " + element + "]";
                         }
+                    }
                     }
                     result += "\n";
                     }
