@@ -13,8 +13,8 @@ public class Graph {
         matrix = new double[5][5];
     }
 
-    public void addEdge(int start, int end) {
-        matrix[start][end] = 1;
+    public void addEdge(int start, int end, double weight) {
+        matrix[start][end] = weight;
     }
 
     public double[][] getMatrix(){
