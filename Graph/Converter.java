@@ -116,12 +116,13 @@ public class Converter {
                         }
                     } else {
                         result += "    " + i + " -- " + j;
-                        if(element % 1 == 0) {
-                            result += " [label= " + (int) element + "]";
-                        } else {
-                            result += " [label= " + element + "]";
+                        if(mode == Mode.WEIGHED) {
+                            if(element % 1 == 0) {
+                                result += " [label= " + (int) element + "]";
+                            } else {
+                                result += " [label= " + element + "]";
+                            }
                         }
-                    }
                     }
                     result += "\n";
                     }
