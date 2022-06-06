@@ -39,8 +39,8 @@ public class TreeTest {
     @Test
     void testSearch(){
         testInsert();
-        assertEquals(true, tree.search(new Word("abba")));
-        assertNotEquals(true, tree.search(new Word("bibber")));
+        //assertEquals(new Word("abba"), tree.search(new Word("abba")).getData());
+        assertEquals(null, tree.search(new Word("bibber")));
     }
 
     @Test

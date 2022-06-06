@@ -130,4 +130,14 @@ public class Converter {
             }
         return result += "\n}";
     }
+
+    /*    
+    public double[][] convertToMatrix(Path filePath){
+        double[][] result;
+
+
+
+        return result;
+    }
+    */
 }

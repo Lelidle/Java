@@ -14,4 +14,16 @@ public class Node {
         this.number = number;
     }
 
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    public String getData(){
+        return data;
+    }
+
+    public int getNumber(){
+        return number; 
+    }
+
 }
