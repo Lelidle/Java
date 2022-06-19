@@ -2,8 +2,6 @@ package Graph;
 
 import java.util.LinkedList;
 
-import List.Array.English.MyListArray;
-
 public class Graph {
 
     private Node[] nodes;

@@ -184,6 +184,10 @@ public class Converter {
      * needs a dot file in which the nodes are named after integers. Assumes the biggest
      * integer as maximum of nodes plus 1 (so there is a Node 0), even if other nodes are
      * not connected in between.
+     * Currently assumes a dot file with edges of the form:
+     * int --|-> int [label = double]
+     * with the label being optional. 
+     * TODO: Compatibility with edges of form String --|-> String and robust against not parsable labels
      * @param filepath the Path to the file that shall be converted as String.
      * @return Returns the converted adjacency Matrix or null, if something went wrong :)
      */
@@ -242,7 +246,7 @@ public class Converter {
          * into the array directly as the input has to be parsed to know the amount
          * of nodes. The Set is necessary to calculate the amount of distinct nodes.
          */
-        HashMap<Integer[], Double> edgeValues= new HashMap();
+        HashMap<Integer[], Double> edgeValues= new HashMap<Integer[],Double>();
         Set<Integer> sizeCalcSet = new LinkedHashSet<Integer>(); 
         //Parsing line by line
         for(String l : fileContent) {
@@ -292,7 +296,7 @@ public class Converter {
      */
     private static double[][] buildDirectedMatrix(LinkedList<String> fileContent) {
         //See Method above for comments
-        HashMap<Integer[], Double> edgeValues= new HashMap();
+        HashMap<Integer[], Double> edgeValues= new HashMap<Integer[],Double>();
         Set<Integer> sizeCalcSet = new LinkedHashSet<Integer>(); 
         for(String l : fileContent) {
             Matcher mArrow = Pattern.compile("->").matcher(l);
