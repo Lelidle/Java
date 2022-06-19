@@ -1,5 +1,5 @@
 package Graph;
 
 public enum Mode {
-    DIRECTED, DIRECTEDWEIGHED, WEIGHED, NONE
+    DIRECTED, DIRECTED_WEIGHED, WEIGHED, NONE
 }
