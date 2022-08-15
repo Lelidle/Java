@@ -42,21 +42,21 @@ public class GraphTest {
     @Test
     void testTestPath(){
         testAddEdge();
-        assertEquals(false, g.testPath(1, 0));
-        assertEquals(true, g.testPath(0, 1));
+        assertEquals(false, g.callUtility().testPath(1, 0));
+        assertEquals(true, g.callUtility().testPath(0, 1));
     }
 
     @Test
     void testDepthSearch(){
         testAddEdge();
         g.removeEdge(2, 3);
-        g.depthSearchStart(0);
+        g.callUtility().depthSearchStart(0);
     }
 
     @Test
     void testConnectionStrong(){
         testAddEdge();
-        assertEquals(false, g.testConnectionStrong());
+        assertEquals(false, g.callUtility().testConnectionStrong());
         Graph g2 = new Graph();
         g2.addEdgeBoth(0,1);
         g2.addEdgeBoth(0,2);
@@ -64,15 +64,15 @@ public class GraphTest {
         g2.addEdgeBoth(1, 4);
         g2.addEdgeBoth(2,4);
         g2.addEdgeBoth(3, 4);
-        assertEquals(true, g2.testConnectionStrong());
+        assertEquals(true, g2.callUtility().testConnectionStrong());
     }
 
     @Test 
     void testConnection(){
         testAddEdge();
-        assertEquals(true, g.testConnection());
+        assertEquals(true, g.callUtility().testConnection());
         Graph g2 = new Graph();
-        assertEquals(false, g2.testConnection());
+        assertEquals(false, g2.callUtility().testConnection());
     }
 
     @Test 
@@ -82,6 +82,6 @@ public class GraphTest {
         g.addEdge(0, 2);
         g.addEdge(1,4);
         g.addEdge(2,3);
-        g.broadSearchStart(0);
+        g.callUtility().broadSearchStart(0);
     }
 }
