@@ -9,6 +9,7 @@ import json
 
 class ToRender(Scene):
     def construct(self):
+        
         #with open("code.json", "r") as f:
         #    content = json.load(f)
         #c = Code(code=content["objClassVisualization"]["code"][0], tab_width=4, background="rectangle",

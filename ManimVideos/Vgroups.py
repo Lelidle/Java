@@ -45,10 +45,24 @@ class Arr(VGroup):
             box.toggle_arrow()
         return self
 
+    def color_arrows(self,color):
+        for box in self.arr:
+            box.color_arrow(color)
+        return self
+
+
     def toggle_arrows_prop(self):
         self.include_arrows = not self.include_arrows
         for box in self.arr:
             box.include_arrows = not box.include_arrows
+
+    def add_text_to_box_center(self,position, text):
+        text.move_to(self.arr[position].get_center())
+        self.add(text)
+    
+    def add_text_to_arrow_tip(self, position, text, buff):
+        text.move_to(self.arr[position].get_tip_position()).shift(buff*DOWN)
+        self.add(text)
 
 class ArrBox(VGroup):
     def __init__(self, include_arrows, shift):
@@ -56,10 +70,10 @@ class ArrBox(VGroup):
         self.include_arrows = include_arrows
         square = Square().shift(2*RIGHT*shift)
         dot = Dot().move_to(square.get_center())
-        arrow = Arrow(start=ORIGIN, end=2.5*RIGHT).rotate(-PI/2).move_to(square.get_center()).shift(DOWN)
-        self.parts = [square, dot, arrow]
+        self.arrow = Arrow(start=ORIGIN, end=2.5*RIGHT).rotate(-PI/2).move_to(square.get_center()).shift(DOWN)
+        self.parts = [square, dot, self.arrow]
         if(include_arrows):
-            self.add(square, dot, arrow)
+            self.add(square, dot, self.arrow)
         else:
             self.add(square)
 
@@ -74,6 +88,9 @@ class ArrBox(VGroup):
     def get_tip_position(self):
         return self.parts[2].get_center() \
                 + self.parts[2].length_over_dim(1)*0.5*DOWN 
+    
+    def color_arrow(self, color):
+        self.arrow.set_color(color)
 
 class ArrConsCells(VGroup):
     def __init__(self, length):

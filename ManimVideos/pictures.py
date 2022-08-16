@@ -1,5 +1,5 @@
 from manim import *
-from Vgroups import StickFigure
+from Vgroups import StickFigure, Arr
 
 config.background_color = WHITE
 
@@ -7,8 +7,24 @@ config.background_color = WHITE
 class Render(Scene):
     def construct(self):
         self.build_content()
-        self.first_pic()
+        self.fourth_pic()
 
+    def fourth_pic(self):
+        arr = Arr(3, True)
+        arr.set_color(BLACK).shift(2*LEFT)
+        arrow = Arrow(start=[0,0,0], end=[2,0,0]).next_to(self.arr, LEFT).set_color(BLACK)
+        for i in range(0,3):
+            arr.add_text_to_arrow_tip(i, Text("0").set_color(BLACK).scale(2), 0.5)
+        text2 = Text("array").next_to(arrow, LEFT).set_color(BLACK)
+        self.add(arrow, arr, text2)
+
+    def third_pic(self):
+        for i in range(0,3):
+            self.arr.add_text_to_box_center(i, Text("0").set_color(BLACK).scale(2))
+        self.add(self.arr)
+
+    def second_pic(self):
+        self.add(self.arr)
 
     def first_pic(self):
         
@@ -18,7 +34,6 @@ class Render(Scene):
         self.berti.next_to(self.anna, RIGHT)
         self.christo.next_to(self.berti, RIGHT)
         self.demi.next_to(self.christo, RIGHT)
-
 
         arr = Arrow(start = [0,0,0], end=[3,0,0]).rotate(PI).set_color(BLACK).next_to(self.anna, LEFT)
         text = VGroup(Text("vorneEntfernen()").set_color(BLACK).scale(0.5), Text("pop()").set_color(BLACK).scale(0.5)).arrange(DOWN)
@@ -31,7 +46,7 @@ class Render(Scene):
 
         everything = VGroup(self.anna, self.berti, self.christo, self.demi, self.ernesto, arr, text, arr2, text_hinten).shift(0.5*LEFT)
         self.add(everything)
-        
+
 
     def build_content(self):
         anna_name = Text("Anna")
@@ -60,3 +75,5 @@ class Render(Scene):
         self.ernesto = VGroup(ernesto_figure, ernesto_name)
 
         self.stick_figures = [self.anna, self.berti, self.christo, self.demi, self.ernesto]
+
+        self.arr = Arr(3, False).set_color(BLACK).shift(2*LEFT)

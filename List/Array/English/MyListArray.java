@@ -42,17 +42,24 @@ public class MyListArray implements ListInterface<Human> {
     }
 
     /**
-     * appends a new human, does not work when the list is full
+     * appends a new human.
      * @param human only objects of class Human can be appended
      */
     @Override
     public void push(Human human) {
+        if(count == queue.length) {
+            enlargeArray();
+        }
+        queue[count] = human;
+        count++;
+        /*
         if(count < queue.length) {
             queue[count] = human;
             count++;
         } else {
             appendWhenFull(human);
         }         
+        */
     }
 
     /**
@@ -69,6 +76,15 @@ public class MyListArray implements ListInterface<Human> {
         queue = newQueue;
     }
 
+    private void enlargeArray() {
+        Human[] newQueue = new Human[queue.length + 10];
+        for(int i = 0; i < queue.length; i++){
+            newQueue[i] = queue[i];
+        }
+        queue = newQueue;
+    }
+
+
     /**
      * Prints all Humans in the list, using the presentation function of Humans
      */
@@ -83,11 +99,14 @@ public class MyListArray implements ListInterface<Human> {
     }
 
     /**
-     * removes the first element of the list
+     * removes the first element of the list, if present
      * @return a reference to the former first element of the list
      */
     @Override
     public Human pop() {
+        if(queue[0] == null) {
+            return null;
+        }
         Human toReturn = queue[0];
         for(int i = 0; i < queue.length -1; i++){
             if (queue[i+1] == null){
@@ -96,6 +115,7 @@ public class MyListArray implements ListInterface<Human> {
             queue[i] = queue[i+1];
         }
         queue[queue.length-1] = null;
+        count--;
         return toReturn;
     }
 

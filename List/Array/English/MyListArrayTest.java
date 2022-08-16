@@ -19,8 +19,8 @@ public class MyListArrayTest {
         MyListArray pushTest = new MyListArray(2);
         pushTest.push(new Human("Mike", 15));
         pushTest.push(new Human("Sarah", 27));
-        Assertions.assertEquals("Mike", testList.getQueue()[0].getName());
-        Assertions.assertEquals("Sarah", testList.getQueue()[1].getName());
+        Assertions.assertEquals("Mike", pushTest.getQueue()[0].getName());
+        Assertions.assertEquals("Sarah", pushTest.getQueue()[1].getName());
         System.out.println("The queue should be full:");
         pushTest.push(new Human("Balu", 43));
     }
