@@ -1,4 +1,4 @@
-package List.LinkedListNode.English;
+package List.LinkedListNode;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

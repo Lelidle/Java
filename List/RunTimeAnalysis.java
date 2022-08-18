@@ -4,9 +4,9 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import List.Array.English.Human;
-import List.Array.English.MyListArray;
-import List.Compositum.English.MyListComp;
+import List.Array.Human;
+import List.Array.MyListArray;
+import List.Compositum.MyListComp;
 
 public class RunTimeAnalysis {
     
@@ -91,7 +91,7 @@ public class RunTimeAnalysis {
             try {
                 while(reader.ready()){
                     String[] infos = reader.readLine().split(",");
-                    compTest.push(new List.Compositum.English.Human(infos[0], Integer.parseInt(infos[1])));
+                    compTest.push(new List.Compositum.Human(infos[0], Integer.parseInt(infos[1])));
                 }
                 reader.close();
             } catch (IOException e) {
@@ -112,7 +112,7 @@ public class RunTimeAnalysis {
             try {
                 for(int i = 0; i < 10000; i++){
                     String[] infos = reader.readLine().split(",");
-                    compTestTwo.appendSorted(new List.Compositum.English.Human(infos[0], Integer.parseInt(infos[1])));
+                    compTestTwo.appendSorted(new List.Compositum.Human(infos[0], Integer.parseInt(infos[1])));
                 }
                 reader.close();
             } catch (IOException e) {

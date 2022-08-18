@@ -1,4 +1,4 @@
-package List.Compositum.English;
+package List.Compositum;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

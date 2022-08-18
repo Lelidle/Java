@@ -1,4 +1,4 @@
-package List.LinkedList.English;
+package List.LinkedList;
 
 public class Human {
     

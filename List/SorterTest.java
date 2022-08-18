@@ -3,8 +3,8 @@ package List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import List.Array.English.Human;
-import List.Array.English.MyListArray;
+import List.Array.Human;
+import List.Array.MyListArray;
 
 
 public class SorterTest {

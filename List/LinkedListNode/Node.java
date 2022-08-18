@@ -1,4 +1,4 @@
-package List.LinkedListNode.English;
+package List.LinkedListNode;
 
 public class Node {
     

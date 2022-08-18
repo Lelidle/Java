@@ -1,4 +1,4 @@
-package List.Array.English;
+package List.Array;
 import List.ListInterface;
 import List.Sorter;
 import List.SortingMethod;

@@ -13,6 +13,11 @@ class Bubble(VGroup):
     def get_middle(self):
         return self.e1.get_critical_point((0,0,0))
 
+    def add_text_to_bubble(self, text, buff):
+        text.move_to(self.get_critical_point((0,0,0))).shift(buff)
+        self.add(text)
+        return self
+
 class Arr(VGroup):
     def __init__(self, length, include_arrows):
         super().__init__()
@@ -56,12 +61,12 @@ class Arr(VGroup):
         for box in self.arr:
             box.include_arrows = not box.include_arrows
 
-    def add_text_to_box_center(self,position, text):
-        text.move_to(self.arr[position].get_center())
+    def add_text_to_box_center(self,position, text, buff):
+        text.move_to(self.arr[position].get_center()).shift(buff)
         self.add(text)
     
     def add_text_to_arrow_tip(self, position, text, buff):
-        text.move_to(self.arr[position].get_tip_position()).shift(buff*DOWN)
+        text.move_to(self.arr[position].get_tip_position()).shift(buff)
         self.add(text)
 
 class ArrBox(VGroup):

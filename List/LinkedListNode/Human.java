@@ -1,6 +1,6 @@
-package List.Compositum.English;
+package List.LinkedListNode;
 
-public class Human extends DataElement {
+public class Human extends DataElement{
     
     private String name;
     private int age; 
@@ -16,7 +16,7 @@ public class Human extends DataElement {
     }
 
     /**
-     * Helper method to get the name of the human
+     * Helper method to get the Name of the human
      * @return returns the name of the human
      */
     public String getName(){
@@ -24,32 +24,12 @@ public class Human extends DataElement {
     }
 
     /**
-     * Helper method to set the name of the human
-     * @param name sets the name of the human
-     */
-    public void setName(String name){
-        this.name = name; 
-    }
-
-    /**
-     * Helper method to get the age of the human
+     * Helper method to get the age of the humn
      * @return returns the age of the human
      * @return
      */
     public int getAge(){
         return age;
-    }
-
-    /**
-     * Helper method to set the age of the human
-     * @param age the new age of the Human
-     */
-    public void setAge(int age){
-        if(age >= 0 && age <=200){
-            this.age = age;
-        } else {
-            System.out.println("Das kann kein menschliches Alter sein!");
-        }
     }
 
     /**
@@ -82,23 +62,4 @@ public class Human extends DataElement {
         }
     }
 
-    /**
-     * Method for comparing two humans. Uses only the age to compare
-     * @param human the human that shall be compared to this
-     * @return returns true if this human is older
-     */
-    @Override
-    public boolean isGreater(DataElement data) {
-        Human human = null;
-        try {
-            human = (Human) data;
-        } catch (Exception e) {
-            System.out.println("The element for the comparison is not a human!");
-        }
-        if(this.getAge() > human.getAge()) {
-            return true;
-        }
-        return false; 
-    }
-    
 }

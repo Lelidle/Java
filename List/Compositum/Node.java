@@ -1,4 +1,4 @@
-package List.Compositum.English;
+package List.Compositum;
 
 /**
  * Abstract class that defines the behaviour of a node.

@@ -2,10 +2,10 @@ package List;
 
 import java.util.function.Function;
 
-import List.Compositum.English.DataNode;
-import List.Compositum.English.Human;
-import List.Compositum.English.MyListComp;
-import List.Compositum.English.Node;
+import List.Compositum.DataNode;
+import List.Compositum.Human;
+import List.Compositum.MyListComp;
+import List.Compositum.Node;
 
 public class LambdaTest {
     

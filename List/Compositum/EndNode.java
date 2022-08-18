@@ -1,4 +1,4 @@
-package List.Compositum.English;
+package List.Compositum;
 
 public class EndNode extends Node {
 

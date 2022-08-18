@@ -1,4 +1,4 @@
-package List.Array.English;
+package List.Array;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

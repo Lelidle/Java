@@ -1,7 +1,7 @@
 package List;
 
-import List.Array.English.Human;
-import List.Array.English.MyListArray;
+import List.Array.Human;
+import List.Array.MyListArray;
 
 /**
  * All Methods are public for testing purposes, should be private, 

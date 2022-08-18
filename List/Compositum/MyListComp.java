@@ -1,36 +1,76 @@
-package List.LinkedListNode.English;
+package List.Compositum;
+import java.util.function.Function;
 
 import List.ListInterface;
 
-public class MyListLinkedNode implements ListInterface<DataElement>{
-    
-    private Node root;
+public class MyListComp implements ListInterface<DataElement>{
 
+    private Node root;
     /**
-     * Constructor method of the list, initializes the root as null
+     * Constructor method of the list, sets the root to a new EndNode
      */
-    public MyListLinkedNode(){
-        root = null;
+    public MyListComp(){
+        root = new EndNode();
     }
 
     /**
      * Helper method, returns a reference to the current root
      * @return returns a reference to the current root
      */
-    public Node getRoot() {
-        return root; 
+    public Node getRoot(){
+        return root;
     }
 
     /**
-     * Appends a new node in back of the list
+     * Appends a new node in front as the new root.
      * @param data the data to fill the Node
      */
-    public void push(DataElement data){
-        Node node = new Node(data);
+    public void setRoot(DataElement data) {
         if(root == null) {
-            root = node;
+            root = new DataNode(root, data);
         } else {
-            root.push(node);
+            Node newRoot = new DataNode(root, data);
+            newRoot.setNext(root);
+            root = newRoot;
+        }
+        
+    }
+
+    /**
+     * Appends a new node at the end of the list
+     * @param data the data that shall be appended
+     */
+    @Override
+    public void push(DataElement data) {
+        if(root instanceof EndNode){
+            root = new DataNode(root, data);
+        } else {
+            root.push(data);
+        }
+ 
+    }
+
+    /**
+     * Appends a new node sorted
+     * @param data the data that shall be appended
+     */
+    public void appendSorted(DataElement data){
+        root = root.appendSorted(data);
+    }
+
+    /**
+     * removes the first node of the list and returns a reference to it
+     * @return returns a reference to the former root
+     */
+    @Override
+    public DataElement pop() {
+        if(root == null){
+            System.out.println("No list, nothing to remove");
+            return null;
+        } else {
+            DataElement toReturn = root.getData();
+            root = root.getNext();
+            return toReturn;
         }
     }
 
@@ -43,26 +83,9 @@ public class MyListLinkedNode implements ListInterface<DataElement>{
         if(root == null){
             System.out.println("No list here to print!");
         } else {
-            root.getNext().printList();
+            root.printList();
         }
     }
-
-    /**
-     * removes the first node of the list and returns a reference to it
-     * @return returns a reference to the former root
-     */
-    @Override
-    public DataElement pop(){
-        if(root == null){
-            System.out.println("No list, nothing to remove");
-            return null;
-        } else {
-            DataElement toReturn = root.getData();
-            root = root.getNext();
-            return toReturn;
-        }
-    }
-
 
     /**
      * Recurisve method to return the reference to an item at a given position.
@@ -73,8 +96,8 @@ public class MyListLinkedNode implements ListInterface<DataElement>{
     @Override
     public DataElement getItemAtPosition(int position) {
         int counter = 1;
-        Node found = root.getItemAtPosition(position, counter);
-        return found.getData();
+        DataElement found = root.getItemAtPosition(position, counter);
+        return found;
     }
 
     /**
@@ -82,11 +105,11 @@ public class MyListLinkedNode implements ListInterface<DataElement>{
      * Only returns the first occurence, if the item is not present in the list,
      * -1 is returned
      * @param data the data that is being searched
-     * @return returns the position in the list (starting at 0)
+     * @return returns the position in the list (starting at 1)
      */
     @Override
     public int searchItemPosition(DataElement data) {
-        int counter = 0;
+        int counter = 1;
         int searched = root.searchItemPosition(data,counter);
         return searched;
     }
@@ -118,8 +141,14 @@ public class MyListLinkedNode implements ListInterface<DataElement>{
      */
     @Override
     public DataElement removeAt(int position) {
-        int counter = 1;
-        return root.removeAt(position, counter);
+        if(position == 1) {
+            DataElement toReturn = root.getData();
+            root = root.getNext();
+            return toReturn;
+        } else {
+            int counter = 1;
+            return root.removeAt(position, counter);
+        }
     }
 
     /**
@@ -129,26 +158,40 @@ public class MyListLinkedNode implements ListInterface<DataElement>{
      */
     public Node findEnd(){
         if(root != null) {
-            return root.findEnd();
+            return root.findEnd(root);
         } else {
             return null;
         }
     }
 
     /**
-     * A method to concatenate two lists of Type MyListLinkedNode.
+     * A method to concatenate two lists of Type MyListComp.
      * @param o: another list
      * @return returns the concatenated list or an unchanged list, if the 
-     * parameter was not of type MyListKinkedNode
+     * parameter was not of type MyListComp
      */
     @Override
     public Object concatenate(Object o) {
-        if(!(o instanceof MyListLinkedNode)){
+        if(!(o instanceof MyListComp)){
             return this;
         } 
-        MyListLinkedNode toConcat = (MyListLinkedNode) o;
+        MyListComp toConcat = (MyListComp) o;
         Node end = this.findEnd();
         end.setNext(toConcat.getRoot());
         return this;
     }
+    
+    /**
+     * A function that takes a function that alters a human and applies it
+     * to all humans in the list
+     * @param func a function that alters a human
+     */
+    public  void map(Function<Human, Human> func) {
+        Node tmp = root;
+        while(tmp instanceof DataNode) {
+            func.apply((Human) tmp.getData());
+            tmp = tmp.getNext();
+        }
+    }
+
 }
