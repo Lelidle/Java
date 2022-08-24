@@ -64,7 +64,7 @@ public class MyListComp implements ListInterface<DataElement>{
      */
     @Override
     public DataElement pop() {
-        if(root == null){
+        if(root instanceof EndNode){
             System.out.println("No list, nothing to remove");
             return null;
         } else {
@@ -80,7 +80,7 @@ public class MyListComp implements ListInterface<DataElement>{
      */
     @Override
     public void printList() {
-        if(root == null){
+        if(root instanceof EndNode){
             System.out.println("No list here to print!");
         } else {
             root.printList();
@@ -110,8 +110,8 @@ public class MyListComp implements ListInterface<DataElement>{
     @Override
     public int searchItemPosition(DataElement data) {
         int counter = 1;
-        int searched = root.searchItemPosition(data,counter);
-        return searched;
+        int position = root.searchItemPosition(data,counter);
+        return position;
     }
 
     /**
@@ -141,10 +141,11 @@ public class MyListComp implements ListInterface<DataElement>{
      */
     @Override
     public DataElement removeAt(int position) {
+        if(position <= 0) {
+            return null;
+        }
         if(position == 1) {
-            DataElement toReturn = root.getData();
-            root = root.getNext();
-            return toReturn;
+            return this.pop();
         } else {
             int counter = 1;
             return root.removeAt(position, counter);
@@ -157,7 +158,7 @@ public class MyListComp implements ListInterface<DataElement>{
      * if the list is empty.
      */
     public Node findEnd(){
-        if(root != null) {
+        if(!(root instanceof EndNode)) {
             return root.findEnd(root);
         } else {
             return null;

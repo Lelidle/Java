@@ -7,9 +7,48 @@ config.background_color = WHITE
 class Render(Scene):
     def construct(self):
         self.build_content()
-        self.ninth_pic()
+        self.linked_move_to_back()
 
-    def ninth_pic(self):
+    def linked_move_to_back(self):
+        text = Text("moveToBack()").scale(0.6).to_corner(UL).set_color(BLACK)
+        arr = Arr(1, False).shift(4*LEFT).set_color(BLACK)
+        arr.add_text_to_box_center(0,Text("Warteschlange").scale(0.4).set_color(BLACK), 0*DOWN)
+        arrows = VGroup()
+        for _ in range(3):
+            arrows.add(Arrow(start=ORIGIN, end=[2,0,0]).next_to(arr, RIGHT).set_color(BLACK))
+        self.stick_figures[0].next_to(arrows[0], RIGHT)
+        arrows[1].next_to(self.stick_figures[0], RIGHT)
+        self.stick_figures[1].next_to(arrows[1], RIGHT)
+        arrows[2].next_to(self.stick_figures[1], RIGHT)
+        nullo = Text("null").scale(0.4).set_color(BLACK).next_to(arrows[2])
+        successor = Text("Nachfolger").scale(0.4).next_to(arrows[1], UP).set_color(RED)
+        successor2 = Text("Nachfolger").scale(0.4).next_to(arrows[2], UP).set_color(RED)
+        carrow = CurvedArrow(start_point=[-3,1,0], end_point=[2,1,0], radius=-4).set_color(GREEN)
+        carrow2 = CurvedArrow(start_point=ORIGIN, end_point = [2,0,0], radius=-2).next_to(arr, UP).set_color(BLACK).shift(1.5*LEFT+0.1*DOWN)
+        carrow3 = Arrow(start=[3,2.2,0], end = ORIGIN).next_to(arr, DOWN).set_color(BLACK).shift(1.5*RIGHT)
+        bubble = Bubble().set_color(BLACK).next_to(carrow2, UP).scale(0.5).add_text_to_bubble(Text("pop()").scale(0.4).set_color(BLACK),
+        0.05*RIGHT+0.05*UP).shift(RIGHT*0.5+DOWN*0.6)
+        root = Text("root (Wurzel)").scale(0.4).next_to(carrow, UP).set_color(GREEN)
+        line1 = Line(start=[1,0,0], end=[0,1,0]).set_color(RED).move_to(arrows[1].get_critical_point(ORIGIN))
+        line2 = Line(start=[0,0,0], end=[1,1,0]).set_color(RED).move_to(arrows[1].get_critical_point(ORIGIN))
+        first = VGroup(arr, arrows[1], text, arrows[2], root, self.stick_figures[0], self.stick_figures[1],
+        carrow, nullo, successor, successor2, carrow2,carrow3, bubble, line1, line2).shift(UP).scale(0.75)
+        arr2 = arr.copy().to_edge(DOWN).next_to(arr, DOWN).shift(1.5*DOWN)
+        bubble2 = Bubble().set_color(BLACK).next_to(carrow3, LEFT).scale(0.5).add_text_to_bubble(Text("push(Anna)").scale(0.3).set_color(BLACK),
+        0.05*LEFT+0.05*UP).flip_bubble().shift(1.2*RIGHT+0.2*UP)
+        arrow3 =arrows[1].copy().next_to(arr2, RIGHT).set_color(GREEN)
+        berti2 = self.stick_figures[1].copy().next_to(arrow3, RIGHT)
+        arrow4 = arrows[1].copy().next_to(berti2, RIGHT)
+        anna2 = self.stick_figures[0].copy().next_to(arrow4, RIGHT)
+        arrow5 = arrows[1].copy().next_to(anna2, RIGHT)
+        nullo2 = nullo.copy().next_to(arrow5, RIGHT)
+        successor3 = successor.copy().next_to(arrow5, UP)
+        successor4 = successor2.copy().next_to(arrow4, UP)
+        root2 = root.copy().next_to(arrow3, UP).scale(0.8)
+        second = VGroup(arr2, bubble2, arrow3, berti2, successor3, successor4, arrow4, anna2, arrow5, nullo2, root2)
+        self.add(first, second)
+
+    def linked_pop(self):
         arr = Arr(1, False).shift(4*LEFT).set_color(BLACK)
         arr.add_text_to_box_center(0,Text("Warteschlange").scale(0.4).set_color(BLACK), 0*DOWN)
         arrows = VGroup()

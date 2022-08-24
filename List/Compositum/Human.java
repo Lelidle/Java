@@ -1,6 +1,6 @@
 package List.Compositum;
 
-public class Human extends DataElement {
+public class Human implements DataElement {
     
     private String name;
     private int age; 
@@ -71,7 +71,7 @@ public class Human extends DataElement {
         if(this == o) {
             return true;
         }
-        if(! (o instanceof Human)){
+        if(!(o instanceof Human)){
             return false;
         } 
         Human h = (Human) o;

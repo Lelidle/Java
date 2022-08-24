@@ -5,17 +5,22 @@ from enum import Enum
 class Bubble(VGroup):
     def __init__(self):
         super().__init__()
-        self.e1 = Ellipse(color=WHITE, width=3, height=1.5)
-        e2 = Ellipse(color=WHITE, width=0.5, height=0.25).move_to(self.e1.get_critical_point(DL)).shift(UP*0.1+RIGHT*0.1)
+        e1 = Ellipse(color=WHITE, width=3, height=1.5)
+        e2 = Ellipse(color=WHITE, width=0.5, height=0.25).move_to(e1.get_critical_point(DL)).shift(UP*0.1+RIGHT*0.1)
         e3 = Ellipse(color=WHITE, width=0.2, height=0.1).move_to(e2.get_critical_point(DL)).shift(DOWN*0.1)
-        self.add(self.e1,e2,e3)
+        self.ellipses = VGroup(e1,e2,e3)
+        self.add(self.ellipses)
     
     def get_middle(self):
-        return self.e1.get_critical_point((0,0,0))
+        return self.ellipses[0].get_critical_point((0,0,0))
 
     def add_text_to_bubble(self, text, buff):
         text.move_to(self.get_critical_point((0,0,0))).shift(buff)
         self.add(text)
+        return self
+
+    def flip_bubble(self):
+        self.ellipses.flip(UP)
         return self
 
 class Arr(VGroup):
