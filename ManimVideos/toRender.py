@@ -1,5 +1,5 @@
 from manim import *
-from Vgroups import Arr, ConsCell, ArrConsCells, StickFigure, Bubble
+from Vgroups import Arr, ConsCell, ArrConsCells, StickFigure, Bubble, Card
 from arrPushPop import MyListArrayPushPop
 from arrSearch import MyListArraySearch
 from arrAppendSorted import MyListArrayAppendSorted
@@ -9,13 +9,23 @@ import json
 
 class ToRender(Scene):
     def construct(self):
-        
+        attr = [
+            Text("- name: String"),
+            Text("- age: int")
+        ]
+        methods = [
+            Text("+ Human()"),
+            Text("+ push()"),
+            Text("+ pop()")
+        ]
+        c = Card(_width=5, height = 3, text= Text("Human"), attributes=attr, methods=methods, round_corners=False).scale(0.5)
+        self.add(c)
         #with open("code.json", "r") as f:
         #    content = json.load(f)
         #c = Code(code=content["objClassVisualization"]["code"][0], tab_width=4, background="rectangle",
         #                    language="Java",font="Courier New", style ="emacs",insert_line_no=False)
         #self.add(c)
-        ObjClassVisualization.construct(self)
+        #ObjClassVisualization.construct(self)
         #test = StickFigure("15", False).scale(0.5)
         #test.scaled = 0.5
         #self.test_arm_movements(test)

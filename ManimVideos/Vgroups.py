@@ -2,6 +2,45 @@ from xml.etree.ElementInclude import include
 from manim import *
 from enum import Enum
 
+#TODO Declutter and comment methods, especially card
+class Card(VGroup):
+    def __init__(self, _width=4, height=2, text = Text("class"), methods=[], attributes = [], round_corners=True):
+        super().__init__()
+        self.scaled = 1
+        height_frame = max(height, len(attributes) + len(methods) + 1)
+        if(round_corners):
+            frame = RoundedRectangle(corner_radius=0.5, width=_width, height = height_frame)
+        else:
+            frame = Rectangle(width=_width, height = height_frame)
+        dividerUp= Line(start=ORIGIN, end=[_width,0,0]).move_to(frame.get_critical_point(UP)).shift(DOWN)
+        self.objects = [frame, dividerUp]
+        if(len(methods) > 0):
+            dividerDown = Line(start=ORIGIN, end=[_width,0,0]).move_to(frame.get_critical_point(DOWN)).shift(UP*len(methods))
+            self.objects.append(dividerDown)
+            self.add(dividerDown)
+        self.classname = text.move_to(frame.get_critical_point(UP)).shift(DOWN*0.5)
+        self.methods = VGroup()
+        self.attributes = VGroup()
+        for i in range(len(attributes)): 
+            attributes[i].move_to(frame.get_critical_point(UP)).shift(DOWN*(1.5+i))
+            self.attributes.add(attributes[i])
+        for i in range(len(methods)):
+            methods[i].move_to(frame.get_critical_point(UP)).shift(DOWN*(1.5+len(attributes)+i))
+            self.methods.add(methods[i])
+        self.add(frame, dividerUp, self.classname, self.methods, self.attributes)
+
+    def set_text_color(self, color):
+        self.classname.set_color(color)
+        for a in self.attributes:
+            a.set_color(color)
+        for m in self.methods:
+            m.set_color(color)
+        return self
+
+
+
+
+
 class Bubble(VGroup):
     def __init__(self):
         super().__init__()
@@ -66,13 +105,15 @@ class Arr(VGroup):
         for box in self.arr:
             box.include_arrows = not box.include_arrows
 
-    def add_text_to_box_center(self,position, text, buff):
+    def add_text_to_box_center(self,position, text, buff=0):
         text.move_to(self.arr[position].get_center()).shift(buff)
         self.add(text)
+        return self
     
     def add_text_to_arrow_tip(self, position, text, buff):
         text.move_to(self.arr[position].get_tip_position()).shift(buff)
         self.add(text)
+        return self
 
 class ArrBox(VGroup):
     def __init__(self, include_arrows, shift):

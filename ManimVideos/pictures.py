@@ -1,5 +1,5 @@
 from manim import *
-from Vgroups import StickFigure, Arr, Bubble
+from Vgroups import StickFigure, Arr, Bubble, Card
 
 config.background_color = WHITE
 
@@ -7,7 +7,126 @@ config.background_color = WHITE
 class Render(Scene):
     def construct(self):
         self.build_content()
-        self.linked_move_to_back()
+        self.stack_push_pop()
+
+    
+    def stack_push_pop(self):
+        rectgroup = VGroup()
+        rects = []
+        for i in range(1):
+            r = Rectangle(width=2, height=1).shift(i*UP)
+            rects.append(r)
+            rectgroup.add(r)
+
+        r1 = Rectangle(width=2, height=1, fill_opacity = 0.25).set_color(YELLOW_E).to_edge(LEFT).shift(DOWN)
+        end = Text("EndNode").set_color(YELLOW_E).scale(0.3).move_to(r1.get_critical_point(ORIGIN))
+        text1 = Text("push(djego)").set_color(BLACK).scale(0.3).next_to(r1, DOWN)
+
+        r2 = []
+        r2_group = VGroup()
+        for i in range(2):
+            r = Rectangle(width=2, height=1, fill_opacity=0.25)
+            if(i==0): r.next_to(r1, RIGHT)
+            else: r.move_to(r2[0].get_critical_point(ORIGIN)).shift(i*UP)
+            r2.append(r)
+            r2_group.add(r)
+        r2[0].set_color(YELLOW_E)
+        r2[1].set_color(RED_E)
+        end2 = end.copy().move_to(r2[0].get_critical_point(ORIGIN))
+        text2 = Text("push(miriam)").set_color(BLACK).scale(0.3).next_to(r2_group, DOWN) 
+        djego = Text("djego").set_color(RED_E).scale(0.3).move_to(r2[1].get_critical_point(ORIGIN))
+
+        r3 = []
+        r3_group = VGroup()
+        for i in range(3):
+            r = Rectangle(width=2, height=1, fill_opacity=0.25)
+            if(i==0): r.next_to(r2[0], RIGHT)
+            else: r.move_to(r3[0].get_critical_point(ORIGIN)).shift(i*UP)
+            r3.append(r)
+            r3_group.add(r)
+        r3[0].set_color(YELLOW_E)
+        r3[1].set_color(RED_E)
+        r3[2].set_color(GREEN_E)
+        end3 = end.copy().move_to(r3[0].get_critical_point(ORIGIN))
+        text3 = Text("pop()").set_color(BLACK).scale(0.3).next_to(r3_group, DOWN) 
+        djego2 = Text("djego").set_color(RED_E).scale(0.3).move_to(r3[1].get_critical_point(ORIGIN))
+        miriam = Text("miriam").set_color(GREEN_E).scale(0.3).move_to(r3[2].get_critical_point(ORIGIN))
+        
+        r4 = []
+        r4_group = VGroup()
+        for i in range(2):
+            r = Rectangle(width=2, height=1, fill_opacity=0.25)
+            if(i==0): r.next_to(r3[0], RIGHT)
+            else: r.move_to(r4[0].get_critical_point(ORIGIN)).shift(i*UP)
+            r4.append(r)
+            r4_group.add(r)
+        r4[0].set_color(YELLOW_E)
+        r4[1].set_color(RED_E)
+        end4 = end.copy().move_to(r4[0].get_critical_point(ORIGIN))
+        text4 = Text("push(walter)").set_color(BLACK).scale(0.3).next_to(r4_group, DOWN) 
+        djego3 = Text("djego").set_color(RED_E).scale(0.3).move_to(r4[1].get_critical_point(ORIGIN))
+
+        r5 = []
+        r5_group = VGroup()
+        for i in range(3):
+            r = Rectangle(width=2, height=1, fill_opacity=0.25)
+            if(i==0): r.next_to(r4[0], RIGHT)
+            else: r.move_to(r5[0].get_critical_point(ORIGIN)).shift(i*UP)
+            r5.append(r)
+            r5_group.add(r)
+        r5[0].set_color(YELLOW_E)
+        r5[1].set_color(RED_E)
+        r5[2].set_color(BLUE_E)
+        end5 = end.copy().move_to(r5[0].get_critical_point(ORIGIN))
+        text5 = Text("pop()").set_color(BLACK).scale(0.3).next_to(r5_group, DOWN) 
+        djego4 = Text("djego").set_color(RED_E).scale(0.3).move_to(r5[1].get_critical_point(ORIGIN))
+        walter = Text("walter").set_color(BLUE_E).scale(0.3).move_to(r5[2].get_critical_point(ORIGIN))
+        
+        r6 = []
+        r6_group = VGroup()
+        for i in range(2):
+            r = Rectangle(width=2, height=1, fill_opacity=0.25)
+            if(i==0): r.next_to(r5[0], RIGHT)
+            else: r.move_to(r6[0].get_critical_point(ORIGIN)).shift(i*UP)
+            r6.append(r)
+            r6_group.add(r)
+        r6[0].set_color(YELLOW_E)
+        r6[1].set_color(RED_E)
+        end6 = end.copy().move_to(r6[0].get_critical_point(ORIGIN))
+        djego5 = Text("djego").set_color(RED_E).scale(0.3).move_to(r6[1].get_critical_point(ORIGIN))
+        #walter = Text("walter").set_color(BLUE_E).scale(0.3).move_to(r5[2].get_critical_point(ORIGIN))
+
+
+        self.add(r1, end, text1, r2_group, end2, text2, djego, r3_group, end3, text3, djego2, miriam, r4_group, end4, text4, djego3, r5_group, end5, text5, djego4, walter, r6_group, end6, djego5)
+        
+
+
+    def string_in_memory(self):
+        memory = VGroup()
+        rect = RoundedRectangle(corner_radius=0.5, height=7,width=12, fill_opacity=1).set_color(GRAY).set_stroke(BLACK)
+        mem = Text("Memory").set_color(GREY_A).scale(0.4).next_to(rect.get_critical_point(UL)).shift(DOWN*0.3)
+        memory.add(rect, mem)
+        x = Text("x").set_color(BLACK).shift(LEFT*7.5+1.5*UP)
+        arrow = Arrow(start=ORIGIN, end=[3,0,0]).set_color(BLACK).next_to(x, RIGHT)
+        card = Card(_width = 8, text=Text("s1: String"), attributes=[Text("value = <adress>")]).scale(0.7).set_color(BLACK).next_to(arrow,RIGHT)
+        x_set = VGroup(x, arrow, card).scale(0.5)
+        arrow2 = Arrow(start=ORIGIN, end=[3,1.5,0]).set_color(GREEN).next_to(card, RIGHT).shift(0.5*UP+0.5*LEFT)
+        arr = Arr(5, False).add_text_to_box_center(0, Text("H")).add_text_to_box_center(1, Text("a")).add_text_to_box_center(2, Text("l")).add_text_to_box_center(3, Text("l")).add_text_to_box_center(4, Text("o")).set_color(GREEN).scale(0.4).next_to(arrow2, RIGHT).shift(UP*0.5)
+        x_set.add(arrow2,arr)
+        y = Text("y").set_color(BLACK).next_to(card, DOWN).shift(1.5*DOWN)
+        arrow3 = Arrow(start=ORIGIN, end=[0,3,0]).set_color(BLACK).next_to(y, UP)
+        y_set = VGroup(y, arrow3).scale(0.5).shift(DOWN*0.4)
+
+        z = Text("z").set_color(BLACK).shift(LEFT*7.5+1.5*DOWN)
+        arrow4 = Arrow(start=ORIGIN, end=[3,0,0]).set_color(BLACK).next_to(z, RIGHT)
+        card2 = Card(_width = 8, text=Text("s2: String"), attributes=[Text("value = <adress>")]).scale(0.7).set_color(BLACK).next_to(arrow4,RIGHT)
+        z_set = VGroup(z,arrow4,card2).scale(0.5)
+        arrow5 = Arrow(start=ORIGIN, end=[3,1.5,0]).set_color(GREEN).next_to(card2, RIGHT).shift(0.5*UP+0.5*LEFT)
+        arr2 = Arr(5, False).add_text_to_box_center(0, Text("H")).add_text_to_box_center(1, Text("a")).add_text_to_box_center(2, Text("l")).add_text_to_box_center(3, Text("l")).add_text_to_box_center(4, Text("o")).set_color(GREEN).scale(0.4).next_to(arrow5, RIGHT).shift(UP*0.5)
+        z_set.add(arr2,arrow5)
+
+        self.add(memory, x_set, y_set, z_set)
+
 
     def linked_move_to_back(self):
         text = Text("moveToBack()").scale(0.6).to_corner(UL).set_color(BLACK)
