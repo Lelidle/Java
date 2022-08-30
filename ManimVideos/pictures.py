@@ -3,12 +3,18 @@ from Vgroups import StickFigure, Arr, Bubble, Card
 
 config.background_color = WHITE
 
-
 class Render(Scene):
     def construct(self):
         self.build_content()
-        self.stack_push_pop()
+        self.test()
 
+
+    def test(self):
+        b = Bubble().set_color(BLACK)
+        b.add_text_to_bubble(Text("abc \n def").set_color(BLACK))
+        b2 = b.copy() 
+        b2.shift(2*RIGHT).scale_text(0.5)
+        self.add(b, b2)
     
     def stack_push_pop(self):
         rectgroup = VGroup()

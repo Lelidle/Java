@@ -2,8 +2,11 @@ from xml.etree.ElementInclude import include
 from manim import *
 from enum import Enum
 
-#TODO Declutter and comment methods, especially card
 class Card(VGroup):
+    '''
+    The constructor set the height accordingly to the number of methods and attributes given 
+    in the list. It is never smaller than 2. 
+    '''
     def __init__(self, _width=4, height=2, text = Text("class"), methods=[], attributes = [], round_corners=True):
         super().__init__()
         self.scaled = 1
@@ -30,6 +33,9 @@ class Card(VGroup):
         self.add(frame, dividerUp, self.classname, self.methods, self.attributes)
 
     def set_text_color(self, color):
+        '''
+        Sets the color of all texts to the same color.  
+        '''
         self.classname.set_color(color)
         for a in self.attributes:
             a.set_color(color)
@@ -42,28 +48,57 @@ class Card(VGroup):
 
 
 class Bubble(VGroup):
+    '''
+    Builds a thinking bubble out of 3 ellipses. Can be mirrored. Text can be added to the middle and adjusted in scale and position.
+    '''
     def __init__(self):
         super().__init__()
         e1 = Ellipse(color=WHITE, width=3, height=1.5)
         e2 = Ellipse(color=WHITE, width=0.5, height=0.25).move_to(e1.get_critical_point(DL)).shift(UP*0.1+RIGHT*0.1)
         e3 = Ellipse(color=WHITE, width=0.2, height=0.1).move_to(e2.get_critical_point(DL)).shift(DOWN*0.1)
         self.ellipses = VGroup(e1,e2,e3)
+        self.text = ""
         self.add(self.ellipses)
     
     def get_middle(self):
+        '''
+        returns the center coordinates of the middle ellipse.
+        '''
         return self.ellipses[0].get_critical_point((0,0,0))
 
-    def add_text_to_bubble(self, text, buff):
+    def add_text_to_bubble(self, text, buff=0):
+        '''
+        Adds text to the center position of the bubble. Does not adjust its position in the bubble on itself.
+        Parameters
+        ----------
+        buff: : Vector
+            text will be shifted by this Vector. Example 0.1*DOWN. Only small buffs recommended
+        '''
         text.move_to(self.get_critical_point((0,0,0))).shift(buff)
-        self.add(text)
+        self.text = text
+        self.add(self.text)
         return self
 
     def flip_bubble(self):
+        '''
+        mirrors the bubble at the y-axis
+        '''
         self.ellipses.flip(UP)
+        return self
+    
+    def scale_text(self, scaling):
+        '''
+        Scales only the text with the given scaling factor.
+        Parameters
+        ----------
+        scaling: : double
+            recommended are scalings between 0 and 1
+        '''
+        self.text.scale(scaling)
         return self
 
 class Arr(VGroup):
-    def __init__(self, length, include_arrows):
+    def __init__(self, length = 3, include_arrows = False):
         super().__init__()
         self.include_arrows = include_arrows
         self.arr = []
@@ -73,14 +108,14 @@ class Arr(VGroup):
             self.arr.append(box)
             self.add(box)
 
-    def update_boxes(self, count):
+    def update_boxes(self, count = 1):
         for _ in range(count):
             box = ArrBox(self.include_arrows, len(self.arr)-1).scale(self.scaled)
             box.move_to(self.arr[len(self.arr)-1]).shift(self.scaled*2*RIGHT)
             self.arr.append(box)
         return self
 
-    def add_boxes(self, boxes):
+    def add_boxes(self, boxes = 1):
         for box in boxes:
             self.add(box)       
         return self
@@ -99,7 +134,6 @@ class Arr(VGroup):
             box.color_arrow(color)
         return self
 
-
     def toggle_arrows_prop(self):
         self.include_arrows = not self.include_arrows
         for box in self.arr:
@@ -116,7 +150,7 @@ class Arr(VGroup):
         return self
 
 class ArrBox(VGroup):
-    def __init__(self, include_arrows, shift):
+    def __init__(self, include_arrows = False, shift=1):
         super().__init__()
         self.include_arrows = include_arrows
         square = Square().shift(2*RIGHT*shift)
@@ -142,9 +176,10 @@ class ArrBox(VGroup):
     
     def color_arrow(self, color):
         self.arrow.set_color(color)
+        return self
 
 class ArrConsCells(VGroup):
-    def __init__(self, length):
+    def __init__(self, length=3):
         super().__init__()
         self.scaled = 1
         cell = ConsCell().shift(3*LEFT* (length - 1))
