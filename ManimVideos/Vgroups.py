@@ -51,14 +51,15 @@ class Bubble(VGroup):
     '''
     Builds a thinking bubble out of 3 ellipses. Can be mirrored. Text can be added to the middle and adjusted in scale and position.
     '''
-    def __init__(self):
+    def __init__(self, text = Text("...")):
         super().__init__()
-        e1 = Ellipse(color=WHITE, width=3, height=1.5)
-        e2 = Ellipse(color=WHITE, width=0.5, height=0.25).move_to(e1.get_critical_point(DL)).shift(UP*0.1+RIGHT*0.1)
+        self.e1 = Ellipse(color=WHITE, width=3, height=1.5)
+        e2 = Ellipse(color=WHITE, width=0.5, height=0.25).move_to(self.e1.get_critical_point(DL)).shift(UP*0.1+RIGHT*0.1)
         e3 = Ellipse(color=WHITE, width=0.2, height=0.1).move_to(e2.get_critical_point(DL)).shift(DOWN*0.1)
-        self.ellipses = VGroup(e1,e2,e3)
-        self.text = ""
-        self.add(self.ellipses)
+        self.ellipses = VGroup(self.e1,e2,e3)
+        self.text = text
+        self.text.move_to(self.e1.get_critical_point(ORIGIN))
+        self.add(self.ellipses, self.text)
     
     def get_middle(self):
         '''
@@ -74,7 +75,7 @@ class Bubble(VGroup):
         buff: : Vector
             text will be shifted by this Vector. Example 0.1*DOWN. Only small buffs recommended
         '''
-        text.move_to(self.get_critical_point((0,0,0))).shift(buff)
+        text.move_to(self.e1.get_critical_point((0,0,0))).shift(buff)
         self.text = text
         self.add(self.text)
         return self
@@ -245,7 +246,7 @@ class Bodyparts(Enum):
     AGE = 6
 
 class StickFigure(VGroup):
-    def __init__(self, age, display_age):
+    def __init__(self, age, display_age = False):
         super().__init__()
         head = Circle(radius=0.5, color=WHITE).shift(1.5*UP)
         body = Line().rotate(PI/2)
@@ -253,7 +254,7 @@ class StickFigure(VGroup):
         right_leg = Line().scale(0.75).rotate(-PI/3).shift(1.6*DOWN+0.38*RIGHT)
         left_arm = Line().scale(0.5).rotate(PI/6).shift(0.4*LEFT)
         right_arm = Line().scale(0.5).rotate(-PI/6).shift(0.4*RIGHT)
-        age_text = Text(age).shift(1.5*UP)
+        age_text = Text(str(age)).shift(1.5*UP)
         self.scaled = 1
         self.display_age = display_age
         self.bodyparts = [left_leg, right_leg, left_arm, right_arm, head, body, age_text]
@@ -261,6 +262,12 @@ class StickFigure(VGroup):
         if display_age:
             self.add(age_text)
     
+    def get_arm_position(self, side):
+        if(side == "right"):
+            return self.bodyparts[Bodyparts.RIGHT_ARM.value].get_critical_point(RIGHT)
+        elif (side == "left"):
+            return self.bodyparts[Bodyparts.LEFT_ARM.value].get_critical_point(LEFT)            
+
     def alter_age_visibility(self):
         if self.display_age == True:
             self.display_age = False

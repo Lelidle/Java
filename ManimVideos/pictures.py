@@ -10,12 +10,12 @@ class Render(Scene):
 
 
     def test(self):
-        b = Bubble().set_color(BLACK)
-        b.add_text_to_bubble(Text("abc \n def").set_color(BLACK))
-        b2 = b.copy() 
-        b2.shift(2*RIGHT).scale_text(0.5)
-        self.add(b, b2)
-    
+        s = StickFigure(15, False).set_color(BLACK)
+        s.raise_arm("right")
+        d = Dot().set_color(RED).move_to(s.get_arm_position("right"))
+        d2 = Dot().set_color(YELLOW).move_to(s.get_arm_position("left"))
+        self.add(s, d, d2)
+
     def stack_push_pop(self):
         rectgroup = VGroup()
         rects = []
@@ -247,12 +247,10 @@ class Render(Scene):
         self.add(arr,arrows, root, self.stick_figures[0], self.stick_figures[1], nullo, successor, successor2)
 
     def sixth_pic(self):
-        arr = Arr(3, True).set_color(BLACK).shift(2*LEFT)
+        arr = Arr(3, False).set_color(BLACK).shift(2*LEFT)
         for i in range(3):
-            arr.add_text_to_arrow_tip(i, Text("null").scale(0.5).set_color(BLACK), 0.4*DOWN)
-        for i in range(3):
-            arr.add_text_to_box_center(i, Text("humans[" + str(i) + "]").scale(0.4).set_color(BLACK),
-             0.8*UP)
+            arr.add_text_to_box_center(i, Text("humans[" + str(i) + "] \n        null").scale(0.4).set_color(BLACK),
+             0)
         arrow = Arrow(start=[0,0,0], end=[2,0,0]).next_to(self.arr, LEFT).set_color(BLACK)
         text2 = Text("humans").next_to(arrow, LEFT, buff=0).set_color(BLACK).scale(0.5).shift(RIGHT*0.4)
         self.add(arrow, arr, text2)
