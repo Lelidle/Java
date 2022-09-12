@@ -1,7 +1,7 @@
-from distutils.fancy_getopt import wrap_text
-import queue
 from manim import *
-from Vgroups import StickFigure, Card, Bubble
+from CustomVgroups.StickFigure import StickFigure
+from CustomVgroups.Bubble import Bubble 
+from CustomVgroups.Card import Card
 
 class CompPushPop(Scene):
     def construct(self):
@@ -136,7 +136,10 @@ class CompPushPop(Scene):
         self.wait()
         bubble_next_question.next_to(anna_card, UR, buff=0.1)
         self.play(
-            FadeIn(bubble_next_question),
+            FadeIn(bubble_next_question)
+        )
+        self.wait()
+        self.play(
             berti.animate.next_to(end_node, UP, buff=0.1),
             FadeOut(anna_next)
         )
@@ -181,13 +184,19 @@ class CompPushPop(Scene):
         self.wait()
         self.play(
             FadeIn(bubble_next_question),
+        )
+        self.wait()
+        self.play(
             christo.animate.next_to(berti_card, UP, buff=0.1),
             FadeOut(anna_next)
         )
         self.wait()
         bubble_next_question2.next_to(berti_card, UR, buff=0.1)
         self.play(
-            FadeIn(bubble_next_question2),
+            FadeIn(bubble_next_question2)
+        )
+        self.wait()
+        self.play(
             christo.animate.next_to(end_node, UP, buff=0.1),
             FadeOut(berti_next)
         )

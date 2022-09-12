@@ -1,5 +1,5 @@
 from manim import *
-from Vgroups import Bubble
+from CustomVgroups.Bubble import Bubble
 import json
 
 class ObjClassVisualization(Scene):

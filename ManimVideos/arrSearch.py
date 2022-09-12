@@ -1,10 +1,12 @@
 from manim import *
-from Vgroups import Arr, StickFigure
+from CustomVgroups.Array import Array 
+from CustomVgroups.StickFigure import StickFigure
+
 
 class MyListArraySearch(Scene):
     def construct(self):
         #Defining necessary MObjects and texts
-        arr = Arr(6, False).scale(0.75).move_to(ORIGIN)
+        arr = Array(6, False).scale(0.75).move_to(ORIGIN)
         arr.scaled = 0.75
         
         anna_name = Text("Anna")

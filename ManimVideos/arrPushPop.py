@@ -1,5 +1,7 @@
 from manim import *
-from Vgroups import Arr, StickFigure, ArrConsCells, ConsParts, Bodyparts
+from CustomVgroups.Array import *
+from CustomVgroups.StickFigure import StickFigure
+
 
 # Enables option to render multiple scenes or switch between
 # combinations of scenes to render at the start of the file
@@ -47,10 +49,10 @@ class MyListArrayPushPop(Scene):
         #Texts Technically more accurate
         disclaimer = Text("A more technical accurate visualization would be the following:").scale(0.5).to_corner(UL)
         #MObjects
-        arr = Arr(3, False).scale(0.75).shift(LEFT*6)
+        arr = Array(3, False).scale(0.75).shift(LEFT*6)
         arr.scaled = 0.75
 
-        arrPartTwo = Arr(4, False).shift(4*LEFT)
+        arrPartTwo = Array(4, False).shift(4*LEFT)
         for box in arrPartTwo:
             box.parts[1].shift(4*LEFT)
             box.parts[2].shift(4*LEFT)
@@ -162,7 +164,7 @@ class ConsScene(Scene):
     def construct(self):
         # Use Mobjects and Texts from Scene before if wanted again - so far only dump
         # Part 2 Video
-        cons_arr = ArrConsCells()
+        cons_arr = ArrayConsCells()
         self.clear()
         self.wait()
         self.play(FadeIn(cons_arr), Write(disclaimer))
@@ -204,7 +206,7 @@ class QueueTestScene(Scene):
     def construct(self):
         figures = []
         ages=["7", "15", "27", "35", "46"]
-        arr = Arr(5).shift(3*LEFT+0.5*DOWN)
+        arr = Array(5).shift(3*LEFT+0.5*DOWN)
         for i in range(5):
             self.play(FadeIn(arr.arr[i]))
             figures.append(StickFigure(ages[i], True).shift(3*LEFT + 2*i*RIGHT+2.5*UP).scale(0.4))

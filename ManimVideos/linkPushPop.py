@@ -1,5 +1,5 @@
 from manim import *
-from Vgroups import StickFigure
+from CustomVgroups.StickFigure import StickFigure
 
 class MyListLinkedPushPop(Scene):
     def construct(self):

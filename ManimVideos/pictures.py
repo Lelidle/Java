@@ -1,20 +1,22 @@
 from manim import *
-from Vgroups import StickFigure, Arr, Bubble, Card
+
+from CustomVgroups.StickFigure import StickFigure
+from CustomVgroups.Card import Card 
+from CustomVgroups.Bubble import Bubble
+from CustomVgroups.Array import Array
 
 config.background_color = WHITE
 
 class Render(Scene):
     def construct(self):
-        self.build_content()
+        #self.build_content()
         self.test()
 
 
     def test(self):
         s = StickFigure(15, False).set_color(BLACK)
-        s.raise_arm("right")
-        d = Dot().set_color(RED).move_to(s.get_arm_position("right"))
-        d2 = Dot().set_color(YELLOW).move_to(s.get_arm_position("left"))
-        self.add(s, d, d2)
+        self.add(s)
+
 
     def stack_push_pop(self):
         rectgroup = VGroup()
@@ -117,7 +119,7 @@ class Render(Scene):
         card = Card(_width = 8, text=Text("s1: String"), attributes=[Text("value = <adress>")]).scale(0.7).set_color(BLACK).next_to(arrow,RIGHT)
         x_set = VGroup(x, arrow, card).scale(0.5)
         arrow2 = Arrow(start=ORIGIN, end=[3,1.5,0]).set_color(GREEN).next_to(card, RIGHT).shift(0.5*UP+0.5*LEFT)
-        arr = Arr(5, False).add_text_to_box_center(0, Text("H")).add_text_to_box_center(1, Text("a")).add_text_to_box_center(2, Text("l")).add_text_to_box_center(3, Text("l")).add_text_to_box_center(4, Text("o")).set_color(GREEN).scale(0.4).next_to(arrow2, RIGHT).shift(UP*0.5)
+        arr = Array(5, False).add_text_to_box_center(0, Text("H")).add_text_to_box_center(1, Text("a")).add_text_to_box_center(2, Text("l")).add_text_to_box_center(3, Text("l")).add_text_to_box_center(4, Text("o")).set_color(GREEN).scale(0.4).next_to(arrow2, RIGHT).shift(UP*0.5)
         x_set.add(arrow2,arr)
         y = Text("y").set_color(BLACK).next_to(card, DOWN).shift(1.5*DOWN)
         arrow3 = Arrow(start=ORIGIN, end=[0,3,0]).set_color(BLACK).next_to(y, UP)
@@ -128,7 +130,7 @@ class Render(Scene):
         card2 = Card(_width = 8, text=Text("s2: String"), attributes=[Text("value = <adress>")]).scale(0.7).set_color(BLACK).next_to(arrow4,RIGHT)
         z_set = VGroup(z,arrow4,card2).scale(0.5)
         arrow5 = Arrow(start=ORIGIN, end=[3,1.5,0]).set_color(GREEN).next_to(card2, RIGHT).shift(0.5*UP+0.5*LEFT)
-        arr2 = Arr(5, False).add_text_to_box_center(0, Text("H")).add_text_to_box_center(1, Text("a")).add_text_to_box_center(2, Text("l")).add_text_to_box_center(3, Text("l")).add_text_to_box_center(4, Text("o")).set_color(GREEN).scale(0.4).next_to(arrow5, RIGHT).shift(UP*0.5)
+        arr2 = Array(5, False).add_text_to_box_center(0, Text("H")).add_text_to_box_center(1, Text("a")).add_text_to_box_center(2, Text("l")).add_text_to_box_center(3, Text("l")).add_text_to_box_center(4, Text("o")).set_color(GREEN).scale(0.4).next_to(arrow5, RIGHT).shift(UP*0.5)
         z_set.add(arr2,arrow5)
 
         self.add(memory, x_set, y_set, z_set)
@@ -136,7 +138,7 @@ class Render(Scene):
 
     def linked_move_to_back(self):
         text = Text("moveToBack()").scale(0.6).to_corner(UL).set_color(BLACK)
-        arr = Arr(1, False).shift(4*LEFT).set_color(BLACK)
+        arr = Array(1, False).shift(4*LEFT).set_color(BLACK)
         arr.add_text_to_box_center(0,Text("Warteschlange").scale(0.4).set_color(BLACK), 0*DOWN)
         arrows = VGroup()
         for _ in range(3):
@@ -174,7 +176,7 @@ class Render(Scene):
         self.add(first, second)
 
     def linked_pop(self):
-        arr = Arr(1, False).shift(4*LEFT).set_color(BLACK)
+        arr = Array(1, False).shift(4*LEFT).set_color(BLACK)
         arr.add_text_to_box_center(0,Text("Warteschlange").scale(0.4).set_color(BLACK), 0*DOWN)
         arrows = VGroup()
         for _ in range(3):
@@ -198,7 +200,7 @@ class Render(Scene):
         carrow, nullo, successor, successor2, carrow2, bubble, carrow3, line1, line2)
 
     def eigth_pic(self):
-        arr = Arr(1, False).shift(4*LEFT).set_color(BLACK)
+        arr = Array(1, False).shift(4*LEFT).set_color(BLACK)
         arr.add_text_to_box_center(0,Text("Warteschlange").scale(0.4).set_color(BLACK), 0*DOWN)
         arrows = VGroup()
         for _ in range(3):
@@ -231,7 +233,7 @@ class Render(Scene):
 
 
     def seventh_pic(self):
-        arr = Arr(1, False).shift(4*LEFT).set_color(BLACK)
+        arr = Array(1, False).shift(4*LEFT).set_color(BLACK)
         arr.add_text_to_box_center(0,Text("Warteschlange").scale(0.4).set_color(BLACK), 0*DOWN)
         arrows = VGroup()
         for _ in range(3):
@@ -247,7 +249,7 @@ class Render(Scene):
         self.add(arr,arrows, root, self.stick_figures[0], self.stick_figures[1], nullo, successor, successor2)
 
     def sixth_pic(self):
-        arr = Arr(3, False).set_color(BLACK).shift(2*LEFT)
+        arr = Array(3, False).set_color(BLACK).shift(2*LEFT)
         for i in range(3):
             arr.add_text_to_box_center(i, Text("humans[" + str(i) + "] \n        null").scale(0.4).set_color(BLACK),
              0)
@@ -256,7 +258,7 @@ class Render(Scene):
         self.add(arrow, arr, text2)
 
     def fifth_pic(self):
-        arr = Arr(3, True).set_color(BLACK).shift(2*LEFT)
+        arr = Array(3, True).set_color(BLACK).shift(2*LEFT)
         for i in range(3):
             arr.add_text_to_arrow_tip(i, self.stick_figures[i].scale(0.5), 0.9*DOWN)
         for i in range(3):
@@ -267,7 +269,7 @@ class Render(Scene):
         self.add(arrow, arr, text2)
 
     def fourth_pic(self):
-        arr = Arr(3, True)
+        arr = Array(3, True)
         arr.set_color(BLACK).shift(2*LEFT)
         arrow = Arrow(start=[0,0,0], end=[2,0,0]).next_to(self.arr, LEFT).set_color(BLACK)
         for i in range(0,3):
@@ -333,4 +335,4 @@ class Render(Scene):
         for figure in self.stick_figures:
             figure.set_color(BLACK).scale(0.5)
 
-        self.arr = Arr(3, False).set_color(BLACK).shift(2*LEFT)
+        self.arr = Array(3, False).set_color(BLACK).shift(2*LEFT)
