@@ -4,22 +4,44 @@ class Tree(VGroup):
     def __init__(self, texts = [], positions = [], edges = []):
         super().__init__()
         self.root = Node("")
-        self.nodes = []
-        self.lines = []
+        self.nodes = {}
+        self.edge_positions= []
+        self.edges = []
+
     #datastructure methods
     def set_root(self, root):
         self.root = root
         return self
 
-    def position_tree(self):
-        self.root.to_edge(UP, buff = 0)
+    def draw_tree(self):
         depth = self.calc_depth()
+        max_width = self.get_max_width(depth)
+        self.root.position_nodes()
+        #self.draw_edges()
+        #if depth > 4:
+        #    self.scale(0.75 + 1/depth)
 
-        if depth > 4:
-            self.scale(0.5)
+
+    def get_max_width(self, depth):
+        current_max = 1
+        for i in range(1, depth + 1):
+            width = self.root.get_width(i)
+            self.root.set_rank_width(i, width, i)
+            if width > current_max:
+                current_max = width 
+        return current_max
 
     def calc_depth(self):
         return self.root.calc_depth()
+
+    def draw_edges(self):
+        self.edges = []
+        for _ in range(len(self.edge_positions)):
+            self.edges.append(Line(
+                start=self.nodes.get(self.edge_positions[0]).get_critical_point(DOWN),
+                end=self.nodes.get(self.edge_positions[1]).get_critical_point(UP)
+                ))
+        self.add(*self.edges)
 
     #manim methods
     def scale_text(self, position, scaling):
@@ -39,9 +61,9 @@ class Tree(VGroup):
         self.nodes[position].update_text(text)
         return self
 
-    def color_lines(self, color):
-        for line in self.lines:
-            line.set_color(color)
+    def color_edges(self, color):
+        for edge in self.edges:
+            edge.set_color(color)
         return self 
 
     #for the quick tree
@@ -55,15 +77,17 @@ class Tree(VGroup):
         for i in range(len(positions)):
             self.nodes[i].shift(positions[i][0]*DOWN+positions[i][1]*RIGHT)
         edges = [(0,1),(0,2),(0,3), (1,4),(1,5),(2,6),(3,7), (3,8), (6,9),(6,10), (6,11)]
-        self.lines = []
+        self.edges = []
         for i in range(len(edges)):
-            self.lines.append(Line(start=self.nodes[edges[i][0]].get_critical_point(DOWN), end=self.nodes[edges[i][1]].get_critical_point(UP)))
-        self.add(*self.lines, *self.nodes)
+            self.edges.append(Line(start=self.nodes[edges[i][0]].get_critical_point(DOWN), end=self.nodes[edges[i][1]].get_critical_point(UP)))
+        self.add(*self.edges, *self.nodes)
 
 class Node(VGroup):
     def __init__(self, text):
         super().__init__()
         self.children = []
+        self.rank = 0
+        self.rank_width = 0
         self.text = Text(text)
         self.rect = RoundedRectangle(width=2, height=1,color=WHITE, corner_radius=0.2)
         self.text.move_to(self.rect.get_center_of_mass())
@@ -92,7 +116,34 @@ class Node(VGroup):
             depths.append(self.children[i].calc_depth())
         return max(depths) + 1
 
-    #Manim 
+    def get_width(self, level):
+        to_sum = []
+        if level == 1:
+            return 1
+        elif level > 1:
+            for i in range(len(self.children)):
+                to_sum.append(self.children[i].get_width(level - 1))
+        return sum(to_sum)
+
+    def set_rank_width(self, level, width, rank):
+        if level == 1:
+            self.rank_width = width 
+            self.rank = rank
+            return 
+        elif level > 1:
+            for i in range(len(self.children)):
+                self.children[i].set_rank_width(level - 1, width, rank)
+        return 
+
+    #Manim methods   
+    #setup
+    def position_nodes(self):
+        if self.rank == 1:
+            self.to_edge(UP, buff = 0)  
+        for i in range(len(self.children)):
+            self.children[i].position_nodes()
+
+    #animatable methods?
     def color_node(self, color):
         self.text.set_color(color)
         self.rect.set_color(color)
@@ -124,18 +175,14 @@ def build_tree(path):
     for i in range(len(data)):
         splitted = data[i].split("->")
         (start, end) = (int(splitted[0].strip()), int(splitted[1].strip()))
+        t.edge_positions.append((start,end))
         keys = tree_map.keys()
-        if start not in keys and end not in keys:
+        if end not in keys:
             tree_map.update({end : Node(str(end))})
-            tree_map.update({start : Node(str(start)).add_child(tree_map.get(end))})
-            if end in candidates:
-                candidates.remove(end)
-            blacklist.add(end)
-            if start not in blacklist:
-                candidates.add(start)
-        elif start in keys and end not in keys:
-            tree_map.update({end : Node(str(end))})
-            tree_map.update({start : tree_map.get(start).add_child(tree_map.get(end))})
+            if start not in keys:
+                tree_map.update({start : Node(str(start)).add_child(tree_map.get(end))})
+            else: 
+                tree_map.update({start : tree_map.get(start).add_child(tree_map.get(end))})
             if end in candidates:
                 candidates.remove(end)
             blacklist.add(end)
@@ -150,6 +197,7 @@ def build_tree(path):
                 candidates.add(start)
     root = tree_map[list(candidates)[0]]
     t.set_root(root)
+    t.nodes = tree_map
     for key in tree_map:
         t.add(tree_map.get(key))
     return t

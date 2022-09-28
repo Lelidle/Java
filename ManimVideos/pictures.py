@@ -16,8 +16,9 @@ class Render(Scene):
 
     def test(self):
         t = build_tree("Dot/test.dot").set_color(BLACK)
-        t.position_tree()
-        self.add(t, NumberPlane())
+        t.draw_tree()
+        print(t.root.children[1].children[0].children[1].rank)
+        #self.add(t, NumberPlane())
 
     def simple_tree(self):
         t = Tree().set_color(BLACK)
