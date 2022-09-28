@@ -4,6 +4,7 @@ from CustomVgroups.StickFigure import StickFigure
 from CustomVgroups.Card import Card 
 from CustomVgroups.Bubble import Bubble
 from CustomVgroups.Array import Array
+from CustomVgroups.Tree import Tree, Node, build_tree
 
 config.background_color = WHITE
 
@@ -14,8 +15,20 @@ class Render(Scene):
 
 
     def test(self):
-        s = StickFigure(15, False).set_color(BLACK)
-        self.add(s)
+        t = build_tree("Dot/test.dot").set_color(BLACK)
+        t.position_tree()
+        self.add(t, NumberPlane())
+
+    def simple_tree(self):
+        t = Tree().set_color(BLACK)
+        texts = ["root", "inner node", "inner node", "inner node", "leaf", "leaf", "inner node", "leaf", "leaf", "leaf", "leaf", "leaf"]
+        colors = [RED_E, BLUE_E, BLUE_E, BLUE_E, GREEN_E, GREEN_E, BLUE_E, GREEN_E,GREEN_E,GREEN_E,GREEN_E,GREEN_E]
+        t.color_lines(GREEN_D)
+        for i in range(12):
+            t.update_text(i, texts[i])
+            t.color_node(i, colors[i])
+        t.scale_all_texts(0.5)
+        self.add(t)
 
 
     def stack_push_pop(self):

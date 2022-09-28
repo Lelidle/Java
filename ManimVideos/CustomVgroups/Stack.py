@@ -65,31 +65,36 @@ class Stack(VGroup):
         self.texts[position].scale(scaling)
         return self 
 
-    def delete_text(self, position):
-        self.texts[position].become(Text(""))
+    def delete_text(self, position, Scene):
+        '''
+        Method needs the Scene in which it is called as parameter to perform the Fading-Animation
+        '''
+        self.update_text(position, " ", Scene)
         return self
+
 
     def update_text(self, position, new_text, Scene):
+        '''
+        Method needs the Scene in which it is called as parameter to perform the Fading-Animation
+        '''
         t = Text(new_text).move_to(self.texts[position].get_critical_point(ORIGIN))
-        Scene.play(ReplacementTransform(self.texts[position], t))
+        Scene.play(FadeOut(self.texts[position]), run_time=0.5, rate_func=rush_from)
+        Scene.play(FadeIn(t), rate_func=rush_into)
+        self.remove(self.boxes[position])
+        Scene.remove(self.texts[position])
+        self.texts[position] = t
+        new_box = VGroup(self.texts[position], self.rects[position])
+        self.boxes[position] = new_box 
+        self.add(new_box)
         return self
 
-'''
-class Test(VGroup):
-    def __init__(self):
-        super().__init__()
-        self.rect = Rectangle(width=2, height=1)
-        self.text = Text("Test").move_to(self.rect.get_critical_point(ORIGIN))
-        self.add(self.rect, self.text)
-
-    def update_text(self, new_text):
-        #???
-'''
 
 class StackTest(Scene):
     def construct(self):
-        s = Stack(storey = 4, width=3, height=1, texts=["1", "2", "3", "4"])
+        s = Stack(storey = 4, width=2, height=1, texts=["1", "2", "3", "4"])
         self.play(FadeIn(s))
+        print(self.mobjects)
+        self.wait()
         self.play(s.animate.shift(2*DOWN))
         self.wait()
         self.play(s.animate.color_all_rectangles(GREEN))
@@ -108,9 +113,11 @@ class StackTest(Scene):
         self.wait()
         self.play(s.animate.scale_text(3, 0.25))
         self.wait()
-        self.play(s.animate.delete_text(0))
+        s.update_text(0,"bla", self)
         self.wait()
-        self.play(s.animate.color_all_texts(RED))
+        self.play(s.animate.color_all_texts(RED))        
         self.wait()
         s.update_text(0, "first", self)
         self.wait()
+        s.delete_text(1, self)
+        self = self.wait()
