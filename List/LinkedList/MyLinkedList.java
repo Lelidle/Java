@@ -2,14 +2,14 @@ package List.LinkedList;
 
 import List.ListInterface;
 
-public class MyListLinked implements ListInterface<Human> {
+public class MyLinkedList implements ListInterface<Human> {
 
     private Human root;
 
     /**
      * Constructor for the list, only sets the root to null
      */
-    public MyListLinked(){
+    public MyLinkedList(){
         root = null;
     }
 
@@ -137,10 +137,10 @@ public class MyListLinked implements ListInterface<Human> {
      */
     @Override
     public Object concatenate(Object o) {
-        if(!(o instanceof MyListLinked)) {
+        if(!(o instanceof MyLinkedList)) {
             return this;
         } 
-        MyListLinked toConcat = (MyListLinked) o;
+        MyLinkedList toConcat = (MyLinkedList) o;
         Human end = this.findEnd();
         end.setNext(toConcat.getRoot());
         return this;

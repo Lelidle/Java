@@ -4,16 +4,16 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import List.Array.Human;
-import List.Array.MyListArray;
+import List.Array.MyArrayList;
 
 
 public class SorterTest {
 
-    MyListArray testListArr;
+    MyArrayList testListArr;
     Sorter sorter = new Sorter();
 
     public SorterTest(){
-        testListArr = new MyListArray(6);
+        testListArr = new MyArrayList(6);
         testListArr.push(new Human("Argos", 25));
         testListArr.push(new Human("Bailey", 45));
         testListArr.push(new Human("Cherry", 7));

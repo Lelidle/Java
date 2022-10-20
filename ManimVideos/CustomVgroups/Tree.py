@@ -16,7 +16,7 @@ class Tree(VGroup):
     def draw_tree(self):
         depth = self.calc_depth()
         max_width = self.get_max_width(depth)
-        self.root.position_nodes()
+        self.root.position_nodes(-7,7)
         #self.draw_edges()
         #if depth > 4:
         #    self.scale(0.75 + 1/depth)
@@ -81,6 +81,7 @@ class Tree(VGroup):
         for i in range(len(edges)):
             self.edges.append(Line(start=self.nodes[edges[i][0]].get_critical_point(DOWN), end=self.nodes[edges[i][1]].get_critical_point(UP)))
         self.add(*self.edges, *self.nodes)
+        return self
 
 class Node(VGroup):
     def __init__(self, text):
@@ -137,37 +138,38 @@ class Node(VGroup):
 
     #Manim methods   
     #setup
-    def position_nodes(self):
+    def position_nodes(self, start, end):
         if self.rank == 1:
-            self.to_edge(UP, buff = 0)  
-        for i in range(len(self.children)):
-            self.children[i].position_nodes()
+            self.to_edge(UP, buff = 0)     
+        
 
     #animatable methods?
     def color_node(self, color):
         self.text.set_color(color)
         self.rect.set_color(color)
+        return self
 
     def update_text(self, text):
         t = Text(text).move_to(self.rect.get_center_of_mass())
         self.remove(self.text)
         self.add(t)
         self.text = t
+        return self
 
 
 #Helper methods to build trees from dot
-def parse_file(path):
+def read_file(path):
     with open(path, "r") as f:
         data = f.readlines()
     data = [
-        data[i].replace("\n", "").strip()
-        for i in range(len(data))
-        if data[i].__contains__("->") or data[i].__contains__("--")
+        line.replace("\n", "").strip()
+        for line in data
+        if "->" in line or "--" in line
     ]
     return data
 
 def build_tree(path):
-    data = parse_file(path)
+    data = read_file(path)
     candidates = set()
     blacklist = set()
     tree_map = {}
@@ -176,29 +178,24 @@ def build_tree(path):
         splitted = data[i].split("->")
         (start, end) = (int(splitted[0].strip()), int(splitted[1].strip()))
         t.edge_positions.append((start,end))
-        keys = tree_map.keys()
-        if end not in keys:
+        if end not in tree_map:
             tree_map.update({end : Node(str(end))})
-            if start not in keys:
+            if start not in tree_map:
                 tree_map.update({start : Node(str(start)).add_child(tree_map.get(end))})
             else: 
                 tree_map.update({start : tree_map.get(start).add_child(tree_map.get(end))})
             if end in candidates:
                 candidates.remove(end)
-            blacklist.add(end)
-            if start not in blacklist:
-                candidates.add(start)
         else:
             tree_map.update({start : Node(str(start)).add_child(tree_map.get(end))})
             if end in candidates:
                 candidates.remove(end)
-            blacklist.add(end)
-            if start not in blacklist:
-                candidates.add(start)
+        blacklist.add(end)
+        if start not in blacklist:
+            candidates.add(start)
     root = tree_map[list(candidates)[0]]
     t.set_root(root)
     t.nodes = tree_map
     for key in tree_map:
         t.add(tree_map.get(key))
     return t
-

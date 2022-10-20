@@ -145,6 +145,7 @@ public class Human {
     public Human removeAt(int position, int counter){
         if(counter == position - 1) {
             next = next.getNext();
+            next.setNext(null);
             return next;
         } else {
             return next.removeAt(position, counter + 1);

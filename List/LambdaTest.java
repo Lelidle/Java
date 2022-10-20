@@ -4,7 +4,7 @@ import java.util.function.Function;
 
 import List.Compositum.DataNode;
 import List.Compositum.Human;
-import List.Compositum.MyListComp;
+import List.Compositum.MyCompositum;
 import List.Compositum.Node;
 
 public class LambdaTest {
@@ -12,7 +12,7 @@ public class LambdaTest {
     public static void main(String[] args) {
         doSum(5, (Integer e) -> e + 1);
         System.out.println();
-        MyListComp test = new MyListComp();
+        MyCompositum test = new MyCompositum();
         test.push(new Human("Alice", 18));
         test.push(new Human("Bob", 25));
         test.printList();
@@ -38,7 +38,7 @@ public class LambdaTest {
         return human;
     }
 
-    public static void map(MyListComp test, Function<Human, Human> func) {
+    public static void map(MyCompositum test, Function<Human, Human> func) {
         Node tmp = test.getRoot();
         while(tmp instanceof DataNode){
             func.apply((Human) tmp.getData());

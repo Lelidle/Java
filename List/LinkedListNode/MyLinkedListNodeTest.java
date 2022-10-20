@@ -3,12 +3,12 @@ package List.LinkedListNode;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class MyListLinkedNodeTest {
+public class MyLinkedListNodeTest {
 
-    private MyListLinkedNode testList;
+    private MyLinkedListNode testList;
     
-    public MyListLinkedNodeTest(){
-        testList = new MyListLinkedNode();
+    public MyLinkedListNodeTest(){
+        testList = new MyLinkedListNode();
         testList.push(new Human("Helmut Schmidt" , 25));
         testList.push(new Human("Max Mustermann", 27));
         testList.push(new Human("Gesine Schwan", 35));
@@ -18,7 +18,7 @@ public class MyListLinkedNodeTest {
     
     @Test
     void testPush() {
-        MyListLinkedNode appendTest = new MyListLinkedNode();
+        MyLinkedListNode appendTest = new MyLinkedListNode();
         appendTest.push(new Human("Bob",25));
         Assertions.assertNotEquals(null, appendTest.getRoot());
     }

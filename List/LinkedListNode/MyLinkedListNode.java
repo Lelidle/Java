@@ -2,14 +2,14 @@ package List.LinkedListNode;
 
 import List.ListInterface;
 
-public class MyListLinkedNode implements ListInterface<DataElement>{
+public class MyLinkedListNode implements ListInterface<DataElement>{
     
     private Node root;
 
     /**
      * Constructor method of the list, initializes the root as null
      */
-    public MyListLinkedNode(){
+    public MyLinkedListNode(){
         root = null;
     }
 
@@ -143,10 +143,10 @@ public class MyListLinkedNode implements ListInterface<DataElement>{
      */
     @Override
     public Object concatenate(Object o) {
-        if(!(o instanceof MyListLinkedNode)){
+        if(!(o instanceof MyLinkedListNode)){
             return this;
         } 
-        MyListLinkedNode toConcat = (MyListLinkedNode) o;
+        MyLinkedListNode toConcat = (MyLinkedListNode) o;
         Node end = this.findEnd();
         end.setNext(toConcat.getRoot());
         return this;

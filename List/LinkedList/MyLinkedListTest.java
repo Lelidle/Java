@@ -3,12 +3,12 @@ package List.LinkedList;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class MyListLinkedTest {
+public class MyLinkedListTest {
 
-    private MyListLinked testList;
+    private MyLinkedList testList;
 
-    public MyListLinkedTest(){
-        testList = new MyListLinked();
+    public MyLinkedListTest(){
+        testList = new MyLinkedList();
         testList.push(new Human("Dave",19));
         testList.push(new Human("Martha", 51));
         testList.push(new Human("Tim", 45));
@@ -17,7 +17,7 @@ public class MyListLinkedTest {
 
     @Test
     void testPush() {
-        MyListLinked pushTest = new MyListLinked();
+        MyLinkedList pushTest = new MyLinkedList();
         pushTest.push(new Human("Manuel", 18));
         Assertions.assertEquals("Manuel", pushTest.getRoot().getName());
     }
@@ -60,10 +60,10 @@ public class MyListLinkedTest {
     
     @Test
     void testConcatenate(){
-        MyListLinked toConcat = new MyListLinked();
+        MyLinkedList toConcat = new MyLinkedList();
         toConcat.push(new Human("Morris", 15));
         toConcat.push(new Human("Jonathan", 25));
-        testList = (MyListLinked) testList.concatenate(toConcat);
+        testList = (MyLinkedList) testList.concatenate(toConcat);
         Assertions.assertEquals(6, testList.length());
         Assertions.assertEquals("Jonathan", testList.findEnd().getName());
     }

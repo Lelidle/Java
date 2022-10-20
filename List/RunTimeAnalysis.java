@@ -5,8 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import List.Array.Human;
-import List.Array.MyListArray;
-import List.Compositum.MyListComp;
+import List.Array.MyArrayList;
+import List.Compositum.MyCompositum;
 
 public class RunTimeAnalysis {
     
@@ -20,9 +20,9 @@ public class RunTimeAnalysis {
     }
     
     public static void appendTest(){
-        String path = "D:/OneDrive - FWU EU CLOUD/Emacs/code/School/Java 11/List/bigTest.csv";
-        MyListArray arrTest = new MyListArray(10);
-        MyListComp compTest = new MyListComp();
+        String path = "C:/Users/lehrer/OneDrive - FWU EU CLOUD/Code Schule/Java 11/List/bigTest.csv";
+        MyArrayList arrTest = new MyArrayList(10);
+        MyCompositum compTest = new MyCompositum();
         System.out.println("======== Test 1 - ArrayList ========");
         long startTime = System.nanoTime();
         try {
@@ -44,7 +44,7 @@ public class RunTimeAnalysis {
         System.out.println("Append Test unsorted took " + (endTime - startTime)*Math.pow(10, -9) + " seconds");
         System.out.println();
 
-        MyListArray arrTestTwo = new MyListArray(10);
+        MyArrayList arrTestTwo = new MyArrayList(10);
         startTime = System.nanoTime();
         try {
             FileReader file = new FileReader(path);
@@ -104,7 +104,7 @@ public class RunTimeAnalysis {
         System.out.println("Append Test unsorted took " + (endTime - startTime)*Math.pow(10, -9) + " seconds");
         System.out.println();
 
-        MyListComp compTestTwo = new MyListComp();
+        MyCompositum compTestTwo = new MyCompositum();
         startTime = System.nanoTime();
         try {
             FileReader file = new FileReader(path);

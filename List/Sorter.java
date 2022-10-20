@@ -1,7 +1,7 @@
 package List;
 
 import List.Array.Human;
-import List.Array.MyListArray;
+import List.Array.MyArrayList;
 
 /**
  * All Methods are public for testing purposes, should be private, 
@@ -15,8 +15,8 @@ public class Sorter {
      * @param toSort the list to sort
      * @param method the method that shall be used
      */
-    public void sort(MyListArray toSort, SortingMethod method) {
-        if(toSort instanceof MyListArray) {
+    public void sort(MyArrayList toSort, SortingMethod method) {
+        if(toSort instanceof MyArrayList) {
             switch(method){
                 case BUBBLE:
                 bubbleSort(toSort);
@@ -38,7 +38,7 @@ public class Sorter {
                 break;
                 default:
                 System.out.println("An unknown method has been given, bubbleSort was used");
-                bubbleSort((MyListArray) toSort);
+                bubbleSort((MyArrayList) toSort);
                 break;
             }
         } else {
@@ -50,7 +50,7 @@ public class Sorter {
      * Sorts the given List with bubble Sort
      * @param toSort the List to sort
      */
-    public void bubbleSort(MyListArray toSort) {
+    public void bubbleSort(MyArrayList toSort) {
         //reducing the problem to the sorting of a standard array
         int n = toSort.length();
         Human[] queue = toSort.getQueue();
@@ -76,7 +76,7 @@ public class Sorter {
      * Sorts the given List with Insertion Sort
      * @param toSort the List to sort
      */
-    public void insertionSort(MyListArray toSort) {
+    public void insertionSort(MyArrayList toSort) {
         //reducing the problem to the sorting of a standard array
         int n = toSort.length();
         Human[] queue = toSort.getQueue();
@@ -103,7 +103,7 @@ public class Sorter {
      * Sorts the given List with Selection Sort
      * @param toSort the List to sort
      */
-    public void selectionSort(MyListArray toSort) {
+    public void selectionSort(MyArrayList toSort) {
         //reducing the problem to the sorting of a standard array
         int n = toSort.length();
         Human[] queue = toSort.getQueue();
@@ -131,7 +131,7 @@ public class Sorter {
      * Sorts the given List with Merge Sort - main method
      * @param toSort the List to sort
      */
-    public void mergeSort(MyListArray toSort, int left, int right){
+    public void mergeSort(MyArrayList toSort, int left, int right){
         /*As long as the array can be split reasonably, it is cut in the middle
         and both halves are sorted recursively. After both are merged.
         */
@@ -151,7 +151,7 @@ public class Sorter {
      * @param middle the index of the middle element of the given subarray
      * @param right the index of the right border of the given subarray
      */
-    public void merge(MyListArray toSort, int left, int middle, int right){
+    public void merge(MyArrayList toSort, int left, int middle, int right){
         //calculates the sizes of the subarrays
         int sizeLeft = middle - left + 1;
         int sizeRight = right - middle;
@@ -200,7 +200,7 @@ public class Sorter {
      * @param low the index of the left border of the given subarray
      * @param high the index of the right border of the given subarray
      */
-    public void quickSort(MyListArray toSort, int low, int high) {
+    public void quickSort(MyArrayList toSort, int low, int high) {
         //Stopping condition for the recursion
         if(low < high) {
             //Via partition the array is sorted into a correct positioned pivot and
@@ -220,7 +220,7 @@ public class Sorter {
      * @param high the index of the right border of the given subarray
      * @return the index of the correctly positioned pivot element
      */
-    public int partition(MyListArray toSort, int low, int high) {
+    public int partition(MyArrayList toSort, int low, int high) {
         //reducing the problem to the sorting of a standard array
         Human[] queue = toSort.getQueue();
         //The rightmost element is set as pivot, other implementations possible!
@@ -248,7 +248,7 @@ public class Sorter {
      * Sorts the given List with Heap Sort - main method
      * @param toSort the list to sort
      */
-     public void heapSort(MyListArray toSort) {
+     public void heapSort(MyArrayList toSort) {
         //reducing the problem to the sorting of a standard array
         int n = toSort.length();
         Human[] queue = toSort.getQueue();

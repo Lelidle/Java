@@ -11,8 +11,7 @@ config.background_color = WHITE
 class Render(Scene):
     def construct(self):
         #self.build_content()
-        self.test()
-
+        self.simple_tree()
 
     def test(self):
         t = build_tree("Dot/test.dot").set_color(BLACK)
@@ -22,9 +21,10 @@ class Render(Scene):
 
     def simple_tree(self):
         t = Tree().set_color(BLACK)
+        t = t.construct_default()
         texts = ["root", "inner node", "inner node", "inner node", "leaf", "leaf", "inner node", "leaf", "leaf", "leaf", "leaf", "leaf"]
         colors = [RED_E, BLUE_E, BLUE_E, BLUE_E, GREEN_E, GREEN_E, BLUE_E, GREEN_E,GREEN_E,GREEN_E,GREEN_E,GREEN_E]
-        t.color_lines(GREEN_D)
+        t.color_edges(GREEN_D)
         for i in range(12):
             t.update_text(i, texts[i])
             t.color_node(i, colors[i])

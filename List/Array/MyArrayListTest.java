@@ -2,12 +2,12 @@ package List.Array;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class MyListArrayTest {
+public class MyArrayListTest {
 
-    MyListArray testList;
+    MyArrayList testList;
 
-    public MyListArrayTest(){
-        testList = new MyListArray(5);
+    public MyArrayListTest(){
+        testList = new MyArrayList(5);
         testList.push(new Human("Mike", 15));
         testList.push(new Human("Sarah", 27));
         testList.push(new Human("Manuel", 18));
@@ -16,7 +16,7 @@ public class MyListArrayTest {
 
     @Test
     void testPush() {
-        MyListArray pushTest = new MyListArray(2);
+        MyArrayList pushTest = new MyArrayList(2);
         pushTest.push(new Human("Mike", 15));
         pushTest.push(new Human("Sarah", 27));
         Assertions.assertEquals("Mike", pushTest.getQueue()[0].getName());
@@ -79,16 +79,16 @@ public class MyListArrayTest {
 
     @Test 
     void testConcatenate(){
-        MyListArray toConcat = new MyListArray(2);
+        MyArrayList toConcat = new MyArrayList(2);
         toConcat.push(new Human("Alice", 18));
         toConcat.push(new Human("Bob", 25));
-        testList = (MyListArray) testList.concatenate(toConcat);
+        testList = (MyArrayList) testList.concatenate(toConcat);
         Assertions.assertEquals(6, testList.length());
     }
 
     @Test
     void testAppendSorted(){
-        MyListArray sortedTest = new MyListArray(1);
+        MyArrayList sortedTest = new MyArrayList(1);
         sortedTest.appendSorted(new Human("Alice", 25));
         sortedTest.printList();
         System.out.println();

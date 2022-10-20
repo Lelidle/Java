@@ -3,12 +3,12 @@ package List.Compositum;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class MyListCompTest {
+public class MyCompositumTest {
 
-    MyListComp testList;
+    MyCompositum testList;
 
-    public MyListCompTest(){
-        testList = new MyListComp();
+    public MyCompositumTest(){
+        testList = new MyCompositum();
         testList.push(new Human("Albus", 18));
         testList.push(new Human("Berti", 62));
         testList.push(new Human("Christa", 55));
@@ -18,7 +18,7 @@ public class MyListCompTest {
 
     @Test
     void testPush() {
-        MyListComp pushTest = new MyListComp();
+        MyCompositum pushTest = new MyCompositum();
         pushTest.push(new Human("Alex", 25));
         pushTest.push(new Human("Albi", 27));
         Human firstHuman = (Human) pushTest.getRoot().getData();
@@ -30,7 +30,7 @@ public class MyListCompTest {
 
     @Test
     void testAppendSorted() {
-       MyListComp appendTest = new MyListComp();
+       MyCompositum appendTest = new MyCompositum();
        appendTest.appendSorted(new Human("Albi", 27));
        appendTest.appendSorted(new Human("Alex", 15));
        appendTest.appendSorted(new Human("Alex", 25));
@@ -48,7 +48,7 @@ public class MyListCompTest {
 
     @Test
     void testConcatenate() {
-        MyListComp toConcat = new MyListComp();
+        MyCompositum toConcat = new MyCompositum();
         toConcat.push(new Human("Alex", 15));
         toConcat.push(new Human("Boris", 18));
         testList.concatenate(toConcat);

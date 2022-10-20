@@ -3,7 +3,7 @@ import List.ListInterface;
 import List.Sorter;
 import List.SortingMethod;
 
-public class MyListArray implements ListInterface<Human> {
+public class MyArrayList implements ListInterface<Human> {
 
     private Human[] queue;
     private int count;
@@ -13,7 +13,7 @@ public class MyListArray implements ListInterface<Human> {
      * Constructor for the List, internally represented as an array
      * @param length defines the length of the list
      */
-    public MyListArray(int length) {
+    public MyArrayList(int length) {
         queue = new Human[length];
         count = 0;
     }
@@ -194,12 +194,12 @@ public class MyListArray implements ListInterface<Human> {
      */
     @Override
     public Object concatenate(Object o) {
-        if(!(o instanceof MyListArray)) {
+        if(!(o instanceof MyArrayList)) {
             System.out.println("Concatenation failed, Object is not of the same type");
             return this;
         } else {
-            MyListArray toConcat = (MyListArray) o;
-            MyListArray newList = new MyListArray(this.getQueue().length + toConcat.getQueue().length);
+            MyArrayList toConcat = (MyArrayList) o;
+            MyArrayList newList = new MyArrayList(this.getQueue().length + toConcat.getQueue().length);
             int counter = 0;
             for(int i = 0; i < this.length();i++) {
                 if(queue[i] != null){

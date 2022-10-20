@@ -3,13 +3,13 @@ import java.util.function.Function;
 
 import List.ListInterface;
 
-public class MyListComp implements ListInterface<DataElement>{
+public class MyCompositum implements ListInterface<DataElement>{
 
     private Node root;
     /**
      * Constructor method of the list, sets the root to a new EndNode
      */
-    public MyListComp(){
+    public MyCompositum(){
         root = new EndNode();
     }
 
@@ -173,10 +173,10 @@ public class MyListComp implements ListInterface<DataElement>{
      */
     @Override
     public Object concatenate(Object o) {
-        if(!(o instanceof MyListComp)){
+        if(!(o instanceof MyCompositum)){
             return this;
         } 
-        MyListComp toConcat = (MyListComp) o;
+        MyCompositum toConcat = (MyCompositum) o;
         Node end = this.findEnd();
         end.setNext(toConcat.getRoot());
         return this;
