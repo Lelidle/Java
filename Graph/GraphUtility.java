@@ -1,11 +1,14 @@
 package Graph;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.LinkedList;
 
 public class GraphUtility {
     
     private boolean[] visited;
     private LinkedList<Integer> queue;
+    private HashSet<Integer> indicesInQueue;
     private double[][] matrix;
     private Node[] nodes;
     
@@ -66,11 +69,6 @@ public class GraphUtility {
         return true;
     }
 
-    public boolean testConnectionStrongParallel() {
-
-        return true;
-    }
-
 
     /**
      * Tests, if a directed Graph is connected by testing for a node from which
@@ -95,17 +93,30 @@ public class GraphUtility {
     public void broadSearchStart(int nodeNumber) {
         visited = new boolean[nodes.length];
         queue = new LinkedList<Integer>();
+        indicesInQueue = new HashSet<Integer>();
+        indicesInQueue.add(nodeNumber);
         broadSearch(nodeNumber);
     }
 
     public void broadSearch(int nodeNumber) {
         visited[nodeNumber] = true;
-        System.out.println(nodeNumber + " visited!");
+        
         for(int i = 0; i < nodes.length; i++) {
-            if(matrix[nodeNumber][i] != 0 && !visited[i]) {
+            if(matrix[nodeNumber][i] != 0 && !visited[i] && !indicesInQueue.contains(i)) {
                 queue.addLast(i);
+                indicesInQueue.add(i);
             }
         }
+        System.out.println(nodeNumber + " visited!");
+        System.out.println(Arrays.toString(visited));
+        if(!queue.isEmpty()) {
+            LinkedList<Integer> toPrint = (LinkedList<Integer>)queue.clone();
+            System.out.println(Arrays.toString(toPrint.toArray()));
+        }
+        for(int i : indicesInQueue) {
+            System.out.print( i + " ");
+        }
+        System.out.println();
         if(!queue.isEmpty()) broadSearch(queue.pop());
     }
 }

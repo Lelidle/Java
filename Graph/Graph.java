@@ -11,12 +11,12 @@ public class Graph {
      * Generic constructor. Builds a graph with 5 nodes and no edges.
      * The nodes have no further properties
      */
-    public Graph(){
-        nodes = new Node[5];
-        for(int i = 0; i < 5; i ++) {
+    public Graph(int number){
+        nodes = new Node[number];
+        for(int i = 0; i < number; i ++) {
             nodes[i] = new Node(i);
         }
-        matrix = new double[5][5];
+        matrix = new double[number][number];
         utility = new GraphUtility(this);
     }
 
