@@ -18,7 +18,7 @@ public class GraphUtility {
         nodes = g.getNodes();
     }
 
-    
+
     /**
      * Starts a recursive depth Search at the given node.
      * @param nodeNumber the number of the node to start the search at.
