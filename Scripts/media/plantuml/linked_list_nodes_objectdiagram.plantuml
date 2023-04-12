@@ -1,0 +1,38 @@
+@startuml linked_list_nodes_objectdiagram_v2
+left to right direction
+skinparam Padding 4
+skinparam RoundCorner 10
+skinparam object{
+    BackgroundColor White
+    BorderColor Black
+    ArrowColor Black
+    FontSize 18
+    FontName Times New Roman
+
+}
+object "q : Queue" as w1
+object "n1 : Node" as k1
+object "n2 : Node" as k2 
+object "n3 : Node" as k3
+object "n4 : Node" as k4
+object "null" as m5
+object "anna : Human" as m1 
+m1 : age = 29
+object "berti : Human" as m2 
+m2 : age = 56
+object "christo : Human" as m3 
+m3 : age = 21
+object "djego : Animal" as m4
+m4 : age = 5
+
+w1 -- k1 : root
+k1 -- m1 : data 
+k1 -- k2 : next
+k2 -- k3 : next
+k3 -- k4 : next 
+k4 -- m5 : next
+k2 -- m2 : data 
+k3 -- m3 : data
+k4 -- m4 : data
+skinparam ClassAttributeIconSize 0
+skinparam dpi 300

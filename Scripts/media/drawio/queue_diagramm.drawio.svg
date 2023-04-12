@@ -1,0 +1,68 @@
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1173px" height="401px" viewBox="-0.5 -0.5 1173 401" content="&lt;mxfile scale=&quot;3&quot; border=&quot;0&quot;&gt;&lt;diagram id=&quot;7gNGpfam4S6Ev0BDjQqo&quot; name=&quot;Page-1&quot;&gt;7Zhdb5swFIZ/DVJ60SlA89HLhHTrRSt1y6Rdu3ACVo0PM85Xf/0O2IQQyJal2a4iRY39+thw/Bz7Ver4Qbr5oliWPGMEwvH60cbxZ47n3bkj+lsIWyMMxq4RYsUjI+0Jc/4OVuxbdckjyBuBGlFonjXFEKWEUDc0phSum2ELFM2nZiyGljAPmWirP3ikE6OOvVGtPwKPk+rJ7vDejKSsCraZ5AmLcL0n+Q+OHyhEbVrpJgBR7F21L2be5yOjuxdTIPUpEzwzYcXE0ub2dQnUNC+nt1XG+ZqngknqTRco9dyOuNRngseS2iE9EhQJK1Ca02ZN7IDGjNQw4SJ6YltcFi+Waxa+Vb1pgoq/07JM2DVpWGnL3Rs2IubFTJL7pCrIKealytY9kJ7ZphH4xHJthRCFYFnOX3dppEzFXE5Ra0xtkN0bSgc2R/fX3VGjagdMQasthdgJI8vZFvrYdtd11bhDqyX7FeNbkdlKjXcr1zCpYXl2s/VbbG+p+7Pk60+o+bhMmXQGU2cwawGnlHUJQuEbBCiQyM4kmgrgQhxIVREIWOijJZBnLOQyfipjZne18s1mXkhIcxeiPBMJjyKQBT7UTDPDqgCTIZe63Jni5ae0V0H/06BMI6C+W/fpU4QrHaCkXBgvsQEVwhqKYjiNsdfN2EKlAj0JahX3EaZ3LaYtcoKXRAy56npyz8KWEgABNafvBcbZrdti6bdZ+h3cBHsF8YI51xyL9ZWJPeD5H5ANvNOQjT9ObNBBjFLol/ds78YJPGdCT6ba8F1z6RSj2TJPesneMb0x7RXSuq1gzHo3+0f6epjProzhiTf06AIX9LBVGj/I9iAPE7La+GrClzLhU1z4/l+58KjThdcN0OXRfQZJwtWO/0x7+Nd23EX3EnY8vtrxJZB12XEXsgvY8f0RO27cvOSmhx6bUN4gJ3LhBL4zDWKQPXNgf2fMK1QSHqReAH3LyqPtQb8e8bPrpcuku+rlDJOmbv3ruxzb+xeG//AL&lt;/diagram&gt;&lt;/mxfile&gt;">
+    <defs>
+        <clipPath id="mx-clip-16-97-448-70-0">
+            <rect x="16" y="97" width="448" height="70"/>
+        </clipPath>
+        <clipPath id="mx-clip-16-199-448-202-0">
+            <rect x="16" y="199" width="448" height="202"/>
+        </clipPath>
+        <clipPath id="mx-clip-616-97-538-70-0">
+            <rect x="616" y="97" width="538" height="70"/>
+        </clipPath>
+        <clipPath id="mx-clip-616-199-538-202-0">
+            <rect x="616" y="199" width="538" height="202"/>
+        </clipPath>
+    </defs>
+    <g>
+        <path d="M 0 78 L 0 0 L 480 0 L 480 78" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-width="3" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 0 78 L 0 390 L 480 390 L 480 78" fill="none" stroke="rgb(0, 0, 0)" stroke-width="3" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 0 78 L 480 78" fill="none" stroke="rgb(0, 0, 0)" stroke-width="3" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" font-weight="bold" pointer-events="none" text-anchor="middle" font-size="36px">
+            <text x="239.5" y="53.5">
+                Queue
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-16-97-448-70-0)" font-size="36px">
+            <text x="17.5" y="131.5">
+                - queue: Human[]
+            </text>
+        </g>
+        <path d="M 0 168 L 480 168" fill="none" stroke="rgb(0, 0, 0)" stroke-width="3" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-16-199-448-202-0)" font-size="36px">
+            <text x="17.5" y="233.5">
+                + Queue()
+            </text>
+            <text x="17.5" y="275.5">
+                + push(h: Human): void
+            </text>
+            <text x="17.5" y="317.5">
+                + pop(): Human
+            </text>
+        </g>
+        <path d="M 600 78 L 600 0 L 1170 0 L 1170 78" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-width="3" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 600 78 L 600 390 L 1170 390 L 1170 78" fill="none" stroke="rgb(0, 0, 0)" stroke-width="3" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 600 78 L 1170 78" fill="none" stroke="rgb(0, 0, 0)" stroke-width="3" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" font-weight="bold" pointer-events="none" text-anchor="middle" font-size="36px">
+            <text x="884.5" y="53.5">
+                Warteschlange
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-616-97-538-70-0)" font-size="36px">
+            <text x="617.5" y="131.5">
+                - warteschlange: Mensch[]
+            </text>
+        </g>
+        <path d="M 600 168 L 1170 168" fill="none" stroke="rgb(0, 0, 0)" stroke-width="3" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-616-199-538-202-0)" font-size="36px">
+            <text x="617.5" y="233.5">
+                + Warteschlange()
+            </text>
+            <text x="617.5" y="275.5">
+                + hintenAnfügen(Mensch): void
+            </text>
+            <text x="617.5" y="317.5">
+                + vorneEntfernen(): Mensch
+            </text>
+        </g>
+    </g>
+</svg>

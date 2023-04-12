@@ -1,0 +1,50 @@
+@startuml human
+skinparam RoundCorner 0
+skinparam class{
+    BackgroundColor White
+    BorderColor Black
+    ArrowColor Black
+    FontSize 18
+    FontName Times New Roman
+}
+/'
+class Human{
+    - name: String 
+    - age: int
+}
+
+class Mensch {
+    - name: String 
+    - alter: int
+}
+'/
+
+class Human{
+    - name: String 
+    - age: int
+    - next: Human
+
+    + length() : int 
+    + moveToBack(int position) : void 
+    + presentation() : void 
+    + contains(Human h) : boolean 
+    + equals(Human h) : boolean
+}
+
+
+class Mensch {
+    - name: String 
+    - alter: int
+    - nachfolger: Mensch
+
+    + länge() : int 
+    + nachHintenVerschieben(int position) : void 
+    + auflisten() : void 
+    + enthält(Mensch m) : void 
+    + istGleich(Mensch m) : boolean
+}
+
+skinparam ClassAttributeIconSize 0
+skinparam dpi 300
+hide Human circle
+hide Mensch circle

@@ -1,0 +1,34 @@
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="633px" height="323px" viewBox="-0.5 -0.5 633 323" content="&lt;mxfile scale=&quot;3&quot; border=&quot;0&quot;&gt;&lt;diagram id=&quot;Tctsw-FLPIH705l_Axp7&quot; name=&quot;Page-1&quot;&gt;7VZNj9owEP01kdrDViSBXXokYUsPrLSCSj2bZEistT2R4ywfv77jxCGEgES7VU+VEMq8GX/Me28CXhjL/UKzIn/BFIQXjNK9F869IJiEU/q2wMEBU78BMs3TBjoD1vwIDhw5tOIplL1CgygML/pggkpBYnoY0xp3/bItiv6pBctgAKwTJoboT56avEGnwVOHfwee5e3J/uPXJiNZW+w6KXOW4u4MCp+9MNaIpnmS+xiE5a7lpVn37Ub2dDENytyzIGgWvDNRud4WsPHi0JuNqxTcHc2hbbzccSmYoijaojJrl/EpZoJnip4TOhk0Ae+gDSfOZi5hsCA0yblIl+yAlb1faVjy1kZRjpofaVsm3J6U1sbJHzz2KtZ2JcEjQjWUVPPaNu1fQC9s3ytcstI4IEEhWFHyzakNyXTGVYTGoHRFQ04dzbZD2J9BjuMFoASjD1TSZkOnd2t4F+4695zMnZ87ZzR2rnWOzU5bd6LSg9P1usbhQGMviOye6shysXJqS8rN7CpqkrgOQt/2/kDIilVyA0fgSa4qlYFqCtdGc5V5k8ibzAdGIV5MLaDGN4hRIDlirrBxDhfiAmrNI2BrblqnLFhCJy7rmvm4Q1aOMAshrd2KeqRynqb2spFGwwxrNLZNFUhN1oTay0fEezz6MqnbiCn2u5g+tlybGBX1wnjtACAD7cCa6Io3gru94bxgyb7HC+O/YIXxFStcKCd4rUijXPt28/9INkkCCOh0+mFlnD/4Ay3DoZbhFd0E24B4xZIbjnZ/3dRe6PkPJHu6c3ynH1dscmN4iQnIwI7mJ01fqpLSvnXdBH/+P5AfUHd6n7rt4P6GvBR2v+117uwPUvj8Cw==&lt;/diagram&gt;&lt;/mxfile&gt;">
+    <defs>
+        <clipPath id="mx-clip-16-97-598-124-0">
+            <rect x="16" y="97" width="598" height="124"/>
+        </clipPath>
+        <clipPath id="mx-clip-16-253-598-70-0">
+            <rect x="16" y="253" width="598" height="70"/>
+        </clipPath>
+    </defs>
+    <g>
+        <path d="M 0 78 L 0 0 L 630 0 L 630 78" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-width="3" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 0 78 L 0 312 L 630 312 L 630 78" fill="none" stroke="rgb(0, 0, 0)" stroke-width="3" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 0 78 L 630 78" fill="none" stroke="rgb(0, 0, 0)" stroke-width="3" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" font-weight="bold" pointer-events="none" text-anchor="middle" font-size="36px">
+            <text x="314.5" y="53.5">
+                Gebäude
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-16-97-598-124-0)" font-size="36px">
+            <text x="17.5" y="131.5">
+                + anzahlRäume: int
+            </text>
+            <text x="17.5" y="173.5">
+                - Raumbezeichnungen: String[]
+            </text>
+        </g>
+        <path d="M 0 222 L 630 222" fill="none" stroke="rgb(0, 0, 0)" stroke-width="3" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-16-253-598-70-0)" font-size="36px">
+            <text x="17.5" y="287.5">
+                + belegeRaum(raumnummer: int)
+            </text>
+        </g>
+    </g>
+</svg>

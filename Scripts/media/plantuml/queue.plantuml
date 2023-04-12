@@ -1,0 +1,32 @@
+@startuml queue
+skinparam RoundCorner 0
+skinparam class{
+    BackgroundColor White
+    BorderColor Black
+    ArrowColor Black
+    FontSize 18
+    FontName Times New Roman
+}
+
+
+
+class Queue{
+    -  queue : Human[]
+    -  count : int
+    +  Queue()
+    +  push(Human) : void 
+    +  pop() : Human
+}
+
+class Warteschlange{
+    - warteschlange: Mensch[]
+    - anzahl : int
+    + Warteschlange()
+    + hintenAnfügen(Mensch) : void
+    + vorneEntfernen() : Mensch
+}
+
+skinparam ClassAttributeIconSize 0
+skinparam dpi 300
+hide Queue circle
+hide Warteschlange circle

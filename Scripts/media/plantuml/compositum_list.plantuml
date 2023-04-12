@@ -1,0 +1,47 @@
+@startuml compositum_diagram_list
+skinparam Padding 4
+skinparam RoundCorner 0
+skinparam linetype ortho
+skinparam class{
+    BackgroundColor White
+    BorderColor Black
+    ArrowColor Black
+    FontSize 18
+    FontName Times New Roman
+
+}
+
+class List {
+
+}
+
+abstract Node {
+
+}
+
+class EndNode {
+
+}
+
+class DataNode{
+
+}
+
+class DataElement {
+
+}
+
+List --right-> Node : root 
+EndNode -up-|> Node 
+DataNode -up-|> Node : next
+DataNode -up-> Node 
+DataNode -down-> DataElement
+
+
+skinparam ClassAttributeIconSize 0
+skinparam dpi 300
+hide List circle
+hide Node circle
+hide EndNode circle 
+hide DataNode circle 
+hide DataElement circle

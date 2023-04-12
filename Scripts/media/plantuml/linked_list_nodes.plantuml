@@ -1,0 +1,81 @@
+@startuml linked_list_nodes_diagram_interface
+left to right direction
+skinparam Padding 4
+skinparam RoundCorner 0
+skinparam class{
+    BackgroundColor White
+    BorderColor Black
+    ArrowColor Black
+    FontSize 18
+    FontName Times New Roman
+
+}
+
+
+
+class Human {
+    - name: String 
+    - age: int
+}
+
+class Node {
+    - next: Node 
+}
+
+interface DataElement {
+
+}
+
+class Mensch {
+    - name: String 
+    - alter: int
+}
+
+class Animal {
+    - name: String
+    - age: int
+}
+
+class Knoten {
+    - nachfolger: Knoten
+}
+
+
+class Queue{
+
+}
+
+class Warteschlange{
+
+}
+
+interface Datenelement {
+
+}
+
+class Tier {
+    - name: String
+    - alter: int
+}
+
+
+Queue --> Node : root
+Node --> DataElement : data
+Human .up.|> DataElement
+Animal .up.|> DataElement
+
+Warteschlange --> Knoten : wurzel
+Knoten --> Datenelement : daten
+Mensch .up.|> Datenelement 
+Tier .up.|> Datenelement
+
+skinparam ClassAttributeIconSize 0
+skinparam dpi 300
+hide Human circle
+hide Mensch circle
+hide Node circle 
+hide Knoten circle 
+hide Queue circle
+hide Warteschlange circle
+hide Animal circle
+hide Tier circle 

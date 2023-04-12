@@ -1,0 +1,32 @@
+@startuml mitarbeiter
+skinparam class{
+    BackgroundColor White
+    BorderColor Black
+    ArrowColor Black
+}
+
+class Mitarbeiter{
+    - name: String 
+    - geburtsdatum: datum 
+    - personalnummer: int 
+    + kündigen()
+    + arbeiten()
+}
+
+class Abteilungsleiter{
+    - beförderungsdatum
+    + beurteilen(mitarbeiter)
+    + feuern(mitarbeiter)
+}
+
+hide Abteilungsleiter circle 
+hide Mitarbeiter circle
+
+Mitarbeiter <|-- Abteilungsleiter
+
+skinparam ClassAttributeIconSize 0
+
+note right of Mitarbeiter: <b>Oberklasse</b>
+note right of Abteilungsleiter: <b>Unterklasse</b> \n (Spezialisierung)
+
+@enduml

@@ -1,0 +1,28 @@
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="633px" height="281px" viewBox="-0.5 -0.5 633 281" content="&lt;mxfile scale=&quot;3&quot; border=&quot;0&quot;&gt;&lt;diagram id=&quot;sE_msKZuhHprvSOKm74F&quot; name=&quot;Page-1&quot;&gt;lZTbbqMwEIafxrcrDs2hlwnpZi9SqUouej2FCVg1HtaY5vD0OwYTQtNIWQkh/M0/xjPzg4iT8rg2UBWvlKESUZAdRbwSUTSJ53x34OTBPOxAbmTWoSuwk2f0MPC0kRnWI6ElUlZWY5iS1pjaEQNj6DCW7UmN31pBjjdgl4K6pe8ys0VH59Fs4H9Q5kX/5nD63EVK6MW+krqAjA5XKH4RcWKIbPdUHhNUrnd9X7q833eil4MZ1PaRhKhL+ALV+Nre12sRL9b4IZJYLJ6aDP1J7akvvz7IUoHm1XJP2u58JOQ1KJlrfk75/WgYfKGxkju38AFLFdO0kCrbwIkad8raQvrZr5YFGXnmbUH5PTlsrDdBNB0pdi6TccDUYM2at7708Bt6heNIuIHaepCSUlDV8uNSRgkml3pJ1lLZZ1GjM8y8wLeNi8Pj3daHl4Hyh4BUojUnlvQJsfdA/xH45WFw1MXwxZWbnj0Db+L8svMwZ37wo/557PHN2EGfoVBbP/SShx60gYB1UxHFoevBFpryA88o00I3OkftVUkkFsGVTsy4QdO/jXPx8g2aGnUBSrlNwyEgIj5nMA5HV+HZ6sZ53G3bOsLQJyakiC220tRZUSr1DfVuVLi3d71YV5BKnW9azeppIFvfc4eIc/eq/VILmWVcuXOEBQudaVzVFUlt26FMlnxxQ5Lg10RMVq7QyTIc1nw5ubEJaa4FZOsYZEcesLaP2iv62V7eTm4aj9hp+vTfduLl8IdqY1e/+fjlHw==&lt;/diagram&gt;&lt;/mxfile&gt;">
+    <defs>
+        <clipPath id="mx-clip-16-97-598-184-0">
+            <rect x="16" y="97" width="598" height="184"/>
+        </clipPath>
+    </defs>
+    <g>
+        <path d="M 630 78 L 630 35.1 Q 630 0 594.9 0 L 35.1 0 Q 0 0 0 35.1 L 0 78" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-width="3" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 0 78 L 0 234.9 Q 0 270 35.1 270 L 594.9 270 Q 630 270 630 234.9 L 630 78" fill="none" stroke="rgb(0, 0, 0)" stroke-width="3" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 0 78 L 630 78" fill="none" stroke="rgb(0, 0, 0)" stroke-width="3" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" font-weight="bold" pointer-events="none" text-anchor="middle" font-size="36px">
+            <text x="314.5" y="53.5">
+                WGG:Gebäude
+            </text>
+        </g>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-16-97-598-184-0)" font-size="36px">
+            <text x="17.5" y="131.5">
+                anzahlRäume = 2
+            </text>
+            <text x="17.5" y="173.5">
+                Raumbezeichnungen =
+            </text>
+            <text x="17.5" y="215.5">
+                {"Pausenhalle 1", Pausenhalle 2"}
+            </text>
+        </g>
+    </g>
+</svg>

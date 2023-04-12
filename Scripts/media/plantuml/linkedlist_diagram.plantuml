@@ -1,0 +1,66 @@
+@startuml linkedlist
+left to right direction
+skinparam RoundCorner 0
+skinparam linetype ortho
+skinparam padding 4
+skinparam nodesep 50
+skinparam class{
+    BackgroundColor White
+    BorderColor Black
+    ArrowColor Black
+    FontSize 18
+    FontName Times New Roman
+}
+
+class Queue{
+    +  Queue()
+    +  push(Human h) : void 
+    +  pop() : Human
+    +  length() : int
+}
+
+class Human{
+    - name: String 
+    - age: int
+    - next: Human
+    + length(): int
+}
+
+
+class Mensch {
+    - name: String 
+    - alter: int
+    - nachfolger: Mensch
+    + länge() : int
+}
+
+class Warteschlange{
+    - Warteschlange()
+    + hintenAnfügen(Mensch m) : void
+    + vorneEntfernen() : Mensch
+    + länge() : int
+}
+
+together {
+    class Queue 
+    class Human
+}
+
+together {
+    class Warteschlange 
+    class Mensch
+}
+
+Queue ---> "1" Human : root
+Warteschlange ---> "1"  Mensch : Wurzel
+
+Human "1" --> "0..1" Human : next
+Mensch "1" --> "0..1" Mensch : Nachfolger
+
+skinparam ClassAttributeIconSize 0
+skinparam dpi 300
+hide Queue circle
+hide Warteschlange circle
+hide Human circle
+hide Mensch circle
+

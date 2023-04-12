@@ -1,0 +1,92 @@
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1340px" height="791px" viewBox="-0.5 -0.5 1340 791" content="&lt;mxfile scale=&quot;3&quot; border=&quot;0&quot;&gt;&lt;diagram id=&quot;aW2trrZXRlQgGa1qnENl&quot; name=&quot;Page-1&quot;&gt;7VlNj9s2EP01BtJDA1FfsY9rOWkPG2BRF2hz5Eq0xIYSBYpe2/n1HUqjbzkr186mB192xachRc57nEfCCydIj78pmiefZcTEwrai48LZLGzb81fw1wAnBJakAmLFowrqAFv+jSFoIbrnESt6gVpKoXneB0OZZSzUPYwqJQ/9sJ0U/a/mNGYjYBtSMUb/4pFOKnRpf2jx3xmPk/rLpF5wSutgXEmR0EgeOpDzceEESkpdPaXHgAmTuzovVb9PZ942E1Ms03M62FWHFyr2uLaF7Qvouq7/BzLNZWaGs/0YX+D/cgH6VGelOPBU0Axa653M9BbfEGhTweMMnkMYhykAXpjSHBL6gC+0zAENEy6iR3qSezP5QtPwa91aJ1LxbzAsFTgmvFYatWH7vYit6QmwBahiBcQ81RkhA+gzPfYCH2mhEQilEDQv+HOzjJSqmGdrqbVMMQjzB8thx7MckIZZ2BFMpkyrE4RgB9tzqy64G1zUxqGVFvERS7qyshCkKOe4GbplHB6Q9GkBuBMCGPAqeMlpoZX82ujdpGPHhQikkEDoJpNlUE20YDs9QXPKo0iUg+U05Fn8p6F98ytpkcey48ZpkT9wxQZSUlNNK0JM9gV9ZuJJFlxzacZXVew6lzzTZVa89cLblIjSgcxgEZSXtDAg+sAKPZdDe5pD5AwEOIuz5fWMeROMrc2YUfQuNLp8gEaza39ZmKk5pNKqiVMslS8MHkx0/mp4zHRgtuU7nkUmPSacl4EDmUDydCOTgSwuV0pVEPqicMeiMBCsRu1EWUUT0BfLJoTSF8QamAms956Rhh1Am7TtV9WCM+iLtKkJ9lDc9m0E5rjzBOb71yuMuCNyWQQGiE0k8J99mmP5LauvTuvKzI5c/20SDxmtWl+QBvO8OXYbp7qRRQ/GmaH5LKSp3gb6xM0k6wD8GmlTaqb1/aoLq5B7FWKUP51jxQTV/KU/1FQGseuTUVNbwB2nX8CJOyjM4FSwjbDXgIdmGrOo8Uebv9y6UADZ3Y9v5MdDOm3rLQ35w92Q55F4Zi+/vSEv74b8Uw35Bmp5U3d15rjr1XYKs6o6uZ5fA1/qEU2j7Vi2ej2fmOKwMGMN89x5cBi4iVnjnbkyz87Z9wr/nsvRarSlHxnd3R32Rg7bHJAuddh6n161/8jdYeeRuPq/OCwZH3vHNbQtURMltF+PBtVqbnkap6Kzdm9i6TV25f3CJYP7xfCcWVXN0f1iPNDS+v5At7uokBnn2A5lEaepzKJLWOtY3IqsuhZnvbf+q8t1LG2+aXUd6sw5442E8hq/c4VirwYF+sfdaMn4+FyaYnMCLka6wYNtRymXnnHPunJTrQ8JXKm3UI7NNw+K5mUp3sORO7qdD3pkwJcz9sFJG7z8ngnN9leFiqb2pxnn478=&lt;/diagram&gt;&lt;/mxfile&gt;">
+    <defs>
+        <clipPath id="mx-clip-361-130-442-172-0">
+            <rect x="361" y="130" width="442" height="172"/>
+        </clipPath>
+        <clipPath id="mx-clip-598-601-448-190-0">
+            <rect x="598" y="601" width="448" height="190"/>
+        </clipPath>
+    </defs>
+    <g>
+        <path d="M 342 78 L 342 0 L 822 0 L 822 78" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-width="3" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 342 78 L 342 300 L 822 300 L 822 78" fill="none" stroke="rgb(0, 0, 0)" stroke-width="3" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 342 78 L 822 78" fill="none" stroke="rgb(0, 0, 0)" stroke-width="3" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" font-weight="bold" pointer-events="none" text-anchor="middle" font-size="36px">
+            <text x="581.5" y="53.5">
+                &lt;&lt;Component&gt;&gt;
+            </text>
+        </g>
+        <path d="M 342 90 L 822 90" fill="none" stroke="rgb(0, 0, 0)" stroke-width="3" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-361-130-442-172-0)" font-size="36px">
+            <text x="362.5" y="164.5">
+                + add(com: Component)
+            </text>
+            <text x="362.5" y="206.5">
+                + remove (comp: Component)
+            </text>
+            <text x="362.5" y="248.5">
+                + getChild(index: int)
+            </text>
+        </g>
+        <path d="M 822 480 L 615.88 325.41" fill="none" stroke="rgb(0, 0, 0)" stroke-width="3" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 584.68 302.01 L 627.58 309.81 L 604.18 341.01 Z" fill="none" stroke="rgb(0, 0, 0)" stroke-width="3" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 582 558 L 582 480 L 1062 480 L 1062 558" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-width="3" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 582 558 L 582 780 L 1062 780 L 1062 558" fill="none" stroke="rgb(0, 0, 0)" stroke-width="3" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 582 558 L 1062 558" fill="none" stroke="rgb(0, 0, 0)" stroke-width="3" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" font-weight="bold" pointer-events="none" text-anchor="middle" font-size="36px">
+            <text x="821.5" y="533.5">
+                Composite
+            </text>
+        </g>
+        <path d="M 582 570 L 1062 570" fill="none" stroke="rgb(0, 0, 0)" stroke-width="3" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" pointer-events="none" clip-path="url(#mx-clip-598-601-448-190-0)" font-size="36px">
+            <text x="599.5" y="635.5">
+                + add(com: Component)
+            </text>
+            <text x="599.5" y="677.5">
+                + remove (comp: Component)
+            </text>
+            <text x="599.5" y="719.5">
+                + getChild(index: int)
+            </text>
+        </g>
+        <path d="M 240 480 L 523.94 320.72" fill="none" stroke="rgb(0, 0, 0)" stroke-width="3" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 557.95 301.64 L 533.48 337.73 L 514.4 303.71 Z" fill="none" stroke="rgb(0, 0, 0)" stroke-width="3" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 0 558 L 0 480 L 480 480 L 480 558" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-width="3" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 0 558 L 0 582 L 480 582 L 480 558" fill="none" stroke="rgb(0, 0, 0)" stroke-width="3" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 0 558 L 480 558" fill="none" stroke="rgb(0, 0, 0)" stroke-width="3" stroke-miterlimit="10" pointer-events="none"/>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" font-weight="bold" pointer-events="none" text-anchor="middle" font-size="36px">
+            <text x="239.5" y="533.5">
+                Leaf
+            </text>
+        </g>
+        <path d="M 0 570 L 480 570" fill="none" stroke="rgb(0, 0, 0)" stroke-width="3" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 822 180 L 1020 180" fill="none" stroke="rgb(0, 0, 0)" stroke-width="3" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 1020 180 L 1022.7 441.88" fill="none" stroke="rgb(0, 0, 0)" stroke-width="3" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 1023.1 480.88 L 1003.4 461.58 L 1022.7 441.88 L 1042.4 461.18 Z" fill="none" stroke="rgb(0, 0, 0)" stroke-width="3" stroke-miterlimit="10" pointer-events="none"/>
+        <g transform="translate(-0.5 -0.5)scale(3)">
+            <switch>
+                <foreignObject pointer-events="none" width="100%" height="100%" requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility" style="overflow: visible; text-align: left;">
+                    <div xmlns="http://www.w3.org/1999/xhtml" style="display: flex; align-items: unsafe center; justify-content: unsafe center; width: 58px; height: 1px; padding-top: 105px; margin-left: 371px;">
+                        <div data-drawio-colors="color: rgb(0, 0, 0); " style="box-sizing: border-box; font-size: 0px; text-align: center;">
+                            <div style="display: inline-block; font-size: 12px; font-family: Helvetica; color: rgb(0, 0, 0); line-height: 1.2; pointer-events: none; white-space: normal; overflow-wrap: normal;">
+                                childComponents
+                            </div>
+                        </div>
+                    </div>
+                </foreignObject>
+                <text x="400" y="109" fill="rgb(0, 0, 0)" font-family="Helvetica" font-size="12px" text-anchor="middle">
+                    childCompo...
+                </text>
+            </switch>
+        </g>
+    </g>
+    <switch>
+        <g requiredFeatures="http://www.w3.org/TR/SVG11/feature#Extensibility"/>
+        <a transform="translate(0,-5)" xlink:href="https://www.diagrams.net/doc/faq/svg-export-text-problems" target="_blank">
+            <text text-anchor="middle" font-size="10px" x="50%" y="100%">
+                Viewer does not support full SVG 1.1
+            </text>
+        </a>
+    </switch>
+</svg>

@@ -1,0 +1,38 @@
+@startuml compositum_diagram
+skinparam Padding 4
+skinparam RoundCorner 0
+skinparam linetype ortho
+skinparam class{
+    BackgroundColor White
+    BorderColor Black
+    ArrowColor Black
+    FontSize 18
+    FontName Times New Roman
+
+}
+
+abstract Component {
+    + add(comp: Component)
+    + remove (comp: Component)
+    + getChild(index: int)
+}
+
+class Leaf {
+
+}
+
+class Composite {
+    + add(comp: Component)
+    + remove (comp: Component)
+    + getChild(index: int)
+}
+
+Leaf -up-|> Component 
+Composite -up-|> Component
+Component "0..*" --o Composite : childComponents
+
+skinparam ClassAttributeIconSize 0
+skinparam dpi 300
+hide Component circle
+hide Leaf circle
+hide Composite circle

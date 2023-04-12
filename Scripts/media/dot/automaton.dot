@@ -1,0 +1,21 @@
+digraph G {
+
+
+
+   0 [shape = doublecircle, label = "z0"]
+   1 [shape = circle]
+   t [shape = circle]
+   Start [shape = none]
+
+   
+
+   Start -> 0
+   0:se -> 1 [label = "a"]
+   0 -> t [label = "b"]
+   1:nw -> 0 [label = "b"] 
+   1 -> t [label = "a"]
+   t:s -> t:s [label = "a,b", ]
+
+   {rank=same; 0,1, Start}
+
+}
