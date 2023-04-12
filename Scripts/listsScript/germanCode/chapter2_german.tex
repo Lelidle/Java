@@ -1,0 +1,117 @@
+\documentclass{article}
+\input{../template.tex}
+
+\begin{document}
+Übersetzungen aller Code-Schnipsel im Text:
+Code-Fragment 1:
+\begin{minted}{Java}
+    int[] feld = new int[5];
+\end{minted}
+Code-Fragment 2:
+\begin{minted}{Java}
+    Mensch[] menschen = new Mensch[5]:
+\end{minted}
+Code-Fragment 3:
+\begin{minted}{Java}
+    int[] zahlen = {5,3,42,17,-2};
+    int dritterEintrag = numbers[2];
+    System.out.println(dritterEintrag);
+\end{minted}
+Code-Fragment 4 - erste Definition der Klasse Mensch:
+\begin{minted}{Java}
+    public class Mensch() {
+        private String name;
+        private int alter; 
+    
+        public Human(String name, int alter){
+            this.name = name;
+            this.alter = alter;
+        }
+    
+    }
+\end{minted}
+Code-Fragment 5 - erste Definition der Klasse MeineListeFeld:
+\begin{minted}{Java}
+    public class MeineListeFeld(){
+
+        private Mensch[] warteschlange;
+        private int anzahl;
+
+        public MeineListeFeld() {
+            warteschlange = new Mensch[5];
+            anzahl = 0;
+        }
+
+    }
+\end{minted}
+Code-Fragment 6:
+\begin{minted}{Java}
+    public void hintenAnfügen(Mensch mensch) 
+\end{minted}
+Code-Fragment 7 - erste Implementierung von hintenAnfügen:
+\begin{minted}{Java}
+    public void hintenAnfügen(Mensch mensch) {
+        for(int i = 0; i < warteschlange.length; i++) {
+            if(warteschlange[i] == null) {
+                warteschlange[i] = mensch;
+            }
+        }
+    }
+\end{minted}
+Code-Fragment 8 - zweite Version von hintenAnfügen:
+\begin{minted}{Java}
+    public class MeineListeFeld(){
+
+        private Mensch[] warteschlange;
+        private int anzahl; 
+
+        public MeineListeArray() {
+            warteschlange = new Mensch[5];
+            anzahl = 0;
+        }
+
+        public void hintenAnfügen(Mensch mensch) {
+            warteschlange[anzahl] = mensch;
+            anzahl++;
+        }
+
+    }
+\end{minted}
+Code-Fragment 9 - finale Version von hintenAnfügen: 
+
+\begin{minted}{Java}
+    public void hintenAnfügen(Mensch mensch) {
+        if(anzahl == warteschlange.length) {
+            warteschlangeVergroessern();
+        } 
+        warteschlange[anzahl] = mensch;
+        anzahl++;
+    }
+
+    private void warteschlangeVergroessern() {
+        Mensch[] neueWarteschlange = new Mensch[warteschlange.length + 10];
+        for(int i = 0; i < warteschlange.length; i++){
+            neueWarteschlange[i] = warteschlange[i];
+        }
+        warteschlange = neueWarteschlange;
+    }
+\end{minted}
+Code-Fragment 10 - Implementierung von vorneEntfernen:
+\begin{minted}{Java}
+    public Mensch vorneEntfernen() {
+        if(warteschlange[0] == null) {
+            return null;
+        }
+        Mensch zuEntfernen = warteschlange[0];
+        for(int i = 0; i < warteschlange.length -1; i++){
+            if (warteschlange[i+1] == null){
+                break;
+            }
+            warteschlange[i] = warteschlange[i+1];
+        }
+        warteschlange[warteschlange.length-1] = null;
+        anzahl--;
+        return zuEntfernen;    
+    }
+\end{minted}
+\end{document}

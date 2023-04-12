@@ -1,0 +1,46 @@
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[german]{babel}
+\usepackage{amsmath}
+\usepackage{dsfont}
+\usepackage[export]{adjustbox}
+\usepackage{amsthm}
+\usepackage{color}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{wasysym}
+\usepackage{makeidx}
+\usepackage{graphicx}
+\usepackage[colorlinks=true,urlcolor=blue,linkcolor=blue]{hyperref}
+\usepackage{ziffer}
+\usepackage{minted}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage{mdframed}
+\usepackage{subfiles}
+\usemintedstyle{emacs}
+
+\definecolor{shadecolor}{rgb}{0.85,0.85,0.85}
+\definecolor{bg}{rgb}{0.95,0.95,0.95}
+\setlength{\parindent}{0em} 
+
+\BeforeBeginEnvironment{minted}{\begin{mdframed}[linewidth =2 ,backgroundcolor=bg , linecolor=black, linewidth=0.5]}
+\AfterEndEnvironment{minted}{\end{mdframed}}
+
+\newtheorem{defi}{Definition}
+\BeforeBeginEnvironment{defi}{\begin{mdframed}[linewidth =2 ,backgroundcolor=bg , linecolor=black, linewidth=0.5]}
+\AfterEndEnvironment{defi}{\end{mdframed}}
+
+\newcommand{\bsp}{\textbf{Beispiel}:}
+%\newcommand{\task}{\textbf{Aufgabe}:}
+
+\newcommand{\q}[1]{\glqq #1\grqq}
+
+\newcommand{\DODO}[1]{\textbf{\textcolor{red}{DODO:}} #1 \\ \begin{center}\includegraphics[scale=0.2]{../../media/dodo.jpg} \end{center}}
+
+\newenvironment{task}[1]{
+    \begin{shaded*}
+    \textbf{Aufgabe #1}:
+}{
+    \end{shaded*}
+}

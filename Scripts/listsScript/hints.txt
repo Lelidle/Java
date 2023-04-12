@@ -1,0 +1,211 @@
+zis ominoese praxis30/08 22:11	
+	*looks left and right then points my index fingers together looking down* not yet
+30/08 22:11
+
+	I mean ze stack is kinda cleaaar with evaluating stuff
+30/08 22:12
+
+*pats pat* vewy gud30/08 22:12	
+	Me thinks zis in ze script aswell
+30/08 22:12
+
+	Hm?
+30/08 22:12
+
+that you figured zis out yourseeeelf30/08 22:12	
+me never made you write an interpreter that is stack based nu?30/08 22:12	
+	Wellll ish not my verdienst
+30/08 22:12
+
+	Not really at least. Talked about recursion depth with myfachbetreuer
+30/08 22:13
+
+	In Java zat is
+30/08 22:13
+
+mhm hmmh mhm30/08 22:13	
+	And zat ze full stack kinda makes kt stop
+30/08 22:13
+
+	From zere on ish pretty obvious
+30/08 22:13
+
+and zat what?30/08 22:13	
+	Makes ze recursion stoooop
+30/08 22:13
+
+	If it would be infiniteee or too biiig
+30/08 22:14
+
+which stack are we talking about now30/08 22:14	
+the one you implemented, the functino one in the JVM or the value one in JVM30/08 22:14	
+	One of ze later two I am talking rn
+30/08 22:14
+
+	Dunno which one
+30/08 22:14
+
+	Prolly functino one
+30/08 22:15
+
+so JVM has ze function stack which is like ze stack in assembly for function calls30/08 22:15	
+and zen zere ish a value stack which you can push values on and zen read zem from the stack to perform computation30/08 22:15	
+	But isn't zat ze zame ideaaa zan ze list stack as wellll?
+30/08 22:15
+
+which 30/08 22:16	
+also all stacks are created equal of course30/08 22:16	
+ish an abstract notion30/08 22:16	
+	Zat sounds like something to framw "all stacks are created equal"
+30/08 22:17
+
+	None shall rise above ze others *pathetic voice*
+30/08 22:17
+
+well i mean they might have difference performance criteria of course30/08 22:17	
+	*giggles*
+30/08 22:17
+
+but generally speaking you can perform the same operations on all stakcs yus30/08 22:17	
+	So back to da oroginal topic
+30/08 22:17
+
+	What eeelse should I inclide from da *looks left and right* real world
+30/08 22:18
+
+for stacks?30/08 22:18	
+and queues?30/08 22:18	
+uhu?30/08 22:18	
+	Last sidenote to da stack stuff. Me learned about pdas at uni. Queue yes
+30/08 22:18
+
+	Besides the graph stuff
+30/08 22:19
+
+we often use queues to communicate30/08 22:19	
+so if you have different systems, these can be different threads, processes, actual systems etc.30/08 22:19	
+they might send messages to a queue of the other one and the other one decies to process it30/08 22:19	
+etc.30/08 22:19	
+	*takes notes*
+30/08 22:20
+
+this is calledmessage queues30/08 22:20	
+	*scribbles*
+30/08 22:20
+
+the most popular implementation of a networked message queue would be RabbitMQ (da MQ is for message queue), they have a bunch of interesting concepts of subscribers and providers etc. where you might be able to show some OOP stuff off30/08 22:20	
+zey are also crucial in parallelizing systems, in uni you probably learned to lock and to semaphor and what not30/08 22:21	
+but where its at is usually thread safe queues, where a bunch of threads send tasks to other threads and communicate in a lockless way which speeds up everything30/08 22:21	
+and yes you can have a thread safe queue without locks its quite kewl30/08 22:21	
+	Crazyyyy
+30/08 22:21
+
+yus yus30/08 22:22	
+	Me prolly will have to teach da semaphooor ans locking^^ aaand atomicStuffs and so on
+30/08 22:23
+
+	*fun*
+30/08 22:23
+
+	Have I told you?
+30/08 22:23
+
+nu30/08 22:23	
+but ish to be expected30/08 22:23	
+	Ze colleague that does ze maßname with me. She had 3.66 in her stex
+30/08 22:23
+
+eieieieieiei30/08 22:24	
+oh also there is a specialized version of a queue that we call a ring buffer30/08 22:24	
+it is usually used in high performance communication with limited resources30/08 22:24	
+	*moar notes*
+30/08 22:24
+
+basically you allocated a queue of a fixed length say 64 and zen the provider starts pushing stuff into the queue and if he goes beyond 64 he will start overwriting the stuff at 0 again30/08 22:25	
+its the consumers job to be fast enough to consume the things30/08 22:25	
+so this way you dont have to allocate memory in between for the new elements of the queue30/08 22:25	
+mmmm30/08 22:25	
+	*giggles and shouts* eat or dieeeee
+30/08 22:25
+
+the | operator in UNIX is a queue30/08 22:26	
+	Hmmm not too shocking
+30/08 22:26
+
+and of course there are also real world queues30/08 22:26	
+for example printer queues30/08 22:26	
+or when you have a build sever and multuiple people want to run builds on it30/08 22:26	
+whihc is again the communication between different systems30/08 22:26	
+	Uhu uhu
+30/08 22:27
+
+so yeah in general if you have any two systems and want to connect them in some way a queue is a very common way to go30/08 22:27	
+	*nods nods
+30/08 22:27
+
+and for staaacks30/08 22:28	
+mmmm30/08 22:28	
+well they are of course hard to do thread safe without locks, i dont even know if that is possible so that is a non no30/08 22:28	
+zey are common in evaluation...parsing in PDA style, also for backtracking since IRL you of course dont have a non deterministic machine...and of course CPUs for function calls30/08 22:28	
+zats about it they are not as useful generally30/08 22:29	
+	Oh for queues one hss to being in game login queues obv*giggles*
+30/08 22:29
+
+yus30/08 22:29	
+	Insee I see
+30/08 22:29
+
+	Thankies for da informatioooon
+30/08 22:29
+
+	Ze Sarah needs to sleep naaaow. Early work Saraaaah
+30/08 22:30
+
+okiii, me will write one moar thing for tomorrow sarah theeen30/08 22:30	
+night night30/08 22:31	
+	Nightooooo
+30/08 22:31
+
+if you eva end up doing trees me also has a nice application from the real world which is suitable for a project, you could define some tree data structure for arithmetic expressions, like variables, constants and grundrechenarten and zen on top of that define a simple language that is basically a list of var = ArithmeticExpression30/08 22:32	
+from zere you can do as a fist interesting thing which also demonstrates recursion and evaluator for zis stuff30/08 22:32	
+and if you want to show something kewl30/08 22:32	
+you can make a two step project where da first step is to write something that turns arbitrary lists of assignments into ones that are "basic" that is30/08 22:33	
+on the right hand side there is only at most one operation, a constant or another variable30/08 22:33	
+and from here you can do a very simple operation that we call "Local value numbering" in compiler theory which is vewy easy and simplifies expressions that are in zis from by basically eliminating common subexpressions that calculate the same thing30/08 22:34	
+if zat is tooo funky you can also do another thing that we call constant folding30/08 22:34	
+where you recurse through the tree and try to fold away as many constants as possible so for exmaple30/08 22:34	
+y = x * (1 + 3) should be y = x * 4 and stuff like that30/08 22:34	
+the LVN is a little advanced your pupils in oberstufe will pwobably take a few weeks for this30/08 22:35	
+but the evaluator and the constant folding are quite smol they are doable30/08 22:35	
+	Dear oh dear. First I will have to be able to do it myself
+31/08 7:05
+
+31/08 8:22	
+ish trivial in Fp^^31/08 8:22	
+	Ofc odc
+31/08 17:31
+
+hellooo31/08 17:42	
+poooof31/08 17:43	
+	Helloooo
+31/08 17:48
+
+	*unpoofs*
+31/08 17:48
+
+helloo31/08 17:51	
+wassup31/08 17:51	
+	Just came hoooome
+31/08 17:52
+
+how was le schoool31/08 17:52	
+	We did stuplaaaa
+31/08 17:52
+
+uhh funky31/08 17:53	
+also me is sitting at a bus station with 4 jugendliche31/08 17:53	
+at max 1631/08 17:53	
+	fun?
+31/08 17:53
+
+and one just asked the other for cigarretes31/08 17:53	
