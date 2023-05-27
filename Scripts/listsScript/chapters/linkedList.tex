@@ -7,13 +7,13 @@ Das Feld ist nicht die einzige Möglichkeit eine Liste zu implementieren. Die so
 verkettete Liste ist ebenfalls ein übliches Konzept. \\
 Die \textbf{\color{red}grundlegende Idee} ist dabei folgende:
 \begin{center}
-    \includegraphics[scale=0.25]{../../media/linked_idea.png}
+    \includegraphics[scale=0.25]{../media/linked_idea.png}
 \end{center}
 Die Klasse \textcolor{orange}{Warteschlange} organisiert unseren Zugriff und dient als Steuerzentrale für alle Methoden, die 
 wir auf der Liste ausführen wollen. Die eigentlichen Listenelemente sind jetzt aber nicht mehr in einem 
 Feld gespeichert, sondern sind eigene Objekte, die jeweils nur ihren Nachfolger kennen. Nicht einmal die 
-Warteschlange selbst kennt alle Menschen (oder auch nur deren Zahl). Sie kann nur auf den ersten in der Schlange
-zugreifen, die Wurzel (oder auch Anfang der Liste, im Englischen: root). Diese Idee scheint auf den ersten 
+Warteschlange selbst kennt alle Menschen (oder auch nur deren Zahl). Sie kann nur auf den Ersten in der Schlange
+zugreifen (oder auch Anfang der Liste, im Englischen: first). Diese Idee scheint auf den ersten 
 Blick umständlich, denn man kann nun nicht mehr auf ein beliebiges Listenelement zugreifen. \\
 Tatsächlich hat diese verkettete Struktur aber andere Vorteile, die später noch deutlich werden. Ein 
 offensichtlicher Vorteil ist aber die \textbf{Erweiterbarkeit}. Unsere Warteschlange kann jetzt nicht mehr 
@@ -25,7 +25,7 @@ Werden Referenzen in beide Richtung gesetzt, so ist es eine \textbf{doppelt verk
 genügt aber die Referenz in eine Richtung. 
 Zusammengefasst in einem Klassendiagramm lautet unser aktuelles Ziel also: 
 \begin{center}
-    \includegraphics[scale=0.2]{../../media/linkedlist_diagram.png}
+    \includegraphics[scale=0.2]{../media/linkedlist_diagram.png}
 \end{center}
 Bevor wir an der Implementierung arbeiten können muss zunächst ein neuer Begriff geklärt werden, die 
 \textbf{\color{red} Rekursion}.
@@ -87,7 +87,7 @@ Fibonacci-Folge bauen soll, dann gilt:
 \end{center}
 Veranschaulicht man diese Vorschrift z.B. für $f(4)$, so erhält man: 
 \begin{center}
-    \includegraphics[scale=0.5]{../../media/graph_fib.png}
+    \includegraphics[scale=0.5]{../media/graph_fib.png}
 \end{center}
 Zählt man nun die Anzahl der Einsen in der letzten Zeile zusammen, so kommt man auf die letztendliche
 Lösung. Aber worauf basiert dieser Lösungsansatz? \\
@@ -131,7 +131,7 @@ das bedeutet aber, dass es keine Möglichkeit für die Warteschlange gibt mit ei
 Ansatz durch alle Menschen abzuarbeiten, wie das beim Feld-Ansatz der Fall war. Sie kann 
 lediglich mit dem ersten Menschen in der Schlange interagieren. 
 \begin{center}
-    \includegraphics[scale = 0.25]{../../media/linked_list_length.png}
+    \includegraphics[scale = 0.25]{../media/linked_list_length.png}
 \end{center}
 Möchten wir beispielsweise die Länge der Warteschlange wissen, so rufen wir eine Methode 
 länge() auf der Warteschlange auf, die wiederum eine Methode länge() auf dem ersten Menschen
@@ -145,7 +145,7 @@ Berti kann abschließend niemanden mehr fragen, denn er hat keinen Nachfolger, e
 also stattdessen mit $1$ an Anna. Sie wiederum zählt noch eins hinzu und gibt die - hier finale - 
 Antwort $2$ an die Warteschlange zurück. Anschaulich gesprochen wurde also \q{von hinten} durchgezählt. 
 \begin{center}
-    \includegraphics[scale = 0.20]{../../media/linked_list_length2.png}
+    \includegraphics[scale = 0.20]{../media/linked_list_length2.png}
 \end{center}
 
 
@@ -164,15 +164,15 @@ wir zusätzlich implementieren wollen. \\
 Mensch, da sie in beiden gebraucht wird. Das beide denselben Namen haben ist nicht zwingend notwendig,
 der Übersichtlichkeit halber aber von Vorteil. 
 \begin{center}
-    \includegraphics[scale=0.2]{../../media/linkedlist_diagram2.png}
+    \includegraphics[scale=0.2]{../media/linkedlist_diagram2.png}
 \end{center}
 Wir beginnen mit den Attributen und Konstruktoren:
 \begin{minted}{Java}
     public class MyListLinked {
-        private Human root;
+        private Human first;
 
         public MyListLinked() {
-            root = null;
+            first = null;
         }
     }
 
@@ -188,7 +188,7 @@ Wir beginnen mit den Attributen und Konstruktoren:
         }
     }
 \end{minted}
-\textit{Hinweis:} Die explizite Definition von root und next als null ist nicht zwingend notwendig, 
+\textit{Hinweis:} Die explizite Definition von first und next als null ist nicht zwingend notwendig, 
 erinnert aber daran, dass diese Attribute bei der Definition diesen Wert haben. \\
 Bevor wir die Methoden zum Anfügen und Entfernen schreiben beginnen wir mit der Länge der Liste, um die 
 Rekursion an einem typischen Beispiel besser zu verstehen, 
@@ -197,14 +197,14 @@ In der Klasse der Warteschlange selbst ist die Methode sehr einfach:
 \begin{minted}{Java}
     //class MyListLinked
     public int length(){
-        if(root != null) {
-            return root.length();
+        if(first != null) {
+            return first.length();
         } else {
             return 0;
         }
     }
 \end{minted}
-Wir rufen auf der uns bekannten Wurzel die Methode länge() auf und geben das Ergebnis zurück. Der interessante
+Wir rufen auf dem uns bekannten Ersten die Methode länge() auf und geben das Ergebnis zurück. Der interessante
 Teil beginnt in der Klasse Mensch: 
 \begin{minted}{Java}
     //class Human
@@ -222,29 +222,29 @@ ist und gibt als Antwort an den vorletzten Menschen $1$ zurück (via return 1). 
 Der vorletzte Menschen (in unserem Beispiel weiter oben Anna) hatte aber nicht $null$ als Nachfolger. 
 Deswegen wurde die Methode länge() auf dem Nachfolger aufgerufen, dieser Methodenaufruf hat $1$ zurückgegeben. 
 Zu dieser $1$ wurde eine weitere $1$ hinzuaddiert und dann ebenfalls zurückgegeben. \\
-Damit ist der länge()-Aufruf auf unserer Wurzel (Anna) beendet und die Warteschlange kann die Antwort 
+Damit ist der länge()-Aufruf auf unserer Ersten (Anna) beendet und die Warteschlange kann die Antwort 
 ($2$) ebenfalls zurückgeben. Noch einmal bildlich: 
 \begin{center}
-    \includegraphics[scale = 0.20]{../../media/linked_list_length3.png}
+    \includegraphics[scale = 0.20]{../media/linked_list_length3.png}
 \end{center}
 Ein wenig formeller mit vier Menschen und in einem Sequenzdiagramm dargestellt:
 \begin{center}
-    \includegraphics[scale = 0.20]{../../media/length_sequence.png}
+    \includegraphics[scale = 0.20]{../media/length_sequence.png}
 \end{center}
 Mit dieser Vorarbeit sollten die anderen beiden Methoden kein Problem mehr darstellen. Für die hintenAnfügen() Methode 
 müssen wir nicht einmal einen Rückgabewert (und damit eine Abbruchbedingung) angeben. Wir wenden dieselbe Logik wie zuvor an:
 \begin{minted}{Java}
     //class MyListLinked
     public void push(Human human) {
-        if(root == null) {
-            root = human;
+        if(first == null) {
+            first = human;
         } else {
-            root.push(human);
+            first.push(human);
         }
     }
 \end{minted}
-In der Warteschlangen-Klasse wird wieder nur auf der Wurzel die hintenAnfügen() Methode ausgeführt, sofern diese 
-existiert, andernfalls ist der übergebene Mensch die neue Wurzel. \\
+In der Warteschlangen-Klasse wird wieder nur auf dem Ersten die hintenAnfügen() Methode ausgeführt, sofern diese 
+existiert, andernfalls ist der übergebene Mensch der neue Erste. \\
 Die Implementierung in der Klasse Mensch dagegen sieht fast völlig identisch aus, wir prüfen wieder, ob der nächste 
 Mensch vorhanden ist, falls nein ($null$), so setzen wir den übergebenen Menschen als Nachfolger, andernfalls 
 wird auf dem Nachfolger rekursiv die gleiche Methode aufgerufen, bis wir den letzten in der Reihe gefunden haben:
@@ -262,7 +262,7 @@ wird auf dem Nachfolger rekursiv die gleiche Methode aufgerufen, bis wir den let
     Begründen Sie, ob die Methode vorneEntfernen() rekursiv sein muss oder nicht. Implementieren Sie sie anschließend.
 \end{task}
 Die Methode muss nicht rekursiv sein. Es wird nur das vorderste Element entfernt, das bedeutet, dass nur das 
-zweite Element als neue Wurzel gesetzt werden muss. \\
+zweite Element als neuer Erster gesetzt werden muss. \\
 \textbf{Problem}: Aktuell können wir auf die Nachfolger-Referenz des ersten in der Schlange nicht zugreifen, da 
 es privat implementiert ist. Wir brauchen also eine getter-Methode für den Nachfolger, ein entsprechender setter kann ebenfalls nicht schaden:
 \begin{minted}{Java}
@@ -280,11 +280,11 @@ leer sein könnte:
 \begin{minted}{Java}
     //class MyListLinked 
     public Human pop() {
-        if(root == null) {
+        if(first == null) {
             return null;
         } else {
-            Human toReturn = root;
-            root = root.getNext();
+            Human toReturn = first;
+            first = first.getNext();
             toReturn.setNext(null);
             return toReturn;
         }
@@ -292,11 +292,11 @@ leer sein könnte:
 \end{minted}
 Graphisch dargestellt (als Bild und \href{https://youtu.be/ceQII7Bn9ts}{hier} im Video):
 \begin{center}
-    \includegraphics[scale = 0.2]{../../media/linked_list_pop.png}
+    \includegraphics[scale = 0.2]{../media/linked_list_pop.png}
 \end{center}
 Will man das zurückgegebene Objekt vom Typ Mensch weiter verwenden, so sollte die Referenz auf den 
 Nachfolger dafür auf null gesetzt werden, da sonst die Liste nach der Entfernung weiter verändert werden könnte. \\
-Die Methode muss allerdings nicht zwingend eine Referenz zur ehemaligen Wurzel zurückgeben. Lässt man die Rückgabe weg, so wird der garbage collector aktiv und entfernt das entsprechende Objekt. \\
+Die Methode muss allerdings nicht zwingend eine Referenz zum ehemaligen Ersten zurückgeben. Lässt man die Rückgabe weg, so wird der garbage collector aktiv und entfernt das entsprechende Objekt. \\
 Würde man die Null-Abfrage nicht schreiben, so gäbe es eine \textbf{null-pointer-exception}, wenn die Warteschlange 
 leer ist. Das betreffende Program, dass die Anfrage stellt stürzt also ab. \\
 Null-pointer-exceptions gehören zu den häufigsten Fehlern in objektorientierten Sprachen, die das Konzept der 
@@ -308,12 +308,12 @@ Versuchen Sie die folgenden Aufgaben zunächst selbstständig zu lösen, die Lö
 den nächsten Seiten.
 
 \begin{task}{2}
-Implementieren Sie eine Methode nachHintenSetzen() (moveToBack()), die die Wurzel entfernt und an die letzte
+Implementieren Sie eine Methode nachHintenSetzen() (moveToBack()), die den Ersten entfernt und an die letzte
 Stelle setzt.
 \end{task}
 
 \begin{task}{3 - für Experten}
-Erweitern Sie die Methode aus Aufgabe 2 so, dass die Position in der Warteschlange, an die die Wurzel geschoben wird, gewählt werden kann (moveBack(int position)).\\
+Erweitern Sie die Methode aus Aufgabe 2 so, dass die Position in der Warteschlange, an die der Erste geschoben wird, gewählt werden kann (moveBack(int position)).\\
 \textit{Hinweis}: Die Methode soll \textbf{nicht} um die entsprechende Position nach hinten gerückt werden sondern  \textbf{an} diese Position in der Schlange gestellt werden.
 \end{task}
 

@@ -19,7 +19,7 @@ Bevor wir eine allgemeine Listen-Klasse erstellen und die Adapterklassen definie
 
 Ein Stack entspricht einem Stapel in der \q{realen} Welt recht genau. Eine hilfreiche Vorstellung ist ein hoher Bücherstapel, bei dem nur das zuletzt hinzugefügt Buch, nämlich das Oberste, ungefährdet wieder entfernt werden können. Gehen wir von einer Implementierung mit Kompositum aus, könnte eine Folge von Einfüge- bzw. Entfernungsoperatoren wie folgt aussehen: 
 \begin{center}
-    \includegraphics[scale=0.25]{../../media/stack.png}
+    \includegraphics[scale=0.25]{../media/stack.png}
 \end{center}
 Stacks werden in der Informatik häufig verwendet, sie spielen z.B. eine Rolle bei Tiefendurchläufen von Graphen (siehe 11|2) und sind ein Hilfsmittel zur Syntaxüberprüfung, bzw. zur Auswertung von Ausdrücken allgemein. (siehe auch formale Sprachen 12|1). \\
 Auch beim Ausführen von Methoden werden die noch abzuwarbeitenden Anwendungen auf einem Stack verwaltet. So kommt es bei rekursiven Methoden auch dazu, dass zuerst bis zur \q{tiefsten Stelle} vorgedrungen wird, da immer mehr Aufrufe auf den Stack gelegt werden, bis an der Abbruchbedingung schließlich einer fertiggestellt wird und es zurück nach unten geht. \\
@@ -32,7 +32,7 @@ Für die Implementierung gehen wir wieder von einer verketteten Liste mit Kompos
 \begin{minted}{Java}
     //class MyListComp
     public void appendSorted(DataElement data) {
-        root = root.appendSorted(data);
+        first = first.appendSorted(data);
     }
 
     //class Node 
@@ -54,7 +54,7 @@ Für die Implementierung gehen wir wieder von einer verketteten Liste mit Kompos
 \end{minted}
 Jeder Datenknoten prüft, ob seine Daten größer sind als die einzufügenden, denn dann muss ein neuer Datenknoten geschaffen werden und dem Vorgänger als neuer Nachfolger übergeben werden. Der aktuelle Datenknoten setzt sich selbst dann als Nachfolger des neuen Knotens. \\
 \begin{center}
-    \includegraphics[scale=0.2]{../../media/append_sorted_objects.png}   
+    \includegraphics[scale=0.2]{../media/append_sorted_objects.png}   
 \end{center}
 Das gleiche geschieht im Endknoten, allerdings in jedem Fall, da der neue Knoten das größte Element enthalten muss, wenn es bis ganz nach hinten \q{durchgekommen} ist.
 
@@ -62,7 +62,7 @@ Das gleiche geschieht im Endknoten, allerdings in jedem Fall, da der neue Knoten
 Mit Hilfe dieser Vorarbeit ist jetzt alles geklärt, um das letzte große Projekt in Angriff zu gehen, die Implementierung der Liste mit allen drei Adapterklassen. \\
 Die Listen-Klasse soll dabei alle Logik enthalten, ein Auszug des Klassendiagramms sieht wie folgt aus:
 \begin{center}
-    \includegraphics[scale=0.2]{../../media/adapter_lists.png}   
+    \includegraphics[scale=0.2]{../media/adapter_lists.png}   
 \end{center}
 \begin{task}{Abschlussaufgabe}
 Implementieren Sie die obige Struktur, insbesondere die Adapterklassen. Erweitern Sie dazu sukzessive die Methoden in der Klasse Liste. Sie können auf bisherige Implementierungen zurückgreifen. 

@@ -6,12 +6,12 @@ In der objektorientierten Programmierung werden häufig \textbf{Entwurfsmuster} 
 Ein anderes Beispiel sind Bilder aus geometrischen Formen. Jedes Dreieck, Quadrat oder Kreis kann bereits als Bild gesehen werden, zusammengefasst ergeben sie aber wieder ein Bild, das wiederum nur ein Teilbild sein könnte, etc. \\
 Ein allgemeines Klassendiagramm der Struktur sieht so aus: 
 \begin{center}
-    \includegraphics[scale=0.2]{../../media/drawio/compositum_lists.png}
+    \includegraphics[scale=0.2]{../media/compositum_lists.png}
 \end{center}
 Die Komponente ist in der Regel eine abstrakte Klasse. In obigem Beispiel wären Dreiecke oder Quadrate Blätter, eine aus zwei Dreiecken zusammengefügte Figur ein Composite, also ein Zusammenschluss aus diesen Objekten. Die Blätter sind die kleinsten Einheiten der Struktur, zu ihnen kann also kein weiteres Objekt hinzugefügt werden. \\
 Auf den ersten Blick bringt uns dieses Konzept keine großen Vorteile im Hinblick auf unsere Liste. Wir haben aktuell bereits eine ähnliche Struktur, da jede Teilliste ab einem bestimmten Knoten wieder als Liste gesehen werden könnte. Mit einer kleinen Erweiterung werden wir so aber sogar unsere Null-Referenzprüfungen los: 
 \begin{center}
-    \includegraphics[scale=0.2]{../../media/compositum_lists.png}
+    \includegraphics[scale=0.2]{../media/compositum_lists.png}
 \end{center}
 Unser Blatt, d.h. das Ende unserer Liste wird zu einer eigenen Klasse. Alle Abbruchbedingungen wandern also in diese Klasse, da alle Methoden, die die Liste ganz durchlaufen, zwangsläufig hier ankommen müssen. So kann z.B. das Einfügen eines neuen Knotens ebenfalls durch \q{Durchreichen} der entsprechenden Daten geschehen. Jeder Knoten gibt dabei sich selbst wieder an den Vorgänger als Nachfolger zurück, bis auf den letzten Knoten. Dieser gibt nicht sich selbst, sondern einen neuen Knoten mit sich als Nachfolger zurück und die Liste wurde verlängert. \\
 Für die Implementierung beginnen wir wiederum mit dem Grundgerüst. Wir benötigen Klassen für:
@@ -25,14 +25,14 @@ Für die Implementierung beginnen wir wiederum mit dem Grundgerüst. Wir benöti
 \end{enumerate}
 \begin{minted}{Java}
     public class MyListComp {
-        private Node root;
+        private Node first;
 
         public MyListComp() {
-            root = new EndNode();
+            first = new EndNode();
         }
     }
 \end{minted}
-Der Konstruktor der Warteschlange platziert jetzt keine Null-Referenz mehr, sondern hängt einen Endknoten als Wurzel an die Liste an. D.h. die Liste ist jetzt immer mit einem \q{selbst-erstellten} Objekt gefüllt. \\ 
+Der Konstruktor der Warteschlange platziert jetzt keine Null-Referenz mehr, sondern hängt einen Endknoten als Ersten an die Liste an. D.h. die Liste ist jetzt immer mit einem \q{selbst-erstellten} Objekt gefüllt. \\ 
 In der Knoten Klasse werden nur die Methodenrümpfe für die tatsächlichen Implementierungen gesetzt (wir könnten diese abstrakte Klasse also auch als Interface implementieren). Für den Moment beschränken wir uns auf die hintenAnfügen() - Methode, die wir im nächsten Schritt implementieren wollen (die Entfernen-Methode ist nicht rekursiv und muss deswegen auch nicht auf den Knoten definiert werden!)
 \begin{minted}{Java}
     public abstract class Node {
@@ -128,12 +128,12 @@ In der Klasse Mensch sind deswegen dementsprechend bereits alle diese Methoden i
     }    
 \end{minted}
 Bei der Verwendung der Methoden ist wieder zu beachten, dass die Methode zur Prüfung auf Gleichheit auf Name und Alter zurückgreift, die Methode für die Sortierung allerdings nur auf das Alter. \\
-Damit ist unser Gerüst komplett und der Fokus kann auf die Implementierung der hintenAnfügen()-Methode gelegt werden. In der Warteschlangen-Klasse hat sich nur die null-Abfrage verändert. Statt dieser wird nun geprüft, ob die Wurzel ein Endknoten ist. Falls ja wird ein neuer Datenknoten erzeugt und an die Stelle der alten Wurzel gesetzt. \\
-\textit{Hinweis:} Der Konstruktor für den Datenknoten erhält die Referenz der \textbf{alten} Wurzel, die zu diesem Zeitpunkt noch der Endknoten ist, erst dann wird wieder in die Variable wurzel gespeichert! 
+Damit ist unser Gerüst komplett und der Fokus kann auf die Implementierung der hintenAnfügen()-Methode gelegt werden. In der Warteschlangen-Klasse hat sich nur die null-Abfrage verändert. Statt dieser wird nun geprüft, ob der Erste ein Endknoten ist. Falls ja wird ein neuer Datenknoten erzeugt und an die Stelle des alten Ersten gesetzt. \\
+\textit{Hinweis:} Der Konstruktor für den Datenknoten erhält die Referenz des \textbf{alten} Ersten, die zu diesem Zeitpunkt noch der Endknoten ist, erst dann wird wieder in die Variable first gespeichert! 
 \begin{minted}{Java}
     //class MyListComp
     public void push(DataElement data) {
-        root = root.push(data);
+        first = first.push(data);
     }
 \end{minted}
 Die Implementierung in der Datenknotenmodellierung ist jetzt sehr schlank: 
@@ -166,17 +166,12 @@ Um die Grundfunktionalität wiederherzustellen sind die in der vorherigen Aufgab
 \begin{minted}{Java}
     //class MyListComp
     public DataElement pop() {
-        if(root instanceof EndNode){
-            System.out.println("No list, nothing to remove");
-            return null;
-        } else {
-            DataElement toReturn = root.getData();
-            root = root.getNext();
-            return toReturn;
-        }
+        DataElement toReturn = first.getData();
+        first = first.getNext();
+        return toReturn;
     }
     public void printList() {
-        root.printList();
+        first.printList();
     }
 \end{minted}
 Es bietet sich für alle rekursiven Methoden an, einen Eintrag in der abstrakten Klasse Knoten zu hinterlassen, um die Implementierung zu erwzingen (auch wenn in der Endknoten-Kasse gegebenenfalls nichts passiert, die Methode muss auch auf dieser Art von Knoten aufrufbar sein, um den Abbruch einzuleiten!).

@@ -4,8 +4,8 @@
 \begin{document}
 Lösungen zu den Aufgaben)\\
 \textbf{Aufgabe 2}:
-Mit unseren Vorarbeiten (insbesondere das Entfernen der Nachfolger-Referenz der Wurzel) ist diese Aufgabe sehr leicht. 
-Die Wurzel die entfernt wird, wird mit der normalen hintenAnfügen() Methode wieder eignefügt. 
+Mit unseren Vorarbeiten (insbesondere das Entfernen der Nachfolger-Referenz des Ersten) ist diese Aufgabe sehr leicht. 
+Der Erste der entfernt wird, wird mit der normalen hintenAnfügen() Methode wieder eignefügt. 
 \begin{minted}{Java}
     //class Human 
     public void setNext(Human human) {
@@ -18,19 +18,19 @@ Die Wurzel die entfernt wird, wird mit der normalen hintenAnfügen() Methode wie
 \end{minted}
 Graphisch veranschaulicht:
 \begin{center}
-    \includegraphics[scale = 0.25]{../../media/linked_moveToBack.png}
+    \includegraphics[scale = 0.25]{../media/linked_moveToBack.png}
 \end{center}
 
 \textbf{Aufgabe 3}:
-Für diese Aufgabe müssen wir wieder rekursiv denken. Wir können der Warteschlange bzw. der Wurzel nicht direkt sagen, 
-zwischen welche beiden Listenelemente die alte Wurzel gesetzt werden muss, da die Wurzel nur die neue Wurzel und 
-diese nur ihren Nachfolger kennt. \\
+Für diese Aufgabe müssen wir wieder rekursiv denken. Wir können der Warteschlange bzw. dem Ersten nicht direkt sagen, 
+zwischen welche beiden Listenelemente der alte Erste gesetzt werden muss, da der Erste nur den neuen Ersten und 
+dieser nur seinen Nachfolger kennt. \\
 Wir können aber bereits die Länge der Liste bestimmen, d.h. wir können die Methode prüfen lassen, ob das Einfügen 
 an dieser Stelle überhaupt möglich ist und andernfalls abbrechen lassen (alternativ könnte dann auch normal 
 am Ende eingefügt werden). Außerdem fangen wir ungültige Eingaben ab, die Position 1 wäre die gleiche Stelle wie zuvor,
-also wieder die neue Wurzel. Eine negative Eingabe oder 0 macht ebenfalls keinen Sinn. \\
-Damit sind die Vorbereitungen abgeschlossen und die alte Wurzel kannt entfernt und in einer lokalen (temporären tmp) 
-Variable zwischengespeichert werden. Danach wird die entsprechende Funktion auf der Wurzel aufgerufen und wir wechseln 
+also wieder den neuen Ersten. Eine negative Eingabe oder 0 macht ebenfalls keinen Sinn. \\
+Damit sind die Vorbereitungen abgeschlossen und der alte Erste kannt entfernt und in einer lokalen (temporären tmp) 
+Variable zwischengespeichert werden. Danach wird die entsprechende Funktion auf dem Ersten aufgerufen und wir wechseln 
 in die Mensch-Klasse. \\
 Es gibt im Wesentlichen zwei Ideen, wie die entsprechende Position gefunden werden kann:
 \begin{enumerate}
@@ -49,7 +49,7 @@ die Methode auf dem nächsten in der Schlange aufgerufen.
             return;
         }
         Human tmp = pop();
-        root.moveBack(tmp, position, 1);
+        first.moveBack(tmp, position, 1);
     }
     //class Human 
     public void moveBack(Human h, int position, int counter) {
@@ -70,10 +70,10 @@ nachgedacht werden muss.
 \begin{minted}{Java}
    //class MyListLinked
    public void printList() {
-       if(root == null){
+       if(first == null){
            System.out.println("No list here to print!");
        } else {
-           root.printList();
+           first.printList();
        }
    }
    // class Human 
@@ -96,11 +96,11 @@ Zeile ergeben, wenn man ihn weiterverwendet und ausgibt.
 \begin{minted}{Java}
    //class MyListLinked
    public String printList() {
-       if(root == null){
+       if(first == null){
            System.out.println("No list here to print!");
            return "";
        } else {
-           return root.printList();
+           return first.printList();
        }
    }
    // class Human 
@@ -123,7 +123,7 @@ wieder willkürlich festgelegt, andere Lösungen sind denkbar.
     //class MyListLinked   
     public int searchHumanInQueue(Human human) {
         int counter = 0;
-        int searched = root.searchHumanInQueue(human,counter);
+        int searched = first.searchHumanInQueue(human,counter);
         return searched;
     }
     //class Human 
@@ -145,8 +145,8 @@ werden.
 \begin{minted}{Java}
     //class MyListLinked 
     public boolean contains(Human human) {
-        if(root != null) {
-            return root.contains(human);
+        if(first != null) {
+            return first.contains(human);
         } else {
             return false;
         }
@@ -177,9 +177,9 @@ da sonst \q{von außerhalb} die Liste modifiziert werden könnte. Wird die erste
         if(position == 1) {
             return pop();
         }
-        if(root != null) {
+        if(first != null) {
             int counter = 1;
-            return root.removeAt(position, counter);
+            return first.removeAt(position, counter);
         } else {
             return null;
         }
@@ -209,11 +209,11 @@ Hilfe der push-Methode angefügt werden.
 \begin{minted}{Java}
     //class MyListLinked
     public Object concatenate(MyListLinked toConcat) {
-        if(root == null) {
+        if(first == null) {
             return toConcat;
         }
         Human end = this.findEnd();
-        end.setNext(toConcat.getRoot());
+        end.setNext(toConcat.getFirst());
         return this;
     }
     //class Human

@@ -7,7 +7,7 @@ die, die eine \q{verzeigerte} Struktur aufweisen (linked lists). Da Felder berei
 Für den Moment wollen wir uns ein Feld als reservierten Speicherplatz vorstellen, im Folgenden symbolisiert durch
 eine Aneinanderreihung an Quadraten. Aktuell soll das Feld noch vollständig leer sein.
 \begin{center}
-    \includegraphics[scale=0.15]{../../media/empty_arr.png}
+    \includegraphics[scale=0.15]{../media/empty_arr.png}
 \end{center}
 In Java werden Felder allerdings standardmäßig mit 0 bzw. null intialisiert, wenn keine weiteren Vorgaben gemacht werden.
 \bsp
@@ -18,8 +18,8 @@ Die Variable array zeigt nun zu einem Feld, das 3 mal den Eintrag 0 enthält,
 in Java-Schreibweise: $\{0,0,0\}$ \\
 
 \begin{center}
-    \includegraphics[scale = 0.15]{../../media/zero_arr.png}
-\end{center}
+    \includegraphics[scale = 0.15]{../media/zero_arr.png}
+\end{center} 
 
 Neben primitiven Datentypen wie int können auch Listen von beliebigen Objekten gebildet werden. Nehmen wir an, wir haben
 eine Klasse \q{Mensch }bereits erzeugt, dann wird
@@ -43,14 +43,14 @@ in der Informatik bei 0 zu zählen begonnen wird. Auf den für uns dritten Eintr
 Versuchen wir stattdessen, z.B. mit humans[0] auf den ersten Menschen zuzugreifen, werden wir nur null erhalten,da dieses Feld aktuell nur null-Einträge enthält. 
 
 \begin{center}
-    \includegraphics[scale=0.2]{../../media/queue_humans_null.png}
+    \includegraphics[scale=0.2]{../media/queue_humans_null.png}
 \end{center}
 
 Haben wir die Methode hintenAnfügen() (push()) implementiert und drei Menschen Anna, Berti und Christo 
 erzeugt und zur Warteschlange hinzugefügt: 
 
 \begin{center}
-    \includegraphics[scale=0.2]{../../media/queue_humans_arrows.png}
+    \includegraphics[scale=0.2]{../media/queue_humans_arrows.png}
 \end{center}
 Dabei stehen die Strichys (\href{https://www.youtube.com/watch?v=xVmGb7qACfA&t}{Germanistik-Exkurs}) ebenfalls wieder für eine bestimmte Menge an Daten, die (ggf. an ganz anderer physikalischer Stelle) im Speicher abgelegt sind. \\ 
 Grundsätzlich bietet das Feld an sich in seiner üblichen Implementierung in Java bereits alle Eigenschaften, die wir 
@@ -59,7 +59,7 @@ entnommen und am Ende angefügt werden können. Es ist also mehr Kontrolle nöti
 Beginnen wir damit unsere Warteschlange als neue Klasse zu definieren. Da es unser Ziel ist eine Schlange von Menschen zu modellieren, brauchen wir zunächst eine Klasse, die einen Menschen beschreibt. 
 
 \begin{center}
-    \includegraphics[scale=0.25]{../../media/human.png}
+    \includegraphics[scale=0.25]{../media/human.png}
 \end{center}
 
 Bevor es mit der Implementierung weitergeht bietet sich an dieser Stelle eine Wiederholung der wichtigsten drei Diagrammarten an, die in der Oberstufe Verwendung finden:
@@ -85,7 +85,7 @@ $\Rightarrow$ Exkurs im \textbf{Anhang}
 Unsere Menschen haben aktuell nur die Attribute Name und Alter und außer dem Konstruktor sind keine weiteren
 Methoden vorhanden. Unser Ziel ist es eine Warteschlange der folgenden Struktur zu bauen: \\
 \begin{center}
-    \includegraphics[scale=0.25]{../../media/queue_diagramm.png}
+    \includegraphics[scale=0.25]{../media/queue_diagramm.png}
 \end{center}
 
 \begin{minted}{Java}
@@ -119,7 +119,7 @@ Ein erster - naiver - Ansatz zur Befüllung wäre der folgende:
 \end{minted}
 
 \begin{task}{1}
-Begründe Sie kurz, warum diese Implementierung ineffizient ist. 
+Begründen Sie kurz, warum diese Implementierung ineffizient ist. 
 \end{task}
 \vspace{2cm}
 Eine effizientere Lösung besteht darin, das Attribut $anzahl$ zu verwenden, dadurch vereinfacht sich die Implementierung zu: 

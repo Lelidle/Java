@@ -4,23 +4,23 @@
 \begin{document}
 Die verkettete Liste erfüllt zwar alle Funktionalitäten, die wir von ihr erwarten, sieht man sich die Struktur aber genauer an, so erfüllt die Klasse Mensch eigentlich zwei Rollen. \\
 \begin{center}
-    \includegraphics[scale = 0.2]{../../media/human_v2.png}
+    \includegraphics[scale = 0.2]{../media/human_v2.png}
 \end{center}
 Die ersten beiden Attribute beschreiben die eigentlichen Daten, die in dieser Liste gespeichert sind, dagegen ist das letzte Attribut für jemanden, der nur an den Menschen in der Schlange interessiert ist, irrelevant. \\
 Das Problem wird noch deutlicher, nimmt man die Methoden hinzu: 
 \begin{center}
-    \includegraphics[scale = 0.2]{../../media/human_v3.png}
+    \includegraphics[scale = 0.2]{../media/human_v3.png}
 \end{center}
 Manche der Methoden sind nur notwendig, um die Liste zu durchlaufen und bestimmte Aktionen auszuführen - wie z.B. die Bestimmung der Länge. Welche Daten über den Menschen gespeichert sind, ist dabei völlig irrelevant. \\
 Andere Methoden dagegen beziehen sich nur auf die Daten an sich, z.B. die istGleich(Mensch m) - Methode, die zwei Menschen miteinander vergleicht. \\
 Diese Vermischung zweier unterschiedlicher sollte aufgelöst werden, d.h. eine Struktur geschaffen werden, die die Funktionalität der Liste enthält. In der Klasse Mensch verbleiben dann nur noch die Attribute und Methoden, die direkt mit den Daten zu tun haben. Auf diese Weise lässt sich die Liste auch leichter an neue Bedingungen anpassen. Wollen wir statt der Menschen eine Liste von Tieren anlegen, dann muss lediglich die Klasse Mensch und die Referenzen auf die Daten ausgetauscht werden. Die Liste an sich besteht dann aus ihrem \q{Kopf}, in unserem Fall die Warteschlange und mehrere Knoten. Jeder Knoten kennt dabei wieder seinen Nachfolger und hält eine Referenz zu einem Objekt der Klasse Mensch (in unserem Fall). Ohne detailliert auf die Methoden einzugehen sieht die Struktur also wie folgt aus: 
 \begin{center}
-    \includegraphics[scale = 0.2]{../../media/linked_list_nodes_diagram.png}
+    \includegraphics[scale = 0.2]{../media/linked_list_nodes_diagramm.png}
 \end{center}
 Die Klasse Knoten hat sich zwischen die Warteschlange und die \q{Datenklasse} Mensch geschoben. Alle Methoden, die wir bisher implementiert haben, lassen sich eindeutig einer der beiden Klassen zuordnen. In der Klasse Warteschlange ändert sich außer dem Namen der referenzierten Klasse bei keiner Methode etwas inhaltlich. \\
 Angenommen wir betrachten eine Liste, die vier Menschen enthält, dann sähe ein Objektdiagramm der aktuellen Liste wie folgt aus: \\
 \begin{center}
-    \includegraphics[scale = 0.14]{../../media/linked_list_nodes_objectdiagram.png}
+    \includegraphics[scale = 0.14]{../media/linked_list_nodes_objectdiagram.png}
 \end{center}
 Das Gerüst der drei Klassen sieht dann wie folgt aus: 
 \begin{minted}{Java}
@@ -99,12 +99,12 @@ Zusammengefasst kann man sagen, dass mit einem Interface von einer Klasse eine b
 \textbf{Zurück zu unserem Anwendungsfall}: Wir wollen an unsere Liste nicht mehr nur Menschen anhängen, sondern alle Objekte von Klassen, die unseren Anforderungen an ein Datenelement genügen. Wir definieren also ein Interface Datenelement, in dem wir alle Methoden fordern, die wir benötigen. Wollen wir beispielsweise auch Tiere in unserer Warteschlange erlauben, so sähe die gewünschte Struktur so aus: 
 
 \begin{center}
-    \includegraphics[scale = 0.2]{../../media/linked_list_nodes_diagram_interface.png}
+    \includegraphics[scale = 0.2]{../media/linked_list_nodes_diagram_interface.png}
 \end{center}
 Betrachten wir die Warteschlange zu einem beliebign Zeitpunkt, dann ändert sich nicht viel: 
 
 \begin{center}
-    \includegraphics[scale = 0.125]{../../media/linked_list_nodes_objectdiagram_v2.png}
+    \includegraphics[scale = 0.125]{../media/linked_list_nodes_objectdiagram_v2.png}
 \end{center}
 Die grundlegende Struktur sieht dann wie folgt aus: 
 \begin{minted}{Java}
@@ -159,35 +159,35 @@ Im Folgenden finden sich die Lösungen für alle Methoden auf einmal, jeweils kl
 \begin{minted}{Java}
     public class MyListLinkedNode {
         public MyListLinkedNode(){
-            root = null;
+            first = null;
         }
 
        public void push(DataElement data){
            Node node = new Node(data);
-           if(root == null) {
-               root = node;
+           if(first == null) {
+               first = node;
            } else {
-               root.push(node);
+               first.push(node);
            }
        }
 
        @Override
        public DataElement pop(){
-           if(root == null){
+           if(first == null){
                return null;
            } else {
-               DataElement toReturn = root.getData();
-               root = root.getNext();
+               DataElement toReturn = first.getData();
+               first = first.getNext();
                return toReturn;
            }
        }
 
        @Override
        public void printList() {
-           if(root == null){
+           if(first == null){
                System.out.println("No list here to print!");
            } else {
-               root.printList();
+               first.printList();
            }
        }
     }
