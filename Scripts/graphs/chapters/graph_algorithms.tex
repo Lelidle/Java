@@ -23,7 +23,7 @@ Das grundlegende Vorgehen hat mehrere Schritte:
 \end{enumerate}
 Der Algorithmus endet dann, wenn keine der Methodenaufrufe mehr übrig ist. Dadurch, dass wir die Methode auf einem weiteren Knoten aufrufen, anstatt zuerst alle Nachbarknoten abzuarbeiten, erhält die Tiefensuche die Eigenschaft möglichst weit \q{in die Tiefe} zu gehen. Erst wenn wir keine weitere Möglichkeit mehr finden gehen wir \q{zurück nach oben}.
 \begin{center}
-    \includegraphics[scale=0.35]{../../media/depth_search.png}
+    \includegraphics[scale=0.35]{../media/depth_search.png}
 \end{center}
 \href{https://youtu.be/nM9hBCUMXMA}{\textbf{Zugehöriges Video}}\\
 Beginnen wir beim Knoten $0$, so haben wir zwei Möglichkeiten zu starten, entweder den Knoten $1$ oder $2$. Im Zweifel wird in dieser Implementierung der Knoten mit der niedrigeren Nummer gewählt, d.h. die Tiefensuche wird auf $1$ aufgerufen. Das Entscheidende ist jetzt, dass der nächste Schritt von $1$ aus geführt wird, nicht von $2$ (der Methodenaufruf auf $2$ erfolgt erst nach der vollständigen Abarbeitung des Methodenaufrufs auf $1$). $1$ ruft deswegen als Nächstes die Methode auf $3$ auf, dieser Knoten danach auf $6$. Jetzt sind wir an einem \q{toten Ende} angekommen, es gibt keine weiteren unbesuchten Nachbarn und wir gehen \q{eine Ebene zurück}. \\
@@ -97,7 +97,7 @@ Die grundlegende Idee der Breitensuche ist der Tiefensuche sehr ähnlich, der Gr
 
 Wir betrachten denselben Graphen wie zuvor: 
 \begin{center}
-    \includegraphics[scale=0.15]{../../media/broad_search.png}
+    \includegraphics[scale=0.15]{../media/broad_search.png}
 \end{center}
 \href{https://youtu.be/pgRzRGii0F4}{\textbf{Zugehöriges Video}}\\
 Wir beginnen wieder beim Knoten $0$, es werden die Knoten $1$ und $2$ (wieder in der Reihenfolge der Nummerierung) in die Warteschlange eingefügt. Danach wird das erste Element aus der Warteschlange entfernt, in diesem Fall die $1$. Von hier aus wird die $3$ und die $5$ in die Warteschlange aufgenommen. \\

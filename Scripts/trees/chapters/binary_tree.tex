@@ -9,7 +9,7 @@
 Wir beginnen wie bei den Listen zunächst mit einem naiven Ansatz (d.h. noch ohne Compositum). Der grundlegende Aufbau entspricht dem der Liste, nur hat jeder Knoten zwei mögliche Nachfolger, die im Folgenden links bzw. rechts (left bzw. right) genannt werden. In Anlehnung an die Einleitung beschränken wir uns zunächst auf Zahlen als Werte und verzichten auf eine Mensch- oder Datenelementklasse. Eine weitere, häufig nützliche Eigenschaft ist, dass nach dem Einfügen jeder Wert nur einmal im Suchbaum vorkommt. \\
 \textbf{Randnotiz}: In der Mathematik hat eine Menge die Eigenschaft, dass keine Elemente doppelt vorkommen (Englisch: set). Auch in der Informatik kann diese Eigenschaft nützlich sein. Unser Suchbaum wird eise Eigenschaft erfüllen. Java bietet natürlich auch schon eingebaute Strukturen mit ähnlichen Eigenschaften. Diese und weitere Mengeneigenschaften sind im \href{https://docs.oracle.com/javase/7/docs/api/java/util/Set.html}{Set}-Interface zusammengestellt.
 \begin{center}
-    \includegraphics[scale=0.25]{../../media/bin_tree_basic.png}
+    \includegraphics[scale=0.25]{../media/bin_tree_basic.png}
 \end{center}
 \textit{Hinweis:} Die üblichen getter- und setter-Methoden wurden im Klassendiagramm der Übersichtlichkeit halber weggelassen. \\
 Die Klassenrümpfe sehen damit wie folgt aus:
@@ -142,7 +142,7 @@ Alle drei Möglichkeiten arbeiten rekursiv und durchlaufen den Baum vollständig
 \subsubsection{Pre-Order}
 In dieser Methode werden zunächst die Daten des aufgerufenen Knotens ausgegeben, dann wird die Methode auf dem linken Kind aufgerufen, zuletzt auf dem rechten Kind. Ein Beispiel:
 \begin{center}
-    \includegraphics[scale=0.2]{../../media/preorder.png}
+    \includegraphics[scale=0.2]{../media/preorder.png}
 \end{center}
 Auf der Wurzel $25$ wird die printPreOrder-Methode aufgerufen. Die Wurzel gibt ihre Daten aus und ruft anschließend auf dem linken Kind $17$ printPreOrder auf. Die $17$ gibt nun ihrerseits ihren Wert aus und gibt den Aufruf an die $11$ aus, nach der Ausgabe der $11$ folgt der Aufruf und die Ausgabe von $7$. \\
 Da $7$ aber keine weiteren Kinder hat, erfolgt auch kein weiterer Funktionsaufruf, es wird also zurück zur $11$ gesprungen. Da diese aber auch kein rechtes Kind hat, kann dort nicht weiter aufgerufen werden und die Ausführung kehrt zur $17$ zurück (mit zurückkehren ist damit natürlich nur gemeint, dass wir den nächsten Funktionsaufruf auf dem Knoten $17$ durchführen, es muss nicht \q{gessprungen} werden, da nur ein Stapel an Funktionsaufrufen abgearbeitet wird). \\
@@ -171,7 +171,7 @@ Alternativ zur direkten Ausgabe auf der Konsole können die Werte auch in einem 
 \subsubsection{In-Order}
 Im Unterschied zur Pre-Order-Variante wird hier zunächst der Aufruf auf dem linken Kind gestartet, ist dieser beendet werden die eigenen Daten ausgegeben, am Ende folgt dann der Aufruf auf dem rechten Kind. In unserem Beispiel ergibt sich damit die folgende Reihenfolge:
 \begin{center}
-    \includegraphics[scale=0.2]{../../media/inorder.png}
+    \includegraphics[scale=0.2]{../media/inorder.png}
 \end{center}
 Da immer zuerst auf dem linken Kind aufgerufen wird, beginnt der Durchlauf \q{links unten} im Baum, in diesem Fall bei der $7$. Nach dem linken Kind wird die eigene Information ausgegeben, weswegen die $11$ folgt. Da es kein rechtes Kind der $11$ gibt wird als nächstes die $17$ ausgegeben, danach deren rechtes Kind, die $20$. Damit ist der linke Teilbaum abgearbeitet und die Wurzel wird ausgegeben. Es folgt wieder analog der rechte Teilbaum. \\
 \textit{Hinweis:} Auch im rechten Teilbaum wird \q{links unten} begonnen - dank der rekursiven Natur des Baumes können wir jeden Teilbaum wie einen vollwertigen Baum behandeln! \\
@@ -199,7 +199,7 @@ Die Implementierung sieht nahezu identisch aus, es hat sich lediglich die Positi
 \subsubsection{Post-Order}
 Bei der Post-Order-Variante werden zuerst beide Kinder (links dann rechts) abgearbeitet, bevor die eigenen Daten ausgegeben werden. In unserem Beispiel: 
 \begin{center}
-    \includegraphics[scale=0.2]{../../media/postorder.png}
+    \includegraphics[scale=0.2]{../media/postorder.png}
 \end{center}
 Der Startpunkt ist wie zuvor die $7$ und da die $11$ kein rechtes Kind hat, ist sie die zweite Zahl. Danach ist jedoch die $20$ als rechtes Kind der $17$ vor dieser an der Reihe. Die Wurzel wird ausgelassen (hier sind wir gestartet, d.h. die Ausgabe erfolgt erst ganz am Ende, nach Abarbeitung des linken und rechten Teilbaums!). Der rechte Teilbaum wird wieder analog abgearbeitet und es ergibt sich:
 \begin{center}
@@ -265,7 +265,7 @@ In dieser Implementierung wird auch noch einmal schön der Hintergrund der Benen
 \begin{task}{Traversierung}
 Geben Sie alle vier oben erwähnten Traversierungen für den folgenden Baum an:
 \begin{center}
-    \includegraphics[scale=0.2]{../../media/traversal_task.png}
+    \includegraphics[scale=0.2]{../media/traversal_task.png}
 \end{center}
 \end{task}
 \begin{task}{zur Implementierung}
@@ -630,7 +630,7 @@ Die Implementierung der Methode, die prüft, ob die vorletzte Ebene des Baumes b
 $d$ gibt die Tiefe unseres Baumes an, ist diese kleiner oder gleich 2, so ist der Baum in jedem Fall optimal (im Fall der Tiefe 2 müsste nur die Existenz der Wurzel geprüft werden, diese ist immer vorhanden!). \\
 Falls $d$ dagegen größer ist als 2, so müssen in der Reihe $d-1$ genau $2^{d-2}$ Knoten sein. Folgendes Bild veranschaulicht dies: 
 \begin{center}
-    \includegraphics[scale=0.25]{../../media/number_nodes.png}
+    \includegraphics[scale=0.25]{../media/number_nodes.png}
 \end{center}
 Die rekursive Helfer-Methode summeInEinerEbene funktioniert wieder ähnlich wie die übrigens rekursiven Methoden: 
 \begin{minted}{Java}

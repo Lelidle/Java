@@ -8,7 +8,7 @@ Nach diesen Vorüberlegungen und Grundbegriffen können wir uns der Implementier
 Die beiden häufigsten Möglichkeiten der Implementierung verwenden eine \textbf{Adjazenzmatrix} bzw. \textbf{Adjazenzlisten}, in diesem Kapitel werden wir uns der Matrix widmen. \\
 Wir betrachten wieder ein Beispiel aus den Grundlagen:
 \begin{center}
-    \includegraphics[scale=0.15]{../../media/matrix_1.png}
+    \includegraphics[scale=0.15]{../media/matrix_1.png}
 \end{center}
 Es handelt sich um einen ungerichteten, zusammenhängenden Graphen. Will man die Verbindungen zwischen den einzelnen Knoten darstellen, bietet es sich an \q{von Knoten zu Knoten} zu denken. Man betrachtet eine Matrix nach folgendem Schema (die einzelnen Knoten werden zusätzlich zu ihrem Index noch mit \textit{k} benannt, um später leichtere Lesbarkeit zu gewährleisten): 
 \begin{center}
@@ -167,12 +167,12 @@ Diese Implementierung hat natürlich den Nachteil, das bei vielen Knoten, aber w
 \end{itemize}
 In allen drei Fällen werden die Null-Werte nicht mehr mitgespeichert, aber zurück zu unserer - deutlich einfacheren - Implementierung. Ein mögliches Klassendiagramm für unseren Graphen sieht wie folgt aus: 
 \begin{center}
-    \includegraphics[scale=0.2]{../../media/graph_advanced.png}
+    \includegraphics[scale=0.2]{../media/graph_advanced.png}
 \end{center}
 Das Attribut \textbf{maxNodes} ist nicht zwingend notwendig, es hängt davon ab, ob man den Graphen erweiterbar gestalten möchte oder nicht. Der Vorteil der Verwendung eines Maximums besteht darin, dass das zweidimensionale Feld direkt mit seiner endgültigen Größe erzeugt werden kann. Ansonsten müsste beim Hinzufügen eines Knotens immer die Adjazenzmatrix vergrößert werden, was nur durch Erzeugen eines neuen Arrays und Kopieren des Alten Arrays möglich wäre. \\
 Im Folgenden wollen wir uns außerdem darauf beschränken, dass die Knoten des Graphen keine weiteren Informationen verwalten müssen außer ihrer eigenen Nummer. Wir wollen außerdem bei Erstellung des Graphen festlegen, wie groß er ist, da dies der Regelfall im Einsatz ist, d.h. ein grundlegendes Klassendiagramm unseres einfachstmöglichen Graphen sieht (noch ohne Methoden) wie folgt aus: 
 \begin{center}
-    \includegraphics[scale=0.2]{../../media/graph_basic.png}
+    \includegraphics[scale=0.2]{../media/graph_basic.png}
 \end{center}
 \begin{task}{1}
 Implementieren Sie die Grundstruktur des Graphen mit Adjazenzmatrix nach obigem vereinfachten Klassendiagramm, zusätzlich soll es folgendes geben: 
